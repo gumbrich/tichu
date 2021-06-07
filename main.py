@@ -845,10 +845,10 @@ def main():
 	# ~ deck = Deck()
 	
 	# Initialize the players
-	player1 = Player("Bernadette",1,1)
-	player2 = Player("Manuel (Bot)",2,2)
-	player3 = Player("Johannes (Bot)",3,1)
-	player4 = Player("Freia (Bot)",4,2)
+	player1 = Player("Alice",1,1)
+	player2 = Player("Bob",2,2)
+	player3 = Player("Charlie",3,1)
+	player4 = Player("Eve",4,2)
 	players = [player1,player2,player3,player4]
 	
 	# Initialize the game
@@ -881,10 +881,10 @@ def main():
 				
 				print("active players: " +str(game.activePlayers))
 				print("passed: " +str(game.passedCounter))
-				print("Points Bernadette: " + str(player1.points))
-				print("Points Manuel: " + str(player2.points))
-				print("Points Johannes: " + str(player3.points))
-				print("Points Freia: " + str(player4.points))
+				print("Points Alive: " + str(player1.points))
+				print("Points Bob: " + str(player2.points))
+				print("Points Charlie: " + str(player3.points))
+				print("Points Eve: " + str(player4.points))
 
 				startTurn(players[game.currPlayer],game)
 				
