@@ -31,7 +31,8 @@ class Combination:
 
     def __str__(self):
         wild = f' (Phoenix = {Card.ranks[self.phoenix_rank]})' if self.phoenix_rank else ''
-        return f'{self.kind}: ' + ', '.join(map(str, self.cards)) + wild
+        ordered = sorted(self.cards, key=lambda c: (c.rank, c.suit))
+        return f'{self.kind}: ' + ', '.join(map(str, ordered)) + wild
 
 
 def classify(cards):
