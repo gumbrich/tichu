@@ -4,6 +4,21 @@ Status: design proposal, following verified gameplay completion. The current
 rules are the reference implementation; this document does not claim a search
 engine or a hidden-information agent has already been built.
 
+## Progress after self-play work (11 November 2026)
+
+The fast rank-pattern generator is now implemented and checked against the
+exhaustive oracle. `tichu.agents` supplies frozen `Observation` and `Decision`
+values and an adapter to the existing validated commands. Bots receive only
+per-seat information. `tichu.selfplay` supplies paired tournaments, evolutionary
+self-play optimization, policy checkpoints and held-out evaluation. See
+[strategic findings](strategic-findings.md) for evidence and limitations.
+
+The frozen full `GameState`, versioned serialization/replay, hidden-hand belief
+search and network client adapter below are still proposals. Round remains mutable;
+the delivered agent contract is a useful partial implementation, not completion
+of every interface in this design. The exhaustive generator remains a testing
+oracle; it is no longer the production path.
+
 ## Existing foundation
 
 `Card` and `Combination` are immutable values. `classify()` returns all legal
@@ -77,8 +92,9 @@ hand changes. Do not generate actions using hidden information from another seat
 
 ## Legal-move generation
 
-The existing exhaustive subset generator is a slow, clear reference. Replace the
-production path with rank counts and suit masks:
+The exhaustive subset generator remains the slow, clear reference. The first
+rank-pattern implementation below is now delivered; future optimization can use
+suit masks while preserving these rules:
 
 1. Generate singles, same-rank subsets, triples and distinct-rank full houses.
 2. Enumerate consecutive rank intervals for pair runs and straights; expand suit
@@ -137,10 +153,10 @@ that a card is absent. Team rewards and individual Tichu commitments coexist.
    existing tests. Add serialization/versioning, clone/hash equality, deterministic
    replay, invalid-action immutability and observation non-leakage tests. Replaying
    a complete match must produce identical hands, events and final scores.
-2. **Fast move generation.** Differential tests against the current generator;
+2. **Fast move generation (first version delivered).** Differential tests against the current generator;
    preserve exact suit selections and Phoenix/wish alternatives. Publish a fixed
    benchmark corpus, latency percentiles and rollout throughput before/after.
-3. **Agent boundary and baseline tournament.** Observation-only policy interface,
+3. **Agent boundary and baseline tournament (first version delivered).** Observation-only policy interface,
    action/time budgets, randomized/heuristic agents, paired seeded evaluation,
    zero invalid actions and reproducible results.
 4. **Hidden-information search.** Belief-consistent sampling, then a bounded

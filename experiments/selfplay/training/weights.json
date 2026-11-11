@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "weights": {
+    "groups": 6.16312264418097,
+    "loose": 1.604891668643716,
+    "control": 1.1464812701499478,
+    "shed": 0.9000494238189236,
+    "rank": 0.2522257607827853,
+    "partner": 21.307196941067744,
+    "bomb": 6.047966846348529,
+    "urgency": 5.892718068970142,
+    "lead": 2.1323673398886474,
+    "gift": 0.4667632719773091,
+    "call_threshold": 0.42120497714779304
+  },
+  "training_seed": 1729,
+  "training_deal_range": [
+    10000,
+    15035
+  ],
+  "validation_deal_range": [
+    500000,
+    500079
+  ],
+  "validation_mean_score": 31.9375
+}

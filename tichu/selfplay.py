@@ -124,6 +124,19 @@ def summarize(pairs):
             **totals}
 
 
+def paired_score_difference(full, comparison):
+    """Incremental benefit on the same deal pairs, not independent-game errors."""
+    values = {p['seed']: statistics.mean(g['score_difference'] for g in p['games'])
+              for p in full['pairs']}
+    differences = [values[p['seed']] - statistics.mean(g['score_difference'] for g in p['games'])
+                   for p in comparison['pairs']]
+    mean = statistics.mean(differences)
+    margin = (1.96 * statistics.stdev(differences) / math.sqrt(len(differences))
+              if len(differences) > 1 else None)
+    return {'mean_points_per_round': mean,
+            '95ci': [mean - margin, mean + margin] if margin is not None else None}
+
+
 def evaluate(candidate, opponent, seeds, *, workers=1, mode='round', target=1000, pool=None):
     tasks = [(s, candidate, opponent, mode, target) for s in seeds]
     if pool is not None:
@@ -229,6 +242,7 @@ def benchmark_suite(output, *, model=DEFAULT_MODEL, pairs=200, matches=60, worke
               ('solo-v-baseline', {**trained, 'solo': True}, baseline, 'round', pairs),
               ('solo-matches-v-baseline', {**trained, 'solo': True}, baseline, 'match', matches)]
     results = {}
+    detailed = {}
     with ProcessPoolExecutor(max_workers=workers) as pool:
         for name, candidate, opponent, mode, count in tests:
             start = 1000000 if mode == 'round' else 2000000
@@ -236,11 +250,16 @@ def benchmark_suite(output, *, model=DEFAULT_MODEL, pairs=200, matches=60, worke
                               mode=mode, pool=pool)
             (output / f'{name}.json').write_text(json.dumps(result, indent=2) + '\n')
             results[name] = result['summary']
+            detailed[name] = result
             print(f"{name}: {result['summary']['win_rate']:.1%} wins, "
                   f"{result['summary']['mean_score_difference']:+.1f} points", flush=True)
     manifest = {'model_sha256': hashlib.sha256(Path(model).read_bytes()).hexdigest(),
                 'round_seed_start': 1000000, 'match_seed_start': 2000000,
                 'pairs': pairs, 'match_pairs': matches, 'results': results}
+    manifest['paired_ablation_deltas'] = {
+        name: paired_score_difference(detailed['trained-v-baseline'], detailed[name])
+        for name in ('without-planning', 'without-teamwork', 'without-exchange',
+                     'without-calls', 'initial-v-baseline')}
     (output / 'summary.json').write_text(json.dumps(manifest, indent=2) + '\n')
     return manifest
 

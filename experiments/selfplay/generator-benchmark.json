@@ -1,0 +1,9 @@
+{
+  "hands": 100,
+  "seed": 90811,
+  "python": "3.13.7",
+  "reference_seconds": 4.358611874748021,
+  "rank_generator_seconds": 0.9141703331843019,
+  "speedup": 4.767833429428628,
+  "exact_action_set_agreement": true
+}

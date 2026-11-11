@@ -11,7 +11,7 @@ from tichu.agents import (BaselineAgent, StrategicAgent, Weights, Observation,
 from tichu.cards import Card, Deck
 from tichu.combinations import reference_combinations, legal_plays
 from tichu.game import Round
-from tichu.selfplay import paired_trial, summarize
+from tichu.selfplay import paired_trial, summarize, paired_score_difference
 from tests.test_game import scenario, decline
 from tests.test_combinations import cards, combo
 
@@ -113,6 +113,16 @@ class StrategicTests(unittest.TestCase):
 
 
 class TournamentTests(unittest.TestCase):
+    def test_ablation_uncertainty_uses_deal_pairs(self):
+        def result(rows):
+            return {'pairs': [{'seed': i, 'games': [{'score_difference': score} for score in row]}
+                              for i, row in enumerate(rows)]}
+        difference = paired_score_difference(result([(20, 40), (60, 80)]),
+                                             result([(10, 30), (40, 60)]))
+        self.assertEqual(difference['mean_points_per_round'], 15)
+        self.assertAlmostEqual(difference['95ci'][0], 5.2)
+        self.assertAlmostEqual(difference['95ci'][1], 24.8)
+
     def test_identical_policies_cancel_when_sides_swap(self):
         spec = {'name': 'baseline'}
         pair = paired_trial((102, spec, spec, 'round', 1000))

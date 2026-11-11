@@ -9,17 +9,21 @@ only requirement; no NumPy, package installation, or external service is needed.
 From this repository directory:
 
 ```sh
-python3 main.py                         # You (Alice) and three simple bots
+python3 main.py                         # You (Alice) and three self-play-trained bots
 python3 main.py --humans 4              # Four humans sharing a terminal
 python3 main.py --humans 2 --seed 42     # Two human seats, two bots, repeatable deal
 python3 main.py --demo --seed 7          # Automated match, round summaries only
+python3 main.py --bot baseline           # Original weak bot, for comparison
+python3 main.py --bot strategic          # Untuned hand-planning bot
 python3 main.py --demo --target 100      # Short demonstration match
 python3 -m unittest discover -v         # Rules, terminal and whole-game tests
 ```
 
 Seats 1→2→3→4 proceed to the right. Alice and Charlie are partners; Bob and Eve
 are partners. Human-controlled seats are the first `--humans` seats (0–4).
-The default match target is 1000. Equal scores at/above the target continue into
+The default bot is `trained`. Its weights were selected by a reproducible self-play
+tournament, using separate training, validation and test deals. The default match
+target is 1000. Equal scores at/above the target continue into
 another round. `--seed` makes the deals reproducible for the same actions.
 
 ## Playing
@@ -70,23 +74,64 @@ boundary. There is no online multiplayer or graphical interface.
 The tests cover all combination families, contextual Phoenix singles, wildcard
 ambiguity, wishes, bomb priority and final-pass interrupts, Dragon gifting, Dog
 leads, players going out, calls, exchanges, score transfers and match rollover.
-They also run 40 seeded randomized rounds with 56-card conservation and score
+They also compare the faster move generator against exhaustive enumeration, test
+private-information isolation and policy checkpoints, and run 40 seeded randomized
+rounds with 56-card conservation and score
 invariants after every action, reproducible bot matches, and a scripted
 four-human game. GitHub Actions runs the suite on Python 3.10 and 3.13.
 
 - `main.py`: import-safe terminal entry point; retains Card/Deck/Player/Round imports.
 - `tichu/cards.py`: immutable cards; original suit/rank conventions; shuffled deck.
-- `tichu/combinations.py`: pure classification, comparison and exhaustive legal plays.
+- `tichu/combinations.py`: pure classification, fast complete legal plays, and an exhaustive test oracle.
 - `tichu/game.py`: Player, Round and Match; validation, phases, tricks and scores.
-- `tichu/cli.py`: terminal prompts and deterministic baseline bots.
+- `tichu/cli.py`: terminal prompts and bot selection.
+- `tichu/agents.py`: immutable player observations, decisions, hand planning and policies.
+- `tichu/selfplay.py`: paired tournaments, self-play optimization and held-out benchmarks.
+- `tichu/trained_weights.json`: the shipped, human-readable policy checkpoint.
 - [Gameplay audit](docs/gameplay-audit.md): original gaps and replacement decisions.
 - [Engine design](docs/engine-design.md): next-phase interfaces and milestones.
 
-Bots use their own available plays and public table information, never opponent
-card identities. They are deliberately weak: they use a simple shedding policy,
-do not call Tichu, and do not search or model teammates. The generator enumerates
-hand subsets and caches classifications; it favors correctness over search speed.
-The mutable Round object is trusted in-process state, not a network security API.
+## Stronger bots and self-play
+
+The trained policy combines exact hand partitioning with partnership support,
+control-card preservation, bomb timing, structured exchanges and Small Tichu calls.
+Only a player's own cards and public information cross the agent boundary. Agents
+never receive the authoritative Round object or opponents' private hands.
+
+The training method is **evolutionary policy search**, using completed self-play
+rounds and final team score as feedback. It tunes interpretable weights rather
+than training a neural network. It requires no GPU or third-party libraries.
+Training, validation and held-out test deals are separate; each evaluation deal
+is played with team assignments swapped. The original bot is frozen as a baseline.
+
+```sh
+# Reproduce the shipped training run (several minutes on a laptop):
+python3 -m tichu.selfplay train --output experiments/retrain \
+  --generations 6 --population 12 --deals 36 --workers 2 --seed 1729
+
+# Play with a newly trained checkpoint:
+python3 main.py --weights experiments/retrain/weights.json
+
+# A smaller benchmark on fresh deals (200 rounds = 100 paired deals):
+python3 -m tichu.selfplay evaluate --candidate trained --opponent baseline \
+  --pairs 100 --seed-start 3000000 --workers 2 --output experiments/evaluation.json
+
+# Reproduce the full frozen-policy evaluation and ablations:
+python3 -m tichu.selfplay suite --pairs 200 --matches 60 --workers 2 \
+  --output experiments/rebenchmark
+```
+
+See [Strategic findings](docs/strategic-findings.md) for measured strength,
+feature-removal experiments, practical tactics and limits, and
+[the experiment record](experiments/selfplay/README.md) for seeds and raw evidence.
+The policy does not yet perform hidden-hand game-tree search, infer opponents'
+strategies, call Grand Tichu, or adapt to the overall match score. Improvement over
+our baseline is not proof of human ladder strength. Online integration remains
+[a later phase](docs/online-agent-plan.md).
+
+The mutable Round object remains trusted in-process state. The observation/action
+boundary is suitable for local agent experiments; it is not yet an authenticated
+network protocol or a full immutable replay engine.
 
 Rules reference: [Fata Morgana's official English rules and FAQ](https://fatamorgana.ch/fatamorgana/tichu/english-rules).
 The implementation is for four-player Nanking Tichu only. The source page's
