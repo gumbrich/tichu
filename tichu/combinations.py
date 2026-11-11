@@ -2,7 +2,7 @@
 from collections import Counter
 from dataclasses import dataclass, replace
 from functools import lru_cache
-from itertools import combinations
+from itertools import combinations, product
 
 from .cards import Card, DOG, MAHJONG, PHOENIX, DRAGON
 
@@ -88,10 +88,49 @@ def classify(cards):
     return tuple(result)
 
 
-@lru_cache(maxsize=256)
-def _hand_combinations(hand):
+def reference_combinations(hand):
+    """Slow exhaustive oracle retained for differential testing."""
+    hand = tuple(sorted(hand))
     return tuple(combo for size in range(1, len(hand) + 1)
                  for subset in combinations(hand, size) for combo in classify(subset))
+
+
+@lru_cache(maxsize=2048)
+def _hand_combinations(hand):
+    """Generate rank patterns, retaining every suit choice and wild interpretation."""
+    groups = {rank: tuple(c for c in hand if c.rank == rank) for rank in range(1, 15)}
+    phoenix = tuple(c for c in hand if c.rank == PHOENIX)
+    candidates = {(c,) for c in hand}
+
+    def choices(rank, count):
+        ordinary = list(combinations(groups[rank], count))
+        if phoenix and rank >= 2:
+            ordinary += [cs + phoenix for cs in combinations(groups[rank], count - 1)]
+        return ordinary
+
+    def add_products(options):
+        if not all(options):
+            return
+        for parts in product(*options):
+            selection = tuple(sorted(c for part in parts for c in part))
+            if len(set(selection)) == len(selection):
+                candidates.add(selection)
+
+    for rank in range(2, 15):
+        for count in (2, 3):
+            candidates.update(tuple(sorted(cs)) for cs in choices(rank, count))
+        if len(groups[rank]) == 4:
+            candidates.add(groups[rank])
+        for pair in range(2, 15):
+            if pair != rank:
+                add_products([choices(rank, 3), choices(pair, 2)])
+    for count, minimum, start in ((1, 5, 1), (2, 2, 2)):
+        for low in range(start, 15):
+            for length in range(minimum, min(15 - low, len(hand) // count) + 1):
+                options = [choices(rank, count) for rank in range(low, low + length)]
+                add_products(options)
+    return tuple(combo for selection in sorted(candidates, key=lambda cs: (len(cs), cs))
+                 for combo in classify(selection))
 
 
 def legal_plays(hand, top=None):
