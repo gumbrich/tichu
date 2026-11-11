@@ -10,6 +10,17 @@ class RuleError(ValueError):
     """An action is not legal in the current state."""
 
 
+@dataclass(frozen=True)
+class PublicAction:
+    """Facts visible when a play/pass occurs; no hands or secret exchanges."""
+    seat: int
+    kind: str
+    combo: Combination | None
+    previous_top: Combination | None
+    previous_winner: int | None
+    wish: int | None
+
+
 @dataclass
 class Player:
     name: str
@@ -52,6 +63,7 @@ class Round:
         self.scores = None
         self.last_player = None
         self.events = []
+        self.public_history = []
 
     def _player(self, seat):
         if type(seat) is not int or seat not in range(4):
@@ -156,10 +168,12 @@ class Round:
         self._player(seat)
         self._require(combo in self.available_plays(seat, interrupt=True),
                       'Only a higher bomb may interrupt at your response opportunity')
-        self._play(seat, combo, None)
+        self._play(seat, combo, None, interrupt=True)
 
-    def _play(self, seat, combo, wish):
+    def _play(self, seat, combo, wish, interrupt=False):
         player = self.players[seat]
+        self.public_history.append(PublicAction(seat, 'bomb' if interrupt else 'play',
+                                               combo, self.top, self.trick_winner, self.wish))
         for card in combo.cards:
             player.hand.remove(card)
         player.has_played = True
@@ -198,6 +212,8 @@ class Round:
     def pass_turn(self, seat):
         self._player(seat)
         self._require(self.can_pass(seat), 'Cannot pass on a lead or ignore a playable wish')
+        self.public_history.append(PublicAction(seat, 'pass', None, self.top,
+                                               self.trick_winner, self.wish))
         self.passed.add(seat)
         self.events.append(f'{self.players[seat].name} passes')
         self.turn = self._next(seat)

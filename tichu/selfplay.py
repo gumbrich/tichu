@@ -24,6 +24,11 @@ DEFAULT_MODEL = Path(__file__).with_name('trained_weights.json')
 def make_agent(spec):
     if spec['name'] == 'baseline':
         return BaselineAgent()
+    if spec['name'] == 'tactical':
+        from .tactics import TacticalAgent, TacticalWeights
+        return TacticalAgent(Weights(**spec['weights']),
+                             TacticalWeights(**spec.get('tactics', {})),
+                             **spec.get('options', {}))
     return StrategicAgent(Weights(**spec.get('weights', asdict(Weights()))),
                           **spec.get('options', {}))
 
@@ -31,7 +36,7 @@ def make_agent(spec):
 def agent_spec(name, model=DEFAULT_MODEL, **options):
     if name == 'baseline':
         return {'name': name}
-    weights = Weights.load(model) if name == 'trained' else Weights()
+    weights = Weights.load(model) if name in ('trained', 'tactical') else Weights()
     return {'name': name, 'weights': asdict(weights), 'options': options}
 
 

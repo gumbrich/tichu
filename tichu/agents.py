@@ -9,6 +9,7 @@ from pathlib import Path
 
 from .cards import Card, DOG, MAHJONG, PHOENIX, DRAGON
 from .combinations import Combination, legal_plays
+from .game import PublicAction
 
 
 @dataclass(frozen=True)
@@ -28,6 +29,7 @@ class Observation:
     plays: tuple[Combination, ...]
     can_pass: bool
     pile_points: int
+    history: tuple[PublicAction, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -61,7 +63,8 @@ def observe(game, seat):
                        game.top, game.trick_winner, game.wish, tuple(game.finish_order),
                        tuple(sorted(public)), sent,
                        game.available_plays(seat, interrupt=interrupt),
-                       game.can_pass(seat), sum(c.points for c in game.pile))
+                       game.can_pass(seat), sum(c.points for c in game.pile),
+                       tuple(game.public_history))
 
 
 def apply_decision(game, seat, decision):
@@ -253,6 +256,35 @@ class StrategicAgent:
                                   (partner, friendly), ((obs.seat + 3) % 4, enemies[1]))
         return Decision('exchange', gifts=best_gifts)
 
+    def _pass_score(self, obs, plan):
+        partner = (obs.seat + 2) % 4
+        partner_winning = self.teamwork and obs.trick_winner == partner and obs.counts[partner] > 0
+        return self._value(plan, plan.full) + (self.weights.partner if partner_winning else 0)
+
+    def _play_score(self, obs, plan, play):
+        w = self.weights
+        partner = (obs.seat + 2) % 4
+        partner_winning = self.teamwork and obs.trick_winner == partner and obs.counts[partner] > 0
+        enemies = [(obs.seat + 1) % 4, (obs.seat + 3) % 4]
+        urgent = max(0, max((4 - obs.counts[s] for s in enemies if obs.counts[s]), default=0))
+        remaining = plan.full ^ plan.mask(play.cards)
+        score = self._value(plan, remaining) + w.shed * len(play.cards) - w.rank * play.rank
+        strength = min(1.0, max(0, (play.rank - 8) / 6))
+        score += w.urgency * urgent * strength
+        if obs.top is None:
+            score += w.lead * (1 - strength)
+            if any(obs.counts[s] == len(play.cards) for s in enemies):
+                score += w.urgency * strength
+        if play.is_bomb:
+            score -= w.bomb
+        if play.kind == 'dog':
+            score += (w.partner * .6 if self.teamwork and obs.counts[partner] else -w.partner)
+            if obs.calls[obs.seat]:
+                score -= w.partner
+        if obs.calls[partner] and self.teamwork:
+            score -= w.partner * .5 if partner_winning else 0
+        return score
+
     def choose(self, obs):
         if obs.phase == 'grand':
             return Decision('grand')  # Keep the high-variance 8-card bet disabled.
@@ -279,34 +311,11 @@ class StrategicAgent:
                             call=self.calls and not obs.has_played and not obs.calls[obs.seat]
                             and not obs.finish_order and not obs.calls[(obs.seat + 2) % 4])
         plan = hand_plan(obs.hand)
-        w = self.weights
-        partner = (obs.seat + 2) % 4
-        partner_winning = self.teamwork and obs.trick_winner == partner and obs.counts[partner] > 0
-        enemies = [(obs.seat + 1) % 4, (obs.seat + 3) % 4]
-        urgent = max((4 - obs.counts[s] for s in enemies if obs.counts[s]), default=0)
-        urgent = max(0, urgent)
-        base = self._value(plan, plan.full)
-        pass_score = base + (w.partner if partner_winning else 0)
+        pass_score = self._pass_score(obs, plan)
         best_score = pass_score if interrupt or obs.can_pass else float('-inf')
         best = None
         for play in obs.plays:
-            remaining = plan.full ^ plan.mask(play.cards)
-            score = self._value(plan, remaining) + w.shed * len(play.cards) - w.rank * play.rank
-            # Spend strength to stop a short opponent; preserve it while shedding.
-            strength = min(1.0, max(0, (play.rank - 8) / 6))
-            score += w.urgency * urgent * strength
-            if obs.top is None:
-                score += w.lead * (1 - strength)
-                if any(obs.counts[s] == len(play.cards) for s in enemies):
-                    score += w.urgency * strength
-            if play.is_bomb:
-                score -= w.bomb
-            if play.kind == 'dog':
-                score += (w.partner * .6 if self.teamwork and obs.counts[partner] else -w.partner)
-                if obs.calls[obs.seat]:
-                    score -= w.partner
-            if obs.calls[partner] and self.teamwork:
-                score -= w.partner * .5 if partner_winning else 0
+            score = self._play_score(obs, plan, play)
             if score > best_score:
                 best, best_score = play, score
         call = self._call(obs, plan) if not interrupt else False
