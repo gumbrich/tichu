@@ -329,7 +329,7 @@ class StrategicAgent:
         return Decision('bomb' if interrupt else 'play', play=best, wish=wish, call=call)
 
 
-def load_agent(name='trained', path=None):
+def load_agent(name='competitive', path=None):
     if name == 'competitive':
         from .tactics import TacticalAgent, TacticalWeights, load_spec, DEFAULT_COMPETITIVE_MODEL
         spec = load_spec(path if path is not None else DEFAULT_COMPETITIVE_MODEL)

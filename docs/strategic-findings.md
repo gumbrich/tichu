@@ -1,8 +1,86 @@
 # What self-play taught our Tichu bots
 
-**11 November 2026 · local experiments · frozen policy `trained_weights.json`**
+## Competitive policy update
 
-The new bot is substantially stronger than our original greedy bot. Two trained
+**11 November 2026 · v2 · `competitive_weights.json`**
+
+The new default team beat our frozen v1 trained team in **211 of 300 full matches
+(70.3%)**, with an approximate paired 95% interval of **66.2–74.5%**. The round
+score advantage was **+15.5 points** (11.2–19.8) over 2,000 separate test rounds.
+This clears the promotion gate in both settings. Against the original greedy
+bots, v2 won **287/300 matches (95.7%)**. All comparisons use two bots per team;
+v2's results with an unfamiliar human partner remain unknown.
+
+### What the new experiments teach
+
+**Prove a finish when possible.** A good hand partition does not guarantee that
+you keep the lead. The new bot searches small hands for a sequence where every
+non-final play is unanswerable, even by the partner, under conservative bounds
+on the unseen cards. It accounts for bombs, Phoenix, card counts and outstanding
+wishes. A Dragon is not automatically secure while someone might hold a bomb;
+the Dog cannot retain your lead. Removing this proof search cost **2.4 points per
+round** (95% interval 1.0–3.8) against v1, with other parameters held fixed.
+
+**Retest intuitive scoring rules.** Bonus scores for secure plays, possible enemy
+finishes and trick points sounded useful, but their combined incremental effect
+was **−2.7 points per round** (−5.9 to +0.5). This does not establish a benefit,
+and the point estimate favors removing them. The no-bonus variant scored +18.2
+against v1 on these rounds. It is a candidate for a *fresh* selection and test
+cycle; choosing it using these final outcomes would spend the test set. The
+shipped policy remains the validation-selected checkpoint that won 70.3% of full
+matches. Its overall improvement includes retuned existing play weights; these
+experiments do not isolate tuning as a separate causal effect.
+
+**Separate known absence from a voluntary pass.** Ignoring a compulsory,
+playable singleton wish can prove that a rank is absent; an optional pass cannot.
+The bot records structured public history and uses only that strict deduction.
+Disabling the history deduction changed **zero recorded scores in 2,000 rounds**.
+It is useful correctness infrastructure, but this run provides no measured
+strength benefit for it. Current public cards, hand sizes and known sent gifts
+still inform bounds when that history feature is disabled.
+
+**A stronger local opponent is the right next test.** The earlier 90.8% win rate
+was against our weakest bot. The new gate compares against the frozen trained
+policy, preserving a clear chain of evidence. Neither result establishes a win
+against AlphaTichu master or a human ladder rating. See the
+[AlphaTichu comparison](alphatichu-comparison.md) for its imitation/self-play
+approach, failed search experiments and the missing master-model artifacts.
+
+### Results and reproducibility
+
+| Opponent and setting | v2 win rate | 95% interval | Score margin |
+| --- | ---: | ---: | ---: |
+| Frozen v1, 2,000 rounds | 55.3% | 53.6–57.0% | +15.5 / round |
+| Untuned planner, 2,000 rounds | 58.2% | 56.3–60.0% | +25.6 / round |
+| Original greedy bots, 2,000 rounds | 70.3% | 68.4–72.2% | +66.1 / round |
+| Frozen v1, 300 full matches | **70.3%** | **66.2–74.5%** | +242.2 / match |
+| Original greedy bots, 300 full matches | **95.7%** | **93.4–97.9%** | +647.1 / match |
+
+Evolutionary policy search evaluated 6,400 training rounds, followed by 3,600
+validation rounds. The final tests and feature removals covered 19,031 rounds,
+including 600 full matches; an earlier pilot added 1,000 rounds. That is
+**30,031 simulated rounds** in this iteration, with separate seed ranges for
+training, selection and final evaluation. This is CPU policy optimization,
+not neural-network training. All simulations completed with legality,
+termination, card-conservation and score-conservation checks.
+
+Confidence intervals use independent deal-pair means, with both team assignments
+played for every seed. Feature-removal effects use differences on the same pairs
+and cannot be summed. Typical mean v2 decision time in these tests was about
+0.9–1.3 ms on the development machine. The
+[competitive experiment record](../experiments/competitive/README.md) contains
+all candidates, outcomes, seeds, checkpoint hashes and reproduction commands.
+
+Play v2 with `python3 main.py`; retain v1 with `python3 main.py --bot trained`.
+Next priorities are a fresh test of the simpler no-bonus candidate, calibrated
+calls and mixed partners, and a reproducible external master opponent. Hidden-hand
+search and neural RL should be evaluated as experiments, not assumed upgrades.
+
+## First self-play policy results
+
+**11 November 2026 · v1 experiments · frozen policy `trained_weights.json`**
+
+The first self-play bot is substantially stronger than our original greedy bot. Two trained
 partners won **109 of 120 full matches (90.8%)** against the original bots.
 One trained player with an unchanged original-bot partner won **93 of 120
 matches (77.5%)**. This is evidence of local improvement, not a prediction of
@@ -112,4 +190,4 @@ The [experiment record](../experiments/selfplay/README.md) contains raw outcomes
 parameters, seeds and reproduction commands. The [online-agent plan](online-agent-plan.md)
 covers the later site integration; no online account or ladder play was started.
 
-To play now: `python3 main.py`. To compare: `python3 main.py --bot baseline`.
+To reproduce the v1 policy: `python3 main.py --bot trained`. To compare: `python3 main.py --bot baseline`.

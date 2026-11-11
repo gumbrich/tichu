@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "policy": "tactical",
+  "weights": {
+    "groups": 6.16312264418097,
+    "loose": 1.604891668643716,
+    "control": 1.1464812701499478,
+    "shed": 0.9000494238189236,
+    "rank": 0.004388498162690602,
+    "partner": 20.250394357407252,
+    "bomb": 6.047966846348529,
+    "urgency": 2.205474808853247,
+    "lead": 5.080433270410164,
+    "gift": 0.4667632719773091,
+    "call_threshold": 0.42120497714779304
+  },
+  "tactics": {
+    "secure": 4.132504017561105,
+    "threat": 9.81262431475611,
+    "points": 0.03531422887444835
+  },
+  "training_seed": 819,
+  "training_seed_start": 4000000,
+  "training_generations": 5,
+  "training_pairs_per_candidate": 64,
+  "population": 10,
+  "validation_seed_range": [
+    5000000,
+    5000299
+  ],
+  "validation_mean_score": 16.616666666666667,
+  "parent_sha256": "001775453d19c17c9f05bfa19697e0ba1d3fa6967eb765a79e92315f26f60493"
+}

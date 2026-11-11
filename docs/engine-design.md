@@ -58,8 +58,9 @@ knowledge). An observation includes that seat's hand, private sent/received gift
 when legitimately known, public counts/calls/plays/finish order/scores, current
 wish, actor and phase. It must exclude other hands, unrevealed gifts, remaining
 deck identities and RNG state. Bots receive observations, never the full state.
-The current CLI bot only reads its own hand/legal plays and public facts, but
-passing it Round is not a sufficient boundary for untrusted or learned agents.
+Current policies receive the frozen observation, not Round. The trusted adapter
+still reads and mutates Round; an authenticated network boundary and independent
+untrusted-policy process remain future work.
 
 ## Actions and transition interface
 
@@ -168,3 +169,17 @@ that a card is absent. Team rewards and individual Tichu commitments coexist.
 
 Start with milestone 1. Optimize only after the immutable API and replay contract
 are stable; keep the playable CLI throughout the transition.
+
+## Competitive bot update
+
+The next policy now has structured, immutable public play/pass history, a
+conservative per-seat card pool, exact counter-combination existence checks,
+and a bounded proof search for uninterrupted small-hand finishes. These are
+implemented in `tichu/tactics.py`; the legal rules still live in `Round` and the
+combination generator. Counterplay checks are differentially tested against the
+legal generator. Optional passes are never treated as proof of missing cards.
+
+The [AlphaTichu comparison](alphatichu-comparison.md) changes the priority of the
+search milestone: generic determinization is an experiment, not an assumed
+upgrade. Retain a single observation-consistent strategy, frozen evaluation
+opponents and a promotion gate before making a search agent the default.

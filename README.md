@@ -15,14 +15,17 @@ python3 main.py --humans 2 --seed 42     # Two human seats, two bots, repeatable
 python3 main.py --demo --seed 7          # Automated match, round summaries only
 python3 main.py --bot baseline           # Original weak bot, for comparison
 python3 main.py --bot strategic          # Untuned hand-planning bot
+python3 main.py --bot trained            # Frozen first self-play checkpoint (v1)
+python3 main.py --bot competitive        # Public-history tactics and finish proofs (v2)
 python3 main.py --demo --target 100      # Short demonstration match
 python3 -m unittest discover -v         # Rules, terminal and whole-game tests
 ```
 
 Seats 1→2→3→4 proceed to the right. Alice and Charlie are partners; Bob and Eve
 are partners. Human-controlled seats are the first `--humans` seats (0–4).
-The default bot is `trained`. Its weights were selected by a reproducible self-play
-tournament, using separate training, validation and test deals. The default match
+The default bot is `competitive` (v2); `trained` preserves the earlier v1 policy.
+Its weights were selected by a reproducible self-play tournament, using separate
+training, validation and test deals. The default match
 target is 1000. Equal scores at/above the target continue into
 another round. `--seed` makes the deals reproducible for the same actions.
 
@@ -87,30 +90,44 @@ four-human game. GitHub Actions runs the suite on Python 3.10 and 3.13.
 - `tichu/cli.py`: terminal prompts and bot selection.
 - `tichu/agents.py`: immutable player observations, decisions, hand planning and policies.
 - `tichu/selfplay.py`: paired tournaments, self-play optimization and held-out benchmarks.
-- `tichu/trained_weights.json`: the shipped, human-readable policy checkpoint.
+- `tichu/trained_weights.json`: frozen v1 checkpoint, retained for comparisons.
+- `tichu/tactics.py`: conservative counterplay bounds and proven finishing sequences.
+- `tichu/competitive.py`: tactical policy training, evaluation and promotion gate.
+- `tichu/competitive_weights.json`: the selected, human-readable v2 checkpoint.
 - [Gameplay audit](docs/gameplay-audit.md): original gaps and replacement decisions.
 - [Engine design](docs/engine-design.md): next-phase interfaces and milestones.
 
 ## Stronger bots and self-play
 
-The trained policy combines exact hand partitioning with partnership support,
+The policies combine exact hand partitioning with partnership support,
 control-card preservation, bomb timing, structured exchanges and Small Tichu calls.
 Only a player's own cards and public information cross the agent boundary. Agents
 never receive the authoritative Round object or opponents' private hands.
+The competitive policy also tracks public play history, tests possible enemy
+finishes, and finds uninterrupted finishing sequences that work against every
+hand consistent with its conservative card bounds. Ordinary passes do not prove
+card absence. Bombs, Phoenix and wish obligations remain part of these checks.
+Two competitive bots won **211 of 300 full matches (70.3%)** against two frozen
+v1 bots, with an approximate paired 95% interval of **66.2–74.5%**. On 2,000
+separate test rounds the score advantage was **+15.5 points per round**
+(11.2–19.8). Both results passed the predeclared promotion gate. This is a local
+benchmark; a match against AlphaTichu master has not been possible without its
+trained artifacts or an evaluation endpoint.
 
 The training method is **evolutionary policy search**, using completed self-play
 rounds and final team score as feedback. It tunes interpretable weights rather
 than training a neural network. It requires no GPU or third-party libraries.
 Training, validation and held-out test deals are separate; each evaluation deal
-is played with team assignments swapped. The original bot is frozen as a baseline.
+is played with team assignments swapped. The original bot and the v1 trained
+checkpoint are frozen as comparison opponents.
 
 ```sh
-# Reproduce the shipped training run (several minutes on a laptop):
+# Reproduce v1 training:
 python3 -m tichu.selfplay train --output experiments/retrain \
   --generations 6 --population 12 --deals 36 --workers 2 --seed 1729
 
 # Play with a newly trained checkpoint:
-python3 main.py --weights experiments/retrain/weights.json
+python3 main.py --bot trained --weights experiments/retrain/weights.json
 
 # A smaller benchmark on fresh deals (200 rounds = 100 paired deals):
 python3 -m tichu.selfplay evaluate --candidate trained --opponent baseline \
@@ -119,11 +136,25 @@ python3 -m tichu.selfplay evaluate --candidate trained --opponent baseline \
 # Reproduce the full frozen-policy evaluation and ablations:
 python3 -m tichu.selfplay suite --pairs 200 --matches 60 --workers 2 \
   --output experiments/rebenchmark
+
+# Reproduce v2 training and its final benchmark (a longer CPU run):
+python3 -m tichu.competitive train --output experiments/retrain-v2 \
+  --generations 5 --population 10 --deals 64 --workers 4 --seed 819
+python3 -m tichu.competitive suite --model experiments/retrain-v2/weights.json \
+  --pairs 1000 --matches 150 --workers 4 --output experiments/rebenchmark-v2
+python3 main.py --bot competitive --weights experiments/retrain-v2/weights.json
+
+# Quick comparison of the shipped v2 and frozen v1 on new deals:
+python3 -m tichu.selfplay evaluate --candidate competitive --opponent trained \
+  --pairs 100 --seed-start 8000000 --workers 2 --output experiments/v2-check.json
 ```
 
 See [Strategic findings](docs/strategic-findings.md) for measured strength,
 feature-removal experiments, practical tactics and limits, and
 [the experiment record](experiments/selfplay/README.md) for seeds and raw evidence.
+The [competitive experiment record](experiments/competitive/README.md) covers v2.
+The [AlphaTichu comparison](docs/alphatichu-comparison.md) explains the other
+project's approach, its available artifacts and the requirements for a fair match.
 The policy does not yet perform hidden-hand game-tree search, infer opponents'
 strategies, call Grand Tichu, or adapt to the overall match score. Improvement over
 our baseline is not proof of human ladder strength. Online integration remains

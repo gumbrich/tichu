@@ -14,10 +14,13 @@ the existence of registration and rankings does not settle it.
 - Complete local four-player game rules and a reproducible benchmark suite.
 - A fast legal-action generator checked against exhaustive enumeration.
 - An observation-only bot interface, explicit decisions and a trained policy.
+- Public-history card bounds and guaranteed endgame finishes in the v2 policy.
 - Paired-deal evaluation, full matches, and an experiment with one trained player
   supported by an unchanged baseline partner.
 
-These results establish improvement over our own weak original bots. They do not
+The v2 team won 211/300 full matches against the frozen v1 team; the mixed-partner
+experiment above belongs to v1 and has not been repeated for v2. These results
+establish local improvement. They do not
 establish a human rating or predict a place on the site's ladder. The main team
 benchmark uses two trained partners. An online agent with an unfamiliar human
 partner faces a different coordination problem.
@@ -49,13 +52,18 @@ partner faces a different coordination problem.
 
 ## Engine improvements before serious ladder ambitions
 
-The next strength step is belief-aware search: sample unseen hands consistent
-with public cards and our own sent gifts, evaluate a short list of actions with
-rollouts, and validate on unfamiliar opponents. Do not let simulation inspect
-actual opponent hands. Optional passes are not proof that an opponent lacks a card.
+The current policy already uses conservative bounds from public cards, sent gifts
+and compulsory-wish evidence. A future belief model can sample unseen hands within
+those bounds, but search must earn its place through a controlled experiment.
+The [AlphaTichu comparison](alphatichu-comparison.md) records failed determinized
+search approaches and the risk of combining plans that require different hidden
+knowledge. Do not let simulation inspect actual opponent hands. Optional passes
+are not proof that an opponent lacks a card.
 
 Also add match-score-aware risk, calibrated Grand Tichu decisions, earlier Small
 Tichu announcements before exchanges, opponent/partner adaptation, and an immutable
 state/replay format. Keep the current trained policy as a fast rollout policy and
-latency fallback. A deep RL experiment can use this stronger policy and reproducible
+explicitly logged latency fallback. Serving failures must be visible; a healthy
+connection is not proof that the intended model made a decision. A deep RL
+experiment can use this stronger policy and reproducible
 arena as its baseline; it should earn promotion through held-out results.
