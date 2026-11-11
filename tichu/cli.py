@@ -1,58 +1,25 @@
-"""Terminal frontend and a deliberately simple, legal baseline bot."""
+"""Terminal frontend with selectable self-play-trained and baseline bots."""
 import argparse
 import sys
 
 from .cards import Card, MAHJONG
 from .game import Match, RuleError
+from .agents import BaselineAgent, agent_step, load_agent
 
 
 class QuitGame(Exception):
     pass
 
 
-def choose_play(plays):
-    """Shed many cards, conserve bombs, then prefer the lowest rank.
-
-    Only supplied legal actions are examined; no opponent hands are read.
-    This is a playable baseline, not the planned search engine.
-    """
-    return min(plays, key=lambda c: (c.is_bomb, -len(c.cards), c.rank, c.cards,
-                                    c.phoenix_rank or 0))
-
-
 def bot_step(game):
-    """Take one deterministic bot decision, useful for simulations and tests."""
-    if game.phase == 'grand':
-        game.decide_grand(min(game.grand_pending))
-    elif game.phase == 'exchange':
-        seat = next(s for s in range(4) if s not in game.exchanges)
-        hand = sorted(game.players[seat].hand, key=lambda c: (c.rank, c.suit))
-        game.exchange(seat, {(seat + i + 1) % 4: card for i, card in enumerate(hand[:3])})
-    elif game.phase == 'bomb_window':
-        plays = game.available_plays(game.actor, interrupt=True)
-        # Interrupt only to go out, or to take an opponent's Dragon.
-        useful = [c for c in plays if len(c.cards) == len(game.players[game.actor].hand)
-                  or (game.top.kind == 'single' and game.top.rank == 16 and
-                      game.trick_winner % 2 != game.actor % 2)]
-        if useful:
-            game.bomb(game.actor, choose_play(useful))
-        else:
-            game.decline_bomb(game.actor)
-    elif game.phase == 'dragon':
-        game.give_dragon(game.actor, (game.actor + 1) % 4)
-    elif game.phase == 'playing':
-        plays = game.available_plays(game.actor)
-        if plays:
-            game.play(game.actor, choose_play(plays))
-        else:
-            game.pass_turn(game.actor)
-    else:
-        raise RuleError('No bot decision in a finished round')
+    """Compatibility wrapper for the original benchmark policy."""
+    return agent_step(game, BaselineAgent())
 
 
 class Console:
-    def __init__(self, humans=1, read=input, write=print):
+    def __init__(self, humans=1, read=input, write=print, bot=None):
         self.humans = set(range(humans))
+        self.bot = bot if bot is not None else load_agent()
         self.read = read
         self.write = write
         self.last_seat = None
@@ -191,23 +158,31 @@ class Console:
             if seat in self.humans:
                 self.human_step(game, seat)
             else:
-                bot_step(game)
+                agent_step(game, self.bot)
         self.table(game)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description='Four-player Tichu in your terminal')
     parser.add_argument('--humans', type=int, choices=range(5), default=1,
-                        help='human seats (0-4); default: you and three baseline bots')
+                        help='human seats (0-4); default: you and three trained bots')
     parser.add_argument('--seed', type=int, help='reproducible deals')
     parser.add_argument('--target', type=int, default=1000, help='match points (default 1000)')
     parser.add_argument('--demo', action='store_true', help='play bots only, with round summaries')
+    parser.add_argument('--bot', choices=('baseline', 'strategic', 'trained'), default='trained',
+                        help='bot policy (default: trained through self-play)')
+    parser.add_argument('--weights', help='custom trained policy JSON file')
     args = parser.parse_args(argv)
     if args.target <= 0:
         parser.error('--target must be positive')
     match = Match(target=args.target, seed=args.seed)
-    console = Console(0 if args.demo else args.humans)
+    try:
+        bot = load_agent(args.bot, args.weights)
+    except (ValueError, TypeError, OSError) as error:
+        parser.error(str(error))
+    console = Console(0 if args.demo else args.humans, bot=bot)
     print('Tichu — Alice + Charlie vs Bob + Eve. Seats 1→2→3→4 play to the right.')
+    print(f'Bot policy: {args.bot}')
     if not args.demo:
         print('Type q to quit; tichu [seat] calls before that human plays their first card.')
     try:
@@ -216,7 +191,7 @@ def main(argv=None):
             print(f'\nRound {game.number}')
             if args.demo:
                 while game.phase != 'over':
-                    bot_step(game)
+                    agent_step(game, bot)
                 print(f'Round score: {game.scores[0]} : {game.scores[1]}')
             else:
                 console.play_round(game)

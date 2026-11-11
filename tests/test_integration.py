@@ -88,6 +88,10 @@ class SimulationTests(unittest.TestCase):
             self.assertGreaterEqual(max(match.scores), 1000)
             histories.append(match.history)
         self.assertEqual(*histories)
+        # Frozen baseline: refactoring agents must not weaken the comparison bot.
+        self.assertEqual(histories[0], [(0, 200), (60, 40), (80, 20), (200, 0),
+                                       (45, 55), (80, 20), (20, 80), (200, 0),
+                                       (200, 0), (200, 0)])
 
 
 class ConsoleTests(unittest.TestCase):
