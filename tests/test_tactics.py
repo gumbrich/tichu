@@ -36,6 +36,9 @@ class CounterplayTests(unittest.TestCase):
                     self.assertEqual(can_beat_from_pool(pool, top, len(pool)), bool(plays))
                     self.assertEqual(can_beat_from_pool(pool, top, len(pool), len(pool)),
                                      any(len(p.cards) == len(pool) for p in plays))
+                    for limit in (1, 3, 4, 5):
+                        self.assertEqual(can_beat_from_pool(pool, top, limit),
+                                         any(len(p.cards) <= limit for p in plays))
 
     def test_only_compulsory_wish_failure_proves_absence(self):
         event = PublicAction(1, 'pass', None, combo(3), 0, 8)
@@ -135,7 +138,13 @@ class CounterplayTests(unittest.TestCase):
             loaded = load_spec(path)
             self.assertEqual(loaded['weights'], spec['weights'])
             self.assertEqual(loaded['tactics'], spec['tactics'])
+            policy = load_agent('competitive', path)
+            self.assertIsInstance(policy, TacticalAgent)
+            self.assertEqual(policy.tactics, TacticalWeights(**spec['tactics']))
             path.write_text('{"schema_version": 2, "policy": "tactical"}')
+            with self.assertRaises(ValueError):
+                load_spec(path)
+            path.write_text('{"schema_version": 1, "policy": "tactical"}')
             with self.assertRaises(ValueError):
                 load_spec(path)
 

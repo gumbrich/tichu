@@ -330,6 +330,10 @@ class StrategicAgent:
 
 
 def load_agent(name='trained', path=None):
+    if name == 'competitive':
+        from .tactics import TacticalAgent, TacticalWeights, load_spec, DEFAULT_COMPETITIVE_MODEL
+        spec = load_spec(path if path is not None else DEFAULT_COMPETITIVE_MODEL)
+        return TacticalAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']))
     if name == 'baseline':
         return BaselineAgent()
     if name == 'strategic':

@@ -33,9 +33,14 @@ def make_agent(spec):
                           **spec.get('options', {}))
 
 
-def agent_spec(name, model=DEFAULT_MODEL, **options):
+def agent_spec(name, model=None, **options):
     if name == 'baseline':
         return {'name': name}
+    if name == 'competitive':
+        from .tactics import load_spec, DEFAULT_COMPETITIVE_MODEL
+        return {**load_spec(model if model is not None else DEFAULT_COMPETITIVE_MODEL),
+                'options': options}
+    model = model if model is not None else DEFAULT_MODEL
     weights = Weights.load(model) if name in ('trained', 'tactical') else Weights()
     return {'name': name, 'weights': asdict(weights), 'options': options}
 
@@ -273,9 +278,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     evaluation = sub.add_parser('evaluate')
-    evaluation.add_argument('--candidate', choices=('baseline', 'strategic', 'trained'), default='trained')
-    evaluation.add_argument('--opponent', choices=('baseline', 'strategic', 'trained'), default='baseline')
-    evaluation.add_argument('--model', type=Path, default=DEFAULT_MODEL)
+    evaluation.add_argument('--candidate', choices=('baseline', 'strategic', 'trained', 'competitive'), default='trained')
+    evaluation.add_argument('--opponent', choices=('baseline', 'strategic', 'trained', 'competitive'), default='baseline')
+    evaluation.add_argument('--model', type=Path, help='candidate checkpoint override')
+    evaluation.add_argument('--opponent-model', type=Path, help='opponent checkpoint override')
     evaluation.add_argument('--solo', action='store_true',
                             help='one candidate agent with an original baseline partner')
     evaluation.add_argument('--pairs', type=int, default=200)
@@ -316,7 +322,7 @@ def main(argv=None):
         candidate = agent_spec(args.candidate, args.model)
         if args.solo:
             candidate['solo'] = True
-        result = evaluate(candidate, agent_spec(args.opponent, args.model),
+        result = evaluate(candidate, agent_spec(args.opponent, args.opponent_model),
                           range(args.seed_start, args.seed_start + args.pairs),
                           workers=args.workers, mode=args.mode, target=args.target)
         args.output.parent.mkdir(parents=True, exist_ok=True)

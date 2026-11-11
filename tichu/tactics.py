@@ -17,8 +17,10 @@ DEFAULT_COMPETITIVE_MODEL = Path(__file__).with_name('competitive_weights.json')
 
 def load_spec(path=DEFAULT_COMPETITIVE_MODEL):
     data = json.loads(Path(path).read_text())
-    if data.get('schema_version') != 1 or data.get('policy') != 'tactical':
+    if not isinstance(data, dict) or data.get('schema_version') != 1 or data.get('policy') != 'tactical':
         raise ValueError('Unsupported tactical policy checkpoint')
+    if not {'weights', 'tactics'} <= data.keys():
+        raise ValueError('Tactical checkpoint must contain weights and tactics')
     return {'name': 'tactical', 'weights': asdict(Weights(**data['weights'])),
             'tactics': asdict(TacticalWeights(**data['tactics']))}
 
