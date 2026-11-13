@@ -17,6 +17,7 @@ python3 main.py --bot baseline           # Original weak bot, for comparison
 python3 main.py --bot strategic          # Untuned hand-planning bot
 python3 main.py --bot trained            # Frozen first self-play checkpoint (v1)
 python3 main.py --bot competitive        # Public-history tactics and finish proofs (v2)
+python3 main.py --random-ties --bot-seed 42 # Optional randomization of equal-score choices
 python3 main.py --demo --target 100      # Short demonstration match
 python3 -m unittest discover -v         # Rules, terminal and whole-game tests
 ```
@@ -155,6 +156,11 @@ feature-removal experiments, practical tactics and limits, and
 The [competitive experiment record](experiments/competitive/README.md) covers v2.
 The [AlphaTichu comparison](docs/alphatichu-comparison.md) explains the other
 project's approach, its available artifacts and the requirements for a fair match.
+The [randomization experiment](docs/randomization-findings.md) tests an LLM-like
+temperature control. Sampling is opt-in: `--temperature 0.5`, `--random-ties`,
+and `--max-score-gap 1` control the move distribution; `--bot-seed` controls
+sampling separately from the deal seed. Temperature zero is the default, and
+guaranteed finishes remain protected even at high temperatures.
 The policy does not yet perform hidden-hand game-tree search, infer opponents'
 strategies, call Grand Tichu, or adapt to the overall match score. Improvement over
 our baseline is not proof of human ladder strength. Online integration remains

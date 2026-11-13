@@ -1,0 +1,111 @@
+{
+  "selected": "ties",
+  "candidate": {
+    "name": "stochastic",
+    "weights": {
+      "groups": 6.16312264418097,
+      "loose": 1.604891668643716,
+      "control": 1.1464812701499478,
+      "shed": 0.9000494238189236,
+      "rank": 0.004388498162690602,
+      "partner": 20.250394357407252,
+      "bomb": 6.047966846348529,
+      "urgency": 2.205474808853247,
+      "lead": 5.080433270410164,
+      "gift": 0.4667632719773091,
+      "call_threshold": 0.42120497714779304
+    },
+    "tactics": {
+      "secure": 4.132504017561105,
+      "threat": 9.81262431475611,
+      "points": 0.03531422887444835
+    },
+    "options": {
+      "temperature": 0.0,
+      "random_ties": true
+    },
+    "policy_seed": 819
+  },
+  "checkpoint_sha256": "f791544998479c02946dcd9e4b1b5df89d6fa78d72d09b5338a14fec2ffe277e",
+  "tuning_seed_start": 9000000,
+  "round_seed_start": 10000000,
+  "match_seed_start": 11000000,
+  "tuning_pairs": 200,
+  "test_pairs": 1000,
+  "match_pairs": 150,
+  "policy_seed": 819,
+  "policy_seed_derivation": "SHA256(policy:root:deal_seed:seat) first 8 bytes big-endian",
+  "gate": "round score lower 95% CI > 0 AND full-match win lower 95% CI > 0.5 against frozen v2",
+  "promotion_gate_passed": false,
+  "results": {
+    "rounds-v-v2": {
+      "deal_pairs": 1000,
+      "games": 2000,
+      "mean_score_difference": 0.46,
+      "score_difference_95ci": [
+        -1.1148865689773169,
+        2.034886568977317
+      ],
+      "win_rate": 0.50275,
+      "win_rate_95ci": [
+        0.4965705960697708,
+        0.5089294039302293
+      ],
+      "call_success_rate": 0.6586538461538461,
+      "mean_decision_ms": 0.8489171044536898,
+      "rounds": 2000,
+      "calls": 208,
+      "successful_calls": 137,
+      "first_out": 997,
+      "double_victories": 264,
+      "decision_seconds": 55.92496100720018,
+      "decisions": 65878
+    },
+    "rounds-v-v1": {
+      "deal_pairs": 1000,
+      "games": 2000,
+      "mean_score_difference": 13.955,
+      "score_difference_95ci": [
+        9.66388618485427,
+        18.24611381514573
+      ],
+      "win_rate": 0.54025,
+      "win_rate_95ci": [
+        0.5235594804951631,
+        0.5569405195048369
+      ],
+      "call_success_rate": 0.6886792452830188,
+      "mean_decision_ms": 0.9500606749189676,
+      "rounds": 2000,
+      "calls": 212,
+      "successful_calls": 146,
+      "first_out": 1060,
+      "double_victories": 340,
+      "decision_seconds": 61.040448302868754,
+      "decisions": 64249
+    },
+    "matches-v-v2": {
+      "deal_pairs": 150,
+      "games": 300,
+      "mean_score_difference": -10.6,
+      "score_difference_95ci": [
+        -30.06777358135144,
+        8.867773581351441
+      ],
+      "win_rate": 0.48,
+      "win_rate_95ci": [
+        0.45086058812561947,
+        0.5091394118743805
+      ],
+      "call_success_rate": 0.628361858190709,
+      "mean_decision_ms": 0.9366010288211288,
+      "rounds": 3971,
+      "calls": 409,
+      "successful_calls": 257,
+      "first_out": 1966,
+      "double_victories": 513,
+      "decision_seconds": 122.22362445807084,
+      "decisions": 130497
+    }
+  }
+}

@@ -1,5 +1,18 @@
 # What self-play taught our Tichu bots
 
+## Move randomization follow-up
+
+**13 November 2026.** An additional 13,571 simulated rounds tested six randomized
+settings against frozen v2 and v1. Higher temperatures lost ground during tuning.
+The best randomized setting, exact tie-breaking, won **144/300 final matches
+(48.0%, paired 95% interval 45.1–50.9%)** against deterministic v2. Its separate
+round score margin was **+0.46** (−1.11 to +2.03). Neither shows a reliable gain,
+so the default remains deterministic. Balanced mixed strategies can be useful
+under hidden information; these tests cover added sampling noise on fixed
+heuristics, not learning a mixed strategy or confusing adaptive humans.
+See [the randomization findings](randomization-findings.md) for the temperature
+curve, controls, limits and reproduction commands.
+
 ## Competitive policy update
 
 **11 November 2026 · v2 · `competitive_weights.json`**
