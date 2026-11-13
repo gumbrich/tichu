@@ -21,14 +21,20 @@ from .game import Round, Match
 DEFAULT_MODEL = Path(__file__).with_name('trained_weights.json')
 
 
-def make_agent(spec):
+def make_agent(spec, seed=None):
     if spec['name'] == 'baseline':
         return BaselineAgent()
-    if spec['name'] == 'tactical':
+    if spec['name'] in ('tactical', 'stochastic'):
         from .tactics import TacticalAgent, TacticalWeights
-        return TacticalAgent(Weights(**spec['weights']),
+        policy = TacticalAgent
+        options = spec.get('options', {}).copy()
+        if spec['name'] == 'stochastic':
+            from .stochastic import StochasticAgent
+            policy = StochasticAgent
+            options['seed'] = seed
+        return policy(Weights(**spec['weights']),
                              TacticalWeights(**spec.get('tactics', {})),
-                             **spec.get('options', {}))
+                             **options)
     return StrategicAgent(Weights(**spec.get('weights', asdict(Weights()))),
                           **spec.get('options', {}))
 
@@ -74,8 +80,14 @@ def paired_trial(task):
     seed, candidate, opponent, mode, target = task
     results = []
     for side in (0, 1):
-        policies = [make_agent(candidate if seat % 2 == side else opponent)
-                    for seat in range(4)]
+        policies = []
+        for seat in range(4):
+            spec = candidate if seat % 2 == side else opponent
+            # Separate policy PRNGs never consume the deal shuffler. The same
+            # seat uses the same stream across side swaps; seats do not share it.
+            material = f"policy:{spec.get('policy_seed', 819)}:{seed}:{seat}".encode()
+            policy_seed = int.from_bytes(hashlib.sha256(material).digest()[:8], 'big')
+            policies.append(make_agent(spec, seed=policy_seed))
         if candidate.get('solo'):
             # One improved agent with an unchanged baseline partner. Alternate
             # its position so both seats within each partnership are represented.

@@ -1,10 +1,11 @@
 """Terminal frontend with selectable self-play-trained and baseline bots."""
 import argparse
+import random
 import sys
 
 from .cards import Card, MAHJONG
 from .game import Match, RuleError
-from .agents import BaselineAgent, agent_step, load_agent
+from .agents import BaselineAgent, agent_step, load_agent, current_actor
 
 
 class QuitGame(Exception):
@@ -17,9 +18,10 @@ def bot_step(game):
 
 
 class Console:
-    def __init__(self, humans=1, read=input, write=print, bot=None):
+    def __init__(self, humans=1, read=input, write=print, bot=None, bots=None):
         self.humans = set(range(humans))
         self.bot = bot if bot is not None else load_agent()
+        self.bots = bots
         self.read = read
         self.write = write
         self.last_seat = None
@@ -158,7 +160,7 @@ class Console:
             if seat in self.humans:
                 self.human_step(game, seat)
             else:
-                agent_step(game, self.bot)
+                agent_step(game, self.bots[seat] if self.bots is not None else self.bot)
         self.table(game)
 
 
@@ -172,17 +174,28 @@ def main(argv=None):
     parser.add_argument('--bot', choices=('baseline', 'strategic', 'trained', 'competitive'), default='competitive',
                         help='bot policy (default: competitive, the verified v2 checkpoint)')
     parser.add_argument('--weights', help='custom policy JSON file for the selected bot')
+    parser.add_argument('--temperature', type=float, default=0.,
+                        help='experimental move sampling in score units; 0 preserves deterministic play')
+    parser.add_argument('--random-ties', action='store_true', help='randomize equal-score choices at temperature 0')
+    parser.add_argument('--max-score-gap', type=float, help='sample only moves within this score gap of the best')
+    parser.add_argument('--bot-seed', type=int, help='sampling seed, separate from the --seed used for deals')
     args = parser.parse_args(argv)
     if args.target <= 0:
         parser.error('--target must be positive')
     match = Match(target=args.target, seed=args.seed)
     try:
-        bot = load_agent(args.bot, args.weights)
+        seed_source = random.Random(args.bot_seed)
+        bots = [load_agent(args.bot, args.weights, temperature=args.temperature,
+                           random_ties=args.random_ties, max_gap=args.max_score_gap,
+                           seed=seed_source.getrandbits(64)) for _ in range(4)]
     except (ValueError, TypeError, OSError) as error:
         parser.error(str(error))
-    console = Console(0 if args.demo else args.humans, bot=bot)
+    console = Console(0 if args.demo else args.humans, bot=bots[0], bots=bots)
     print('Tichu — Alice + Charlie vs Bob + Eve. Seats 1→2→3→4 play to the right.')
     print(f'Bot policy: {args.bot}')
+    if args.temperature or args.random_ties or args.max_score_gap is not None:
+        print(f'Experimental sampling: temperature={args.temperature}, '
+              f'random ties={args.random_ties}, max score gap={args.max_score_gap}')
     if not args.demo:
         print('Type q to quit; tichu [seat] calls before that human plays their first card.')
     try:
@@ -191,7 +204,7 @@ def main(argv=None):
             print(f'\nRound {game.number}')
             if args.demo:
                 while game.phase != 'over':
-                    agent_step(game, bot)
+                    agent_step(game, bots[current_actor(game)])
                 print(f'Round score: {game.scores[0]} : {game.scores[1]}')
             else:
                 console.play_round(game)

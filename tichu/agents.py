@@ -285,6 +285,16 @@ class StrategicAgent:
             score -= w.partner * .5 if partner_winning else 0
         return score
 
+    def _select_play(self, obs, plan):
+        """Keep deterministic tie-breaking stable; experimental policies override this."""
+        best_score = self._pass_score(obs, plan) if obs.phase == 'bomb_window' or obs.can_pass else float('-inf')
+        best = None
+        for play in obs.plays:
+            score = self._play_score(obs, plan, play)
+            if score > best_score:
+                best, best_score = play, score
+        return best
+
     def choose(self, obs):
         if obs.phase == 'grand':
             return Decision('grand')  # Keep the high-variance 8-card bet disabled.
@@ -311,13 +321,7 @@ class StrategicAgent:
                             call=self.calls and not obs.has_played and not obs.calls[obs.seat]
                             and not obs.finish_order and not obs.calls[(obs.seat + 2) % 4])
         plan = hand_plan(obs.hand)
-        pass_score = self._pass_score(obs, plan)
-        best_score = pass_score if interrupt or obs.can_pass else float('-inf')
-        best = None
-        for play in obs.plays:
-            score = self._play_score(obs, plan, play)
-            if score > best_score:
-                best, best_score = play, score
+        best = self._select_play(obs, plan)
         call = self._call(obs, plan) if not interrupt else False
         if best is None:
             return Decision(decline, call=call)
@@ -329,10 +333,19 @@ class StrategicAgent:
         return Decision('bomb' if interrupt else 'play', play=best, wish=wish, call=call)
 
 
-def load_agent(name='competitive', path=None):
+def load_agent(name='competitive', path=None, *, temperature=0., random_ties=False,
+               max_gap=None, seed=None):
+    sampling = temperature != 0 or random_ties or max_gap is not None
+    if sampling and name != 'competitive':
+        raise ValueError('Temperature controls currently support only the competitive bot')
     if name == 'competitive':
         from .tactics import TacticalAgent, TacticalWeights, load_spec, DEFAULT_COMPETITIVE_MODEL
         spec = load_spec(path if path is not None else DEFAULT_COMPETITIVE_MODEL)
+        if sampling:
+            from .stochastic import StochasticAgent
+            return StochasticAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']),
+                                   temperature=temperature, random_ties=random_ties,
+                                   max_gap=max_gap, seed=seed)
         return TacticalAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']))
     if name == 'baseline':
         return BaselineAgent()
