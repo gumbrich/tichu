@@ -249,3 +249,13 @@ That model is candidate B; its complete model is frozen in
 0.75 blend. Both now enter the previously specified validation comparison. The
 small risk screen does not establish that score-aware risk is better: the winning
 setting won 34/64 matches, versus 33/64 with no adjustment.
+
+## Isolated randomness diagnostic (not model selection)
+
+Before using seed 22300000, freeze one additional comparison: the pure larger-corpus
+0.75 learned blend with deterministic play versus the identical model with random
+exact ties. Both use the partnership wrapper with every other extension disabled.
+Run 256 paired rounds per setting at 22300000. This tests the user's randomness
+question without combining it with passing, declaration timing or match risk.
+It will not change the two already-frozen finalists, their selection rule, or the
+final promotion gates. It is a separate conditional-effect estimate on unseen deals.
