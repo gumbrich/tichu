@@ -64,3 +64,12 @@ native-engine gates before promotion. Its calls, exchanges and bombs remain the
 tested scoring-policy components, with a conservative Grand threshold until
 arena validation supports a different setting. Teacher training examples do not
 use any previous benchmark's final-test deals.
+
+The initial screen also motivates a separate call-only diagnostic: keep the
+structural corrections and zero additional point/initiative/defense weights,
+then compare Grand thresholds 3.0, 3.6 and 4.2; a fourth candidate adds king
+control 0.25 and Small threshold adjustment -0.2. Use the same spent screening
+deals (16002000), select its best on screening only, and add it to the separate
+256-pair external / 128-pair native validation. This isolates calls from the
+point-weight changes instead of concluding that calls caused a combined
+policy's regression. Final seeds remain untouched.

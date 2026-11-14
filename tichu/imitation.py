@@ -10,6 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
 import threading
 
 from .agents import hand_plan
@@ -113,6 +114,14 @@ def extract(sources, output, binary, workers):
     import numpy as np
     from concurrent.futures import ProcessPoolExecutor
     sources = [Path(p) for p in sources]
+    output = Path(output)
+    if output.suffix != '.npz':
+        raise ValueError('Dataset output must end in .npz')
+    if output.exists() or output.with_suffix('.json').exists():
+        raise FileExistsError(output)
+    if not sources or any(not p.is_file() for p in sources):
+        raise ValueError('Every training source must be an existing file')
+    feed_errors = []
     def feed(stream):
         try:
             for path in sources:
@@ -120,6 +129,8 @@ def extract(sources, output, binary, workers):
                 with opener(path, 'rt') as handle:
                     for line in handle:
                         stream.write(line)
+        except Exception as error:
+            feed_errors.append(error)
         finally:
             stream.close()
     with subprocess.Popen([binary, 'export-teacher'], stdin=subprocess.PIPE,
@@ -145,9 +156,11 @@ def extract(sources, output, binary, workers):
         writer.join()
         if proc.wait():
             raise RuntimeError('Teacher export failed; dataset not written')
-    output = Path(output); output.parent.mkdir(parents=True, exist_ok=True)
-    if output.exists():
-        raise FileExistsError(output)
+        if feed_errors:
+            raise RuntimeError('Training input failed; dataset not written') from feed_errors[0]
+    if not targets:
+        raise ValueError('No trainable decisions; dataset not written')
+    output.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(output, x=np.asarray(rows, dtype=np.float32), offsets=offsets,
                         targets=targets, groups=groups)
     metadata = {'features': FEATURES, 'decisions': len(targets), 'options': len(rows),
@@ -211,6 +224,7 @@ def train(data, output, epochs=30):
             (output/'weights.json').write_text(json.dumps(spec, indent=2)+'\n')
     (output/'training.json').write_text(json.dumps({
         'method': 'supervised linear softmax policy distillation with Adam',
+        'python': sys.version, 'numpy': np.__version__,
         'dataset_sha256': hashlib.sha256(data.read_bytes()).hexdigest(),
         'seed': 16281, 'train_decisions': len(train_ids), 'validation_decisions': len(valid_ids),
         'split': 'entire deal groups: pair index modulo 8 equals zero held out',
