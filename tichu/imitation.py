@@ -137,7 +137,9 @@ def extract(sources, output, binary, workers):
             for path in sources:
                 opener = gzip.open if path.suffix == '.gz' else open
                 with opener(path, 'rt') as handle:
-                    for line in handle:
+                    # Collector workers finish out of order. Canonical deal
+                    # order makes the optimizer's seeded shuffle reproducible.
+                    for line in sorted(handle, key=lambda value: json.loads(value)['pair']):
                         stream.write(line)
         except Exception as error:
             feed_errors.append(error)

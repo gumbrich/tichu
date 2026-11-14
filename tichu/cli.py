@@ -171,8 +171,8 @@ def main(argv=None):
     parser.add_argument('--seed', type=int, help='reproducible deals')
     parser.add_argument('--target', type=int, default=1000, help='match points (default 1000)')
     parser.add_argument('--demo', action='store_true', help='play bots only, with round summaries')
-    parser.add_argument('--bot', choices=('baseline', 'strategic', 'trained', 'competitive', 'scoring'), default='competitive',
-                        help='bot policy (default: competitive, the verified v2 checkpoint)')
+    parser.add_argument('--bot', choices=('baseline', 'strategic', 'trained', 'competitive', 'scoring'),
+                        help='default: scoring (verified v3); sampling options select competitive (v2)')
     parser.add_argument('--weights', help='custom policy JSON file for the selected bot')
     parser.add_argument('--temperature', type=float, default=0.,
                         help='experimental move sampling in score units; 0 preserves deterministic play')
@@ -180,6 +180,9 @@ def main(argv=None):
     parser.add_argument('--max-score-gap', type=float, help='sample only moves within this score gap of the best')
     parser.add_argument('--bot-seed', type=int, help='sampling seed, separate from the --seed used for deals')
     args = parser.parse_args(argv)
+    if args.bot is None:
+        sampling = args.temperature != 0 or args.random_ties or args.max_score_gap is not None
+        args.bot = 'competitive' if sampling else 'scoring'
     if args.target <= 0:
         parser.error('--target must be positive')
     match = Match(target=args.target, seed=args.seed)

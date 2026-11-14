@@ -1,5 +1,9 @@
 # Local external benchmark
 
+This records the original frozen-v2 benchmark. The subsequent
+[scoring-policy experiment](scoring-improvement.md) trains and verifies v3 on
+separate deals while preserving this reference opponent and the v2 checkpoint.
+
 ## Fixed protocol — 14 November 2026
 
 No account is required. Dave Orr's public [Tichu-ai](https://github.com/dave-orr/Tichu-ai)

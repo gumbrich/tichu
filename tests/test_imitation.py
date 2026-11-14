@@ -1,5 +1,7 @@
 from dataclasses import replace
 import json
+import hashlib
+import math
 import random
 from pathlib import Path
 import tempfile
@@ -22,6 +24,7 @@ class ImitationTests(unittest.TestCase):
         self.assertIn(action, obs.plays)
         for play in obs.plays:
             self.assertEqual(len(features(obs, play)), len(FEATURES))
+            self.assertTrue(all(math.isfinite(x) for x in features(obs, play)))
         self.assertEqual(action, choose(obs, weights))
 
     def test_teacher_encoding_uses_exact_legal_label(self):
@@ -64,6 +67,20 @@ class ImitationTests(unittest.TestCase):
         self.assertIn(choose(obs, [0.0]*len(FEATURES), [0.0]*len(obs.plays), .5), obs.plays)
         with self.assertRaises(ValueError):
             ScoringAgent(move_blend=1.01)
+
+    def test_default_checkpoint_is_the_frozen_verified_model(self):
+        root = Path(__file__).resolve().parents[1]
+        final = root/'experiments/scoring/final'
+        manifest = json.loads((final/'manifest.json').read_text())
+        report = json.loads((final/'comparison.json').read_text())
+        self.assertEqual(manifest['status'], 'complete')
+        self.assertTrue(report['promotion_gate_passed'])
+        shipped = root/'tichu/scoring_weights.json'
+        self.assertEqual(hashlib.sha256(shipped.read_bytes()).hexdigest(), manifest['model_sha256'])
+        self.assertEqual(read_spec(), read_spec(final/'candidate.json'))
+        self.assertIsInstance(load_agent(), ScoringAgent)
+        obs = observe(scenario((2, 3, 4, 15), (5, 6), (7, 8), (9, 10)), 0)
+        self.assertEqual(load_agent().choose(obs), load_agent('scoring', final/'candidate.json').choose(obs))
 
 
 if __name__ == '__main__':

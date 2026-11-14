@@ -9,7 +9,7 @@ only requirement; no NumPy, package installation, or external service is needed.
 From this repository directory:
 
 ```sh
-python3 main.py                         # You (Alice) and three self-play-trained bots
+python3 main.py                         # You (Alice) and three verified v3 bots
 python3 main.py --humans 4              # Four humans sharing a terminal
 python3 main.py --humans 2 --seed 42     # Two human seats, two bots, repeatable deal
 python3 main.py --demo --seed 7          # Automated match, round summaries only
@@ -17,16 +17,18 @@ python3 main.py --bot baseline           # Original weak bot, for comparison
 python3 main.py --bot strategic          # Untuned hand-planning bot
 python3 main.py --bot trained            # Frozen first self-play checkpoint (v1)
 python3 main.py --bot competitive        # Public-history tactics and finish proofs (v2)
-python3 main.py --random-ties --bot-seed 42 # Optional randomization of equal-score choices
+python3 main.py --bot scoring            # Learned move scores plus the planner (v3, default)
+python3 main.py --bot competitive --random-ties --bot-seed 42 # Optional v2 sampling
 python3 main.py --demo --target 100      # Short demonstration match
 python3 -m unittest discover -v         # Rules, terminal and whole-game tests
 ```
 
 Seats 1→2→3→4 proceed to the right. Alice and Charlie are partners; Bob and Eve
 are partners. Human-controlled seats are the first `--humans` seats (0–4).
-The default bot is `competitive` (v2); `trained` preserves the earlier v1 policy.
-Its weights were selected by a reproducible self-play tournament, using separate
-training, validation and test deals. The default match
+The default bot is `scoring` (v3); `competitive` and `trained` preserve frozen v2
+and v1. V3 combines a move ranker learned from search-bot self-play with our
+existing planner. Training, model selection and final test deals are separate.
+The default match
 target is 1000. Equal scores at/above the target continue into
 another round. `--seed` makes the deals reproducible for the same actions.
 
@@ -95,10 +97,30 @@ four-human game. GitHub Actions runs the suite on Python 3.10 and 3.13.
 - `tichu/tactics.py`: conservative counterplay bounds and proven finishing sequences.
 - `tichu/competitive.py`: tactical policy training, evaluation and promotion gate.
 - `tichu/competitive_weights.json`: the selected, human-readable v2 checkpoint.
+- `tichu/scoring.py`, `tichu/scoring_weights.json`: the verified v3 policy and frozen checkpoint.
+- `tichu/imitation.py`: public-view feature extraction, optional NumPy training, stdlib inference.
 - [Gameplay audit](docs/gameplay-audit.md): original gaps and replacement decisions.
 - [Engine design](docs/engine-design.md): next-phase interfaces and milestones.
 
 ## Stronger bots and self-play
+
+V3 beat frozen v2 in **213/300 full matches (71.0%, paired 95% interval
+66.4–75.6%)**. Against the pinned external `eg:pimc20/hibs` search bot, its win
+rate rose from v2's **59/200 (29.5%)** to **89/200 (44.5%)** on the same match
+seeds. The paired increase is **15.0 percentage points (7.3–22.7)**. On separate
+round-test deals it improved by **24.13 points/round (17.11–31.14)** over v2.
+The new bot has not demonstrated superiority over that search opponent; its
+44.5% match interval is 38.0–51.0%. The teacher is that same search configuration,
+so this tests unseen deals against a familiar opponent, not human ladder strength.
+
+The selected model learned from 512 search-bot self-play rounds and blends
+standardized learned and tactical scores equally. This is supervised policy
+distillation, not neural RL. Only optional extraction/training uses NumPy;
+playing and testing require only standard-library Python. See the
+[scoring experiment and reproduction commands](docs/scoring-improvement.md),
+[complete evidence](experiments/scoring/README.md), and
+[strategic findings](docs/strategic-findings.md), including inconclusive component
+ablations. V2's checkpoint remains unchanged for future comparisons.
 
 The policies combine exact hand partitioning with partnership support,
 control-card preservation, bomb timing, structured exchanges and Small Tichu calls.
@@ -115,7 +137,7 @@ separate test rounds the score advantage was **+15.5 points per round**
 benchmark; a match against AlphaTichu master has not been possible without its
 trained artifacts or an evaluation endpoint.
 
-The training method is **evolutionary policy search**, using completed self-play
+The v1/v2 training method is **evolutionary policy search**, using completed self-play
 rounds and final team score as feedback. It tunes interpretable weights rather
 than training a neural network. It requires no GPU or third-party libraries.
 Training, validation and held-out test deals are separate; each evaluation deal
@@ -168,12 +190,14 @@ record all 4,268 rounds with zero adapter errors or fallback moves.
 The [AlphaTichu comparison](docs/alphatichu-comparison.md) explains the other
 project's approach, its available artifacts and the requirements for a fair match.
 The [randomization experiment](docs/randomization-findings.md) tests an LLM-like
-temperature control. Sampling is opt-in: `--temperature 0.5`, `--random-ties`,
+temperature control for frozen v2. Sampling is opt-in: `--temperature 0.5`, `--random-ties`,
 and `--max-score-gap 1` control the move distribution; `--bot-seed` controls
-sampling separately from the deal seed. Temperature zero is the default, and
+sampling separately from the deal seed. Sampling options without an explicit
+`--bot` select v2 for compatibility; v3 is deterministic. Temperature zero is the default, and
 guaranteed finishes remain protected even at high temperatures.
 The policy does not yet perform hidden-hand game-tree search, infer opponents'
-strategies, call Grand Tichu, or adapt to the overall match score. Improvement over
+strategies, or adapt to the overall match score. V3 makes conservative Grand
+calls; their optimal calibration remains open. Improvement over
 our baseline is not proof of human ladder strength. Online integration remains
 [a later phase](docs/online-agent-plan.md).
 

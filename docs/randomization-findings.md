@@ -4,7 +4,9 @@
 Across 13,571 simulated rounds in tuning and final evaluation, random tie-breaking
 was the best randomized setting. It then won **144/300 full matches (48.0%)**
 against frozen deterministic v2, with an approximate paired 95% interval of
-**45.1–50.9%**. The promotion gate failed, so deterministic v2 stays the default.
+**45.1–50.9%**. The promotion gate failed, so deterministic v2 remained the default
+at the end of this experiment. The later [scoring update](scoring-improvement.md)
+promotes deterministic v3; the sampling experiment and controls here still use frozen v2.
 This does not establish that every possible randomized strategy is worse.
 
 ## Measured results
@@ -105,12 +107,12 @@ selected intent. Actual card identities remain part of legality and hand plannin
 
 ## Try it and reproduce the experiment
 
-Deterministic v2 remains the default. Sampling is available as an explicit option:
+Sampling remains an explicit option for frozen v2:
 
 ```sh
-python3 main.py --random-ties --bot-seed 42 --seed 7
-python3 main.py --temperature 0.5 --max-score-gap 1 --bot-seed 42 --seed 7
-python3 main.py --demo --temperature 0.5 --bot-seed 42 --seed 7
+python3 main.py --bot competitive --random-ties --bot-seed 42 --seed 7
+python3 main.py --bot competitive --temperature 0.5 --max-score-gap 1 --bot-seed 42 --seed 7
+python3 main.py --bot competitive --demo --temperature 0.5 --bot-seed 42 --seed 7
 python3 -m tichu.randomization --output experiments/randomization-repeat \
   --tuning-pairs 200 --test-pairs 1000 --match-pairs 150 --workers 4
 python3 -m unittest discover -v

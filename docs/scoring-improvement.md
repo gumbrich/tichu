@@ -112,7 +112,9 @@ python3 -m tools.validate_scoring --screen fresh-screen \
 
 All output directories are new paths; completed experiment records are not
 overwritten. Reusing recorded seeds reproduces a known experiment, not a fresh
-estimate. The teacher corpus contains 512 independently seeded rounds, 19,905
+estimate. Extraction sorts each source by deal index so collector completion
+order cannot change the optimizer's seeded example order. The original training
+run used the already sorted committed corpus. The teacher corpus contains 512 independently seeded rounds, 19,905
 nontrivial decisions and 109,208 distinct feature options. The grouped split has
 17,475 training decisions and 2,430 validation decisions. Its compressed raw logs,
 feature dataset, checksums, training history and selected weights are retained
@@ -142,3 +144,44 @@ coefficients; zero learned `enemy_call_danger`; and disabled Grand calls.
 The original planner still has its existing point and blocking preferences in
 the feature-removal cases. These diagnostics measure incremental contributions
 within this blend; they are not universal prescriptions or another tuning round.
+
+## Final outcome and default promotion
+
+All fixed gates passed. The exact selected bytes are now shipped as
+`tichu/scoring_weights.json`, and the terminal/API default is `scoring` (v3).
+Frozen v2 remains available as `competitive`; its checkpoint hash is unchanged.
+Sampling options without an explicit policy continue to select v2 for compatibility.
+
+- Native round margin over v2: **+25.545**, 95% interval **+21.339 to +29.751**,
+  over 1,000 paired deals / 2,000 rounds.
+- Native full matches: **213/300 wins (71.0%)**, paired interval **66.4–75.6%**.
+- External round improvement over v2: **+24.125 points**, paired interval
+  **+17.112 to +31.138**, over 1,000 paired deals per policy.
+- External full matches: **89/200 wins (44.5%)**, versus v2's **59/200 (29.5%)**
+  on the same seeds. The paired increase is **15.0 percentage points (7.3–22.7)**.
+  V3's absolute interval is **38.0–51.0%**, so superiority over the search bot
+  has not been established.
+
+The fixed final suite covers 8,620 external rounds and 5,796 native rounds,
+including full matches. The external runs have zero adapter errors and fallback
+moves. Five additional diagnostic settings cover 1,280 rounds; all component
+benefit intervals include zero, including removal of the entire learned ranker.
+The combined policy is demonstrably stronger than v2, while the causal contribution
+of individual components remains unresolved. No diagnostic changed the frozen model.
+
+```sh
+python3 main.py
+python3 main.py --bot competitive
+python3 -m unittest discover -v
+python3 -m tools.final_scoring --model experiments/scoring/selected.json \
+  --output fresh-final-reproduction --workers 6 --native-workers 2
+python3 -m tools.scoring_report \
+  --candidate experiments/scoring/final/scoring-rounds \
+  --baseline experiments/scoring/final/competitive-rounds \
+  --output round-components.json
+```
+
+See `experiments/scoring/final/comparison.json`, `match-win-change.json`,
+`score-components.json`, and the per-run manifests for exact statistics, seeds and
+checksums. This is a completed fixed experiment; reproducing its seeds does not
+create new independent evidence.

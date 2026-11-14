@@ -333,11 +333,13 @@ class StrategicAgent:
         return Decision('bomb' if interrupt else 'play', play=best, wish=wish, call=call)
 
 
-def load_agent(name='competitive', path=None, *, temperature=0., random_ties=False,
+def load_agent(name=None, path=None, *, temperature=0., random_ties=False,
                max_gap=None, seed=None):
     sampling = temperature != 0 or random_ties or max_gap is not None
+    if name is None:
+        name = 'competitive' if sampling else 'scoring'
     if sampling and name != 'competitive':
-        raise ValueError('Temperature controls currently support only the competitive bot')
+        raise ValueError('Temperature controls currently support only --bot competitive (v2)')
     if name == 'scoring':
         from .scoring import ScoringAgent, ScoringWeights, read_spec
         from .tactics import TacticalWeights

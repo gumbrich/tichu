@@ -7,6 +7,33 @@ The learned coefficients come from supervised search-policy distillation,
 not neural reinforcement learning. Final tests use a model snapshot and never
 feed back into this selection.
 
+## Final result
+
+The promotion gate passed and this exact checkpoint is shipped as
+`tichu/scoring_weights.json` (v3, default). Frozen v2 remains unchanged.
+
+| Test | New policy | Frozen-v2 comparison |
+| --- | ---: | ---: |
+| Native direct round margin vs v2, 2,000 rounds | +25.545 [21.339, 29.751] | opponent |
+| Native direct full matches vs v2 | 213/300 wins, 71.0% [66.4%, 75.6%] | opponent |
+| External search round margin, 2,000 rounds per policy | +2.215 [−5.110, 9.540] | −21.910 [−28.997, −14.823] |
+| External search full matches, 200 per policy | 89 wins, 44.5% [38.0%, 51.0%] | 59 wins, 29.5% [23.1%, 35.9%] |
+
+The matched external improvement is **+24.125 points/round [17.112, 31.138]**
+and **+15.0 percentage points of match wins [7.3, 22.7]**. The new policy has not
+demonstrated superiority over the search opponent. The final suite contains
+14,416 rounds in total, including rounds within full matches; 8,620 use the
+external referee, with zero adapter errors or fallback moves.
+
+All four diagnostic component-benefit intervals include zero. Even removal of
+the entire learned ranker is inconclusive on the smaller 128-pair diagnostic set
+(full minus removal −0.469 [−21.268, 20.330]). These checks do not isolate the cause
+of the combined policy's gain and did not trigger retuning. Exact outcomes are in
+[`final/comparison.json`](final/comparison.json),
+[`final/match-win-change.json`](final/match-win-change.json),
+[`final/score-components.json`](final/score-components.json), and
+[`diagnostics/component-benefits.json`](diagnostics/component-benefits.json).
+
 ## Validation, used for selection
 
 External columns compare each candidate's margin against `eg:pimc20/hibs`

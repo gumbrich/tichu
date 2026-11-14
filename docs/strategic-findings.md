@@ -2,7 +2,7 @@
 
 ## Learning better scoring from search
 
-**14 November 2026.** A new policy learns move preferences from 512 games of the
+**14 November 2026 · v3 · now the default.** A new policy learns move preferences from 512 games of the
 pinned search bot playing against itself, then blends those scores equally with
 our frozen tactical planner. It uses 41 features from the player's own hand and
 public information, existing finish proofs and the existing legal-move generator. This is supervised search
@@ -21,11 +21,18 @@ fresh final tests. Confidence intervals use paired deals, not individual games.
 | New policy vs external search, 2,000 rounds | +2.22 points/round | −5.11 to +9.54 |
 | Frozen v2 vs that search bot on the same deals | −21.91 points/round | −29.00 to −14.82 |
 | Paired improvement over v2 against search | **+24.13 points/round** | **+17.11 to +31.14** |
+| New policy vs external search, 200 full matches | 89 wins / 44.5% | 38.0% to 51.0% |
+| Frozen v2 vs search on those same match seeds | 59 wins / 29.5% | 23.1% to 35.9% |
+| Paired external match-win improvement | **+15.0 percentage points** | **+7.3 to +22.7 points** |
 
 The round result establishes an improvement over our previous bot. It does not
 establish superiority over the search opponent: the new policy's absolute margin
 still includes zero. The teacher and benchmark both use `eg:pimc20/hibs`, so these
 are unseen deals against a familiar policy, not an unseen-opponent benchmark.
+The search opponent still won 111 of 200 matches against v3. V3's average final
+match margin was −41.25 points (−118.97 to +36.47), an improvement of +178.70
+(+90.51 to +266.89) over v2 on those same match seeds. All fixed promotion checks
+passed, so `python3 main.py` now uses v3; `--bot competitive` keeps frozen v2.
 
 **Plan for points and team finishes together.** Of the +24.13-point external gain,
 score accounting assigns +8.03 to ordinary-round card points, +10.00 to double
@@ -304,9 +311,9 @@ benchmark measured **4.8× faster generation**. Typical mean decision time was a
 1 ms in the trained-team benchmarks on the development machine; it is not a
 real-time service guarantee. No neural libraries or GPU were needed.
 
-## Limits and the next strength step
+## Limits of v1 and the original next step
 
-The policy has no hidden-hand search, no learned opponent model, no Grand Tichu,
+The v1 policy has no hidden-hand search, no learned opponent model, no Grand Tichu,
 and no match-score-aware risk. Its calls occur at its own decision opportunities;
 it does not yet signal Small Tichu before the exchange. Its “control” feature counts
 high cards and bomb options, not guaranteed future trick wins. Some feature removals

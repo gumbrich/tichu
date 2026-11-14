@@ -103,6 +103,7 @@ class ConsoleTests(unittest.TestCase):
                                  '--target', '100'], cwd=ROOT, text=True,
                                 capture_output=True, check=True)
         self.assertIn('Winners:', result.stdout)
+        self.assertIn('Bot policy: scoring', result.stdout)
         self.assertEqual(result.stderr, '')
 
     def test_human_game_end_to_end_with_hidden_handoff(self):

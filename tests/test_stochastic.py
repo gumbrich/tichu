@@ -73,7 +73,7 @@ class StochasticTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 StochasticAgent(max_gap=value)
 
-    def test_terminal_seed_reproduces_sampling_and_default_stays_frozen(self):
+    def test_terminal_seed_reproduces_sampling_and_v2_stays_frozen(self):
         outputs = []
         for _ in range(2):
             output = io.StringIO()
@@ -85,7 +85,7 @@ class StochasticTests(unittest.TestCase):
         self.assertIn('Experimental sampling', outputs[0])
         output = io.StringIO()
         with redirect_stdout(output):
-            main(['--demo', '--seed', '7', '--target', '100'])
+            main(['--demo', '--bot', 'competitive', '--seed', '7', '--target', '100'])
         self.assertIn('Round score: 65 : 35', output.getvalue())
         self.assertIn('Round score: -25 : 125', output.getvalue())
 
