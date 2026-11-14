@@ -163,3 +163,29 @@ tie-only screen has positive mean gain: parity+delay+random exact ties. It led t
 initial randomness screen (+9.32 points/round, interval −12.67 to +31.32), so it
 deserves a fresh-deal comparison with positive-temperature sampling. This is a
 development hypothesis generated from the earlier screen, not confirmatory evidence.
+
+## Partnership-screen result
+
+All twelve variants completed 96 paired deals each (2,304 rounds total), with
+zero errors and fallback moves. Differences below are paired with the unchanged
+v3 control on exactly the same deals. All intervals include zero; these are
+exploratory selection estimates, without a multiple-comparison correction.
+
+| Change | Mean gain, points/round | Paired 95% interval |
+| --- | ---: | ---: |
+| Random exact ties | +9.32 | −12.67 to +31.32 |
+| Coordinate odd/even opponent passes | +6.09 | −16.41 to +28.60 |
+| Temperature 0.03, gap at most 0.25 | +5.00 | −19.13 to +29.13 |
+| Delay Small on a planned pass | +1.15 | −3.56 to +5.85 |
+| Temperature 0.10, same gap | −3.54 | −29.52 to +22.44 |
+| Keep Dog with the team; assist caller | −4.27 | −32.12 to +23.58 |
+| Greek-inspired power gifts | −7.55 | −37.35 to +22.25 |
+| Temperature 0.25, same gap | −9.43 | −36.41 to +17.56 |
+| Concentrate power gifts | −24.11 | −55.65 to +7.43 |
+
+The control's absolute margin was −10.63 points/round. The observed ranking is
+consistent with exploring equal or nearly equal choices, not indiscriminate noise.
+It does not prove that randomness helps. Likewise, the poor passing-bundle means
+do not prove that keeping the Dog is wrong in every hand; hard rules can sacrifice
+valuable combinations, and this screen is small. Full raw games and all twelve
+comparisons are in `experiments/partnership/team-screen/`.

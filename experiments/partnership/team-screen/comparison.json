@@ -1,0 +1,302 @@
+[
+  {
+    "candidate": "ties",
+    "margin": {
+      "mean": -1.3020833333333333,
+      "ci95": [
+        -24.15150974265518,
+        21.547343075988515
+      ]
+    },
+    "gain_over_v3": {
+      "mean": 9.322916666666666,
+      "ci95": [
+        -12.669995492966278,
+        31.315828826299608
+      ]
+    },
+    "calls": {
+      "small_calls": 34,
+      "small_made": 21,
+      "grand_calls": 2,
+      "grand_made": 1,
+      "double_victories": 38,
+      "first_out": 110
+    }
+  },
+  {
+    "candidate": "parity",
+    "margin": {
+      "mean": -4.53125,
+      "ci95": [
+        -27.31090111829573,
+        18.24840111829573
+      ]
+    },
+    "gain_over_v3": {
+      "mean": 6.09375,
+      "ci95": [
+        -16.41343008304395,
+        28.60093008304395
+      ]
+    },
+    "calls": {
+      "small_calls": 34,
+      "small_made": 25,
+      "grand_calls": 2,
+      "grand_made": 1,
+      "double_victories": 37,
+      "first_out": 114
+    }
+  },
+  {
+    "candidate": "temp003",
+    "margin": {
+      "mean": -5.625,
+      "ci95": [
+        -26.80648443558045,
+        15.556484435580451
+      ]
+    },
+    "gain_over_v3": {
+      "mean": 5.0,
+      "ci95": [
+        -19.1318836193436,
+        29.1318836193436
+      ]
+    },
+    "calls": {
+      "small_calls": 34,
+      "small_made": 19,
+      "grand_calls": 2,
+      "grand_made": 2,
+      "double_victories": 31,
+      "first_out": 107
+    }
+  },
+  {
+    "candidate": "wish",
+    "margin": {
+      "mean": -8.072916666666666,
+      "ci95": [
+        -33.81024345259942,
+        17.664410119266094
+      ]
+    },
+    "gain_over_v3": {
+      "mean": 2.5520833333333335,
+      "ci95": [
+        -2.4563118072418813,
+        7.560478473908548
+      ]
+    },
+    "calls": {
+      "small_calls": 34,
+      "small_made": 23,
+      "grand_calls": 2,
+      "grand_made": 0,
+      "double_victories": 33,
+      "first_out": 110
+    }
+  },
+  {
+    "candidate": "delay",
+    "margin": {
+      "mean": -9.479166666666666,
+      "ci95": [
+        -34.98514093744217,
+        16.02680760410884
+      ]
+    },
+    "gain_over_v3": {
+      "mean": 1.1458333333333333,
+      "ci95": [
+        -3.5600807128678857,
+        5.851747379534552
+      ]
+    },
+    "calls": {
+      "small_calls": 33,
+      "small_made": 22,
+      "grand_calls": 2,
+      "grand_made": 0,
+      "double_victories": 33,
+      "first_out": 108
+    }
+  },
+  {
+    "candidate": "control",
+    "margin": {
+      "mean": -10.625,
+      "ci95": [
+        -36.226487115866135,
+        14.976487115866135
+      ]
+    },
+    "gain_over_v3": {
+      "mean": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "calls": {
+      "small_calls": 34,
+      "small_made": 22,
+      "grand_calls": 2,
+      "grand_made": 0,
+      "double_victories": 33,
+      "first_out": 108
+    }
+  },
+  {
+    "candidate": "temp010",
+    "margin": {
+      "mean": -14.166666666666666,
+      "ci95": [
+        -34.72417386815346,
+        6.390840534820127
+      ]
+    },
+    "gain_over_v3": {
+      "mean": -3.5416666666666665,
+      "ci95": [
+        -29.52355170501981,
+        22.440218371686473
+      ]
+    },
+    "calls": {
+      "small_calls": 34,
+      "small_made": 20,
+      "grand_calls": 2,
+      "grand_made": 2,
+      "double_victories": 30,
+      "first_out": 108
+    }
+  },
+  {
+    "candidate": "team",
+    "margin": {
+      "mean": -14.895833333333334,
+      "ci95": [
+        -38.33167856926444,
+        8.54001190259777
+      ]
+    },
+    "gain_over_v3": {
+      "mean": -4.270833333333333,
+      "ci95": [
+        -32.11790457987978,
+        23.576237913213113
+      ]
+    },
+    "calls": {
+      "small_calls": 29,
+      "small_made": 19,
+      "grand_calls": 2,
+      "grand_made": 2,
+      "double_victories": 30,
+      "first_out": 109
+    }
+  },
+  {
+    "candidate": "greek",
+    "margin": {
+      "mean": -18.177083333333332,
+      "ci95": [
+        -41.12762065452705,
+        4.773453987860389
+      ]
+    },
+    "gain_over_v3": {
+      "mean": -7.552083333333333,
+      "ci95": [
+        -37.35267109022275,
+        22.248504423556085
+      ]
+    },
+    "calls": {
+      "small_calls": 12,
+      "small_made": 8,
+      "grand_calls": 2,
+      "grand_made": 1,
+      "double_victories": 28,
+      "first_out": 101
+    }
+  },
+  {
+    "candidate": "team-combined",
+    "margin": {
+      "mean": -18.177083333333332,
+      "ci95": [
+        -41.97815669476112,
+        5.623990028094454
+      ]
+    },
+    "gain_over_v3": {
+      "mean": -7.552083333333333,
+      "ci95": [
+        -36.2385095345862,
+        21.134342867919532
+      ]
+    },
+    "calls": {
+      "small_calls": 28,
+      "small_made": 22,
+      "grand_calls": 2,
+      "grand_made": 2,
+      "double_victories": 28,
+      "first_out": 112
+    }
+  },
+  {
+    "candidate": "temp025",
+    "margin": {
+      "mean": -20.052083333333332,
+      "ci95": [
+        -41.05344690535259,
+        0.949280238685926
+      ]
+    },
+    "gain_over_v3": {
+      "mean": -9.427083333333334,
+      "ci95": [
+        -36.4110063197157,
+        17.556839653049032
+      ]
+    },
+    "calls": {
+      "small_calls": 34,
+      "small_made": 20,
+      "grand_calls": 2,
+      "grand_made": 2,
+      "double_victories": 30,
+      "first_out": 106
+    }
+  },
+  {
+    "candidate": "concentrate",
+    "margin": {
+      "mean": -34.739583333333336,
+      "ci95": [
+        -57.646144270006936,
+        -11.833022396659736
+      ]
+    },
+    "gain_over_v3": {
+      "mean": -24.114583333333332,
+      "ci95": [
+        -55.654257387260984,
+        7.425090720594319
+      ]
+    },
+    "calls": {
+      "small_calls": 38,
+      "small_made": 22,
+      "grand_calls": 2,
+      "grand_made": 2,
+      "double_victories": 27,
+      "first_out": 103
+    }
+  }
+]

@@ -1,0 +1,470 @@
+[
+  {
+    "candidate": "ties",
+    "model": "experiments/partnership/team-candidates/ties.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -1.3020833333333333,
+        "ci95": [
+          -24.15150974265518,
+          21.547343075988515
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7798,
+      "max_python_request_ms": 245.429916,
+      "round_wins": 91,
+      "round_ties": 10,
+      "ours": {
+        "small_calls": 34,
+        "small_made": 21,
+        "grand_calls": 2,
+        "grand_made": 1,
+        "double_victories": 38,
+        "first_out": 110
+      },
+      "opponent": {
+        "small_calls": 39,
+        "small_made": 23,
+        "grand_calls": 36,
+        "grand_made": 26,
+        "double_victories": 20,
+        "first_out": 82
+      },
+      "elapsed_seconds": 97.22528166700067
+    }
+  },
+  {
+    "candidate": "parity",
+    "model": "experiments/partnership/team-candidates/parity.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -4.53125,
+        "ci95": [
+          -27.31090111829573,
+          18.24840111829573
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7798,
+      "max_python_request_ms": 149.42075,
+      "round_wins": 95,
+      "round_ties": 7,
+      "ours": {
+        "small_calls": 34,
+        "small_made": 25,
+        "grand_calls": 2,
+        "grand_made": 1,
+        "double_victories": 37,
+        "first_out": 114
+      },
+      "opponent": {
+        "small_calls": 32,
+        "small_made": 22,
+        "grand_calls": 36,
+        "grand_made": 26,
+        "double_victories": 20,
+        "first_out": 78
+      },
+      "elapsed_seconds": 92.37738170800003
+    }
+  },
+  {
+    "candidate": "temp003",
+    "model": "experiments/partnership/team-candidates/temp003.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -5.625,
+        "ci95": [
+          -26.80648443558045,
+          15.556484435580451
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7857,
+      "max_python_request_ms": 235.17554199999998,
+      "round_wins": 91,
+      "round_ties": 10,
+      "ours": {
+        "small_calls": 34,
+        "small_made": 19,
+        "grand_calls": 2,
+        "grand_made": 2,
+        "double_victories": 31,
+        "first_out": 107
+      },
+      "opponent": {
+        "small_calls": 39,
+        "small_made": 25,
+        "grand_calls": 36,
+        "grand_made": 27,
+        "double_victories": 15,
+        "first_out": 85
+      },
+      "elapsed_seconds": 98.73789887500243
+    }
+  },
+  {
+    "candidate": "wish",
+    "model": "experiments/partnership/team-candidates/wish.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -8.072916666666666,
+        "ci95": [
+          -33.81024345259942,
+          17.664410119266094
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7806,
+      "max_python_request_ms": 242.8425,
+      "round_wins": 88,
+      "round_ties": 10,
+      "ours": {
+        "small_calls": 34,
+        "small_made": 23,
+        "grand_calls": 2,
+        "grand_made": 0,
+        "double_victories": 33,
+        "first_out": 110
+      },
+      "opponent": {
+        "small_calls": 39,
+        "small_made": 24,
+        "grand_calls": 36,
+        "grand_made": 24,
+        "double_victories": 25,
+        "first_out": 82
+      },
+      "elapsed_seconds": 101.4684629580006
+    }
+  },
+  {
+    "candidate": "delay",
+    "model": "experiments/partnership/team-candidates/delay.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -9.479166666666666,
+        "ci95": [
+          -34.98514093744217,
+          16.02680760410884
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7899,
+      "max_python_request_ms": 160.325666,
+      "round_wins": 86,
+      "round_ties": 8,
+      "ours": {
+        "small_calls": 33,
+        "small_made": 22,
+        "grand_calls": 2,
+        "grand_made": 0,
+        "double_victories": 33,
+        "first_out": 108
+      },
+      "opponent": {
+        "small_calls": 39,
+        "small_made": 24,
+        "grand_calls": 36,
+        "grand_made": 25,
+        "double_victories": 24,
+        "first_out": 84
+      },
+      "elapsed_seconds": 105.72383833300046
+    }
+  },
+  {
+    "candidate": "control",
+    "model": "experiments/partnership/team-candidates/control.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -10.625,
+        "ci95": [
+          -36.226487115866135,
+          14.976487115866135
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7844,
+      "max_python_request_ms": 160.252458,
+      "round_wins": 85,
+      "round_ties": 9,
+      "ours": {
+        "small_calls": 34,
+        "small_made": 22,
+        "grand_calls": 2,
+        "grand_made": 0,
+        "double_victories": 33,
+        "first_out": 108
+      },
+      "opponent": {
+        "small_calls": 39,
+        "small_made": 24,
+        "grand_calls": 36,
+        "grand_made": 25,
+        "double_victories": 24,
+        "first_out": 84
+      },
+      "elapsed_seconds": 112.49013570899842
+    }
+  },
+  {
+    "candidate": "temp010",
+    "model": "experiments/partnership/team-candidates/temp010.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -14.166666666666666,
+        "ci95": [
+          -34.72417386815346,
+          6.390840534820127
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7854,
+      "max_python_request_ms": 244.078542,
+      "round_wins": 86,
+      "round_ties": 7,
+      "ours": {
+        "small_calls": 34,
+        "small_made": 20,
+        "grand_calls": 2,
+        "grand_made": 2,
+        "double_victories": 30,
+        "first_out": 108
+      },
+      "opponent": {
+        "small_calls": 39,
+        "small_made": 24,
+        "grand_calls": 36,
+        "grand_made": 29,
+        "double_victories": 18,
+        "first_out": 84
+      },
+      "elapsed_seconds": 95.94027187499887
+    }
+  },
+  {
+    "candidate": "team",
+    "model": "experiments/partnership/team-candidates/team.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -14.895833333333334,
+        "ci95": [
+          -38.33167856926444,
+          8.54001190259777
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7784,
+      "max_python_request_ms": 248.08333399999998,
+      "round_wins": 93,
+      "round_ties": 4,
+      "ours": {
+        "small_calls": 29,
+        "small_made": 19,
+        "grand_calls": 2,
+        "grand_made": 2,
+        "double_victories": 30,
+        "first_out": 109
+      },
+      "opponent": {
+        "small_calls": 42,
+        "small_made": 27,
+        "grand_calls": 36,
+        "grand_made": 22,
+        "double_victories": 30,
+        "first_out": 83
+      },
+      "elapsed_seconds": 89.60135029200319
+    }
+  },
+  {
+    "candidate": "greek",
+    "model": "experiments/partnership/team-candidates/greek.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -18.177083333333332,
+        "ci95": [
+          -41.12762065452705,
+          4.773453987860389
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7737,
+      "max_python_request_ms": 269.882834,
+      "round_wins": 80,
+      "round_ties": 3,
+      "ours": {
+        "small_calls": 12,
+        "small_made": 8,
+        "grand_calls": 2,
+        "grand_made": 1,
+        "double_victories": 28,
+        "first_out": 101
+      },
+      "opponent": {
+        "small_calls": 44,
+        "small_made": 27,
+        "grand_calls": 36,
+        "grand_made": 23,
+        "double_victories": 26,
+        "first_out": 91
+      },
+      "elapsed_seconds": 72.04332620800051
+    }
+  },
+  {
+    "candidate": "team-combined",
+    "model": "experiments/partnership/team-candidates/team-combined.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -18.177083333333332,
+        "ci95": [
+          -41.97815669476112,
+          5.623990028094454
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7851,
+      "max_python_request_ms": 255.669417,
+      "round_wins": 84,
+      "round_ties": 8,
+      "ours": {
+        "small_calls": 28,
+        "small_made": 22,
+        "grand_calls": 2,
+        "grand_made": 2,
+        "double_victories": 28,
+        "first_out": 112
+      },
+      "opponent": {
+        "small_calls": 38,
+        "small_made": 28,
+        "grand_calls": 36,
+        "grand_made": 24,
+        "double_victories": 28,
+        "first_out": 80
+      },
+      "elapsed_seconds": 108.2081315409996
+    }
+  },
+  {
+    "candidate": "temp025",
+    "model": "experiments/partnership/team-candidates/temp025.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -20.052083333333332,
+        "ci95": [
+          -41.05344690535259,
+          0.949280238685926
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7791,
+      "max_python_request_ms": 220.03525,
+      "round_wins": 83,
+      "round_ties": 6,
+      "ours": {
+        "small_calls": 34,
+        "small_made": 20,
+        "grand_calls": 2,
+        "grand_made": 2,
+        "double_victories": 30,
+        "first_out": 106
+      },
+      "opponent": {
+        "small_calls": 39,
+        "small_made": 26,
+        "grand_calls": 36,
+        "grand_made": 28,
+        "double_victories": 22,
+        "first_out": 86
+      },
+      "elapsed_seconds": 95.26659170800122
+    }
+  },
+  {
+    "candidate": "concentrate",
+    "model": "experiments/partnership/team-candidates/concentrate.json",
+    "summary": {
+      "pairs": 96,
+      "games_or_rounds": 192,
+      "rounds": 192,
+      "paired_margin": {
+        "mean": -34.739583333333336,
+        "ci95": [
+          -57.646144270006936,
+          -11.833022396659736
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 7775,
+      "max_python_request_ms": 198.791666,
+      "round_wins": 75,
+      "round_ties": 5,
+      "ours": {
+        "small_calls": 38,
+        "small_made": 22,
+        "grand_calls": 2,
+        "grand_made": 2,
+        "double_victories": 27,
+        "first_out": 103
+      },
+      "opponent": {
+        "small_calls": 38,
+        "small_made": 26,
+        "grand_calls": 36,
+        "grand_made": 27,
+        "double_victories": 27,
+        "first_out": 89
+      },
+      "elapsed_seconds": 66.96125533400118
+    }
+  }
+]

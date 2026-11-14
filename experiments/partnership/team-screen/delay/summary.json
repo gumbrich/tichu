@@ -1,0 +1,35 @@
+{
+  "pairs": 96,
+  "games_or_rounds": 192,
+  "rounds": 192,
+  "paired_margin": {
+    "mean": -9.479166666666666,
+    "ci95": [
+      -34.98514093744217,
+      16.02680760410884
+    ]
+  },
+  "errors": 0,
+  "fallbacks": 0,
+  "decision_requests": 7899,
+  "max_python_request_ms": 160.325666,
+  "round_wins": 86,
+  "round_ties": 8,
+  "ours": {
+    "small_calls": 33,
+    "small_made": 22,
+    "grand_calls": 2,
+    "grand_made": 0,
+    "double_victories": 33,
+    "first_out": 108
+  },
+  "opponent": {
+    "small_calls": 39,
+    "small_made": 24,
+    "grand_calls": 36,
+    "grand_made": 25,
+    "double_victories": 24,
+    "first_out": 84
+  },
+  "elapsed_seconds": 105.72383833300046
+}
