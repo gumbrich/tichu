@@ -171,7 +171,7 @@ def main(argv=None):
     parser.add_argument('--seed', type=int, help='reproducible deals')
     parser.add_argument('--target', type=int, default=1000, help='match points (default 1000)')
     parser.add_argument('--demo', action='store_true', help='play bots only, with round summaries')
-    parser.add_argument('--bot', choices=('baseline', 'strategic', 'trained', 'competitive'), default='competitive',
+    parser.add_argument('--bot', choices=('baseline', 'strategic', 'trained', 'competitive', 'scoring'), default='competitive',
                         help='bot policy (default: competitive, the verified v2 checkpoint)')
     parser.add_argument('--weights', help='custom policy JSON file for the selected bot')
     parser.add_argument('--temperature', type=float, default=0.,

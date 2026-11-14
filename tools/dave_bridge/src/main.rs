@@ -22,8 +22,11 @@ struct PythonBot {
 }
 
 impl PythonBot {
-    fn new(python: &str, root: &str, metrics: Arc<Mutex<Metrics>>) -> Self {
-        let mut child = Command::new(python).args(["-m", "tichu.external", "serve"])
+    fn new(python: &str, root: &str, metrics: Arc<Mutex<Metrics>>, policy: &str, model: &str) -> Self {
+        let mut command = Command::new(python);
+        command.args(["-m", "tichu.external", "serve", "--candidate", policy]);
+        if !model.is_empty() { command.args(["--model", model]); }
+        let mut child = command
             .current_dir(root).stdin(Stdio::piped()).stdout(Stdio::piped())
             .stderr(Stdio::inherit()).spawn().expect("start Python bot");
         let input = child.stdin.take().unwrap();
@@ -104,7 +107,7 @@ impl Bot for PythonBot {
     }
 }
 
-fn play_pair(pair: usize, seed: u64, spec: &str, mode: &str, python: &str, root: &str) -> Value {
+fn play_pair(pair: usize, seed: u64, spec: &str, mode: &str, python: &str, root: &str, policy: &str, model: &str) -> Value {
     let mut games = Vec::new();
     for swapped in [false, true] {
         let our_team = swapped as usize;
@@ -112,7 +115,9 @@ fn play_pair(pair: usize, seed: u64, spec: &str, mode: &str, python: &str, root:
         let metrics = Arc::new(Mutex::new(Metrics::default()));
         let mut players: [Box<dyn Bot>; 4] = [0, 1, 2, 3].map(|seat| {
             if seat % 2 == our_team {
-                Box::new(PythonBot::new(python, root, metrics.clone())) as Box<dyn Bot>
+                Box::new(PythonBot::new(python, root, metrics.clone(), policy, model)) as Box<dyn Bot>
+            } else if let Some(other) = spec.strip_prefix("python:") {
+                Box::new(PythonBot::new(python, root, metrics.clone(), other, "")) as Box<dyn Bot>
             } else {
                 let b = bots::by_name(spec, mix(bot_seed, seat as u64, 1)).expect("unknown external bot");
                 assert!(!b.cheats(), "oracle bots are forbidden in this benchmark");
@@ -143,7 +148,8 @@ fn play_pair(pair: usize, seed: u64, spec: &str, mode: &str, python: &str, root:
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
-    assert_eq!(args.len(), 8, "usage: bridge OPPONENT PAIRS SEED WORKERS rounds|games PYTHON REPO_ROOT");
+    assert!(args.len() == 8 || args.len() == 10,
+        "usage: bridge OPPONENT PAIRS SEED WORKERS rounds|games PYTHON REPO_ROOT [POLICY MODEL]");
     run(&args);
 }
 
@@ -155,8 +161,12 @@ fn run(args: &[String]) {
     let threads: usize = args[4].parse().expect("workers");
     let mode = &args[5];
     assert!(count > 0 && threads > 0 && ["rounds", "games"].contains(&mode.as_str()));
-    let candidate = bots::by_name(spec, 0).expect("unknown opponent");
-    assert!(!candidate.cheats(), "oracle opponent forbidden");
+    if !spec.starts_with("python:") {
+        let candidate = bots::by_name(spec, 0).expect("unknown opponent");
+        assert!(!candidate.cheats(), "oracle opponent forbidden");
+    }
+    let policy = args.get(8).map(String::as_str).unwrap_or("competitive");
+    let model = args.get(9).map(String::as_str).unwrap_or("");
     let next = AtomicUsize::new(0);
     let failed = AtomicBool::new(false);
     let output = Mutex::new(std::io::stdout());
@@ -166,7 +176,7 @@ fn run(args: &[String]) {
                 if failed.load(Ordering::Relaxed) { break; }
                 let i = next.fetch_add(1, Ordering::Relaxed);
                 if i >= count { break; }
-                let result = std::panic::catch_unwind(|| play_pair(i, seed, spec, mode, &args[6], &args[7]));
+                let result = std::panic::catch_unwind(|| play_pair(i, seed, spec, mode, &args[6], &args[7], policy, model));
                 let record = match result {
                     Ok(record) => record,
                     Err(error) => {

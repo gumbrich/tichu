@@ -69,7 +69,7 @@ def observe(game, seat):
 
 def apply_decision(game, seat, decision):
     """Adapter: validate a combined declaration/play before committing either."""
-    if decision.call:
+    if decision.call and decision.kind != 'grand':
         trial = copy.deepcopy(game)
         trial.call_tichu(seat)
         _apply_action(trial, seat, decision)
@@ -79,7 +79,7 @@ def apply_decision(game, seat, decision):
 
 def _apply_action(game, seat, decision):
     if decision.kind == 'grand':
-        game.decide_grand(seat, False)
+        game.decide_grand(seat, decision.call)
     elif decision.kind == 'exchange':
         game.exchange(seat, dict(decision.gifts))
     elif decision.kind == 'play':
@@ -338,6 +338,12 @@ def load_agent(name='competitive', path=None, *, temperature=0., random_ties=Fal
     sampling = temperature != 0 or random_ties or max_gap is not None
     if sampling and name != 'competitive':
         raise ValueError('Temperature controls currently support only the competitive bot')
+    if name == 'scoring':
+        from .scoring import ScoringAgent, ScoringWeights, read_spec
+        from .tactics import TacticalWeights
+        spec = read_spec(path)
+        return ScoringAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']),
+                            ScoringWeights(**spec['scoring']))
     if name == 'competitive':
         from .tactics import TacticalAgent, TacticalWeights, load_spec, DEFAULT_COMPETITIVE_MODEL
         spec = load_spec(path if path is not None else DEFAULT_COMPETITIVE_MODEL)

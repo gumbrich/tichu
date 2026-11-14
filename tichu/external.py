@@ -159,14 +159,14 @@ def observation(request):
 
 
 class Bridge:
-    def __init__(self):
-        self.agent = load_agent('competitive')
+    def __init__(self, candidate='competitive', model=None):
+        self.agent = load_agent(candidate, model)
 
     def respond(self, request):
         obs = observation(request)
         kind = request['kind']
         if kind == 'grand':
-            return False  # Frozen v2 never calls Grand Tichu.
+            return self.agent.choose(obs).call
         if kind == 'small':
             # The external simulator offers calls to all seats before play. Our
             # frozen policy calls on its own turn, so do not add earlier calls.
@@ -197,8 +197,8 @@ class Bridge:
         raise ValueError(f'Unknown request kind {kind}')
 
 
-def serve():
-    bridge = Bridge()
+def serve(candidate='competitive', model=None):
+    bridge = Bridge(candidate, model)
     for line in sys.stdin:
         request = json.loads(line)
         try:
@@ -307,13 +307,23 @@ def audit_score(round_):
 def benchmark(args):
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=False)
+    model = Path(args.model).resolve() if args.model else (
+        ROOT/'tichu/scoring_weights.json' if args.candidate == 'scoring'
+        else ROOT/'tichu/competitive_weights.json')
+    if args.candidate == 'scoring' and not args.model and not model.exists():
+        from .scoring import initial_spec
+        (output/'candidate.json').write_text(json.dumps(initial_spec(), indent=2)+'\n')
+    else:
+        (output/'candidate.json').write_bytes(model.read_bytes())
+    snapshot = (output/'candidate.json').resolve()
     command = [str(Path(args.binary).resolve()), args.opponent, str(args.pairs),
-               str(args.seed), str(args.workers), args.mode, sys.executable, str(ROOT)]
+               str(args.seed), str(args.workers), args.mode, sys.executable, str(ROOT),
+               args.candidate, str(snapshot)]
     manifest = {'external_repository': 'https://github.com/dave-orr/Tichu-ai',
                 'external_revision': EXTERNAL_REV, 'opponent': args.opponent,
-                'our_bot': 'competitive-v2', 'our_git_revision': subprocess.check_output(
+                'our_bot': args.candidate, 'our_git_revision': subprocess.check_output(
                     ['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-                'model_sha256': hashlib.sha256((ROOT/'tichu/competitive_weights.json').read_bytes()).hexdigest(),
+                'model_sha256': hashlib.sha256(snapshot.read_bytes()).hexdigest(),
                 'binary_sha256': hashlib.sha256(Path(args.binary).read_bytes()).hexdigest(),
                 'adapter_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 'seed': args.seed, 'pairs': args.pairs, 'mode': args.mode, 'workers': args.workers,
@@ -347,10 +357,14 @@ def benchmark(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
-    sub.add_parser('serve')
+    server = sub.add_parser('serve')
+    server.add_argument('--candidate', choices=('competitive', 'scoring'), default='competitive')
+    server.add_argument('--model')
     run = sub.add_parser('benchmark')
     run.add_argument('--binary', default='tools/dave_bridge/target/release/tichu-external-benchmark')
     run.add_argument('--opponent', default='pimc20')
+    run.add_argument('--candidate', choices=('competitive', 'scoring'), default='competitive')
+    run.add_argument('--model')
     run.add_argument('--pairs', type=int, default=1000)
     run.add_argument('--seed', type=int, default=14000000)
     run.add_argument('--workers', type=int, default=4)
@@ -358,7 +372,7 @@ def main():
     run.add_argument('--output', required=True)
     args = parser.parse_args()
     if args.command == 'serve':
-        return serve()
+        return serve(args.candidate, args.model)
     if args.pairs < 1 or args.workers < 1 or args.seed < 0:
         parser.error('pairs/workers must be positive and seed nonnegative')
     benchmark(args)

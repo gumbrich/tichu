@@ -22,6 +22,11 @@ DEFAULT_MODEL = Path(__file__).with_name('trained_weights.json')
 
 
 def make_agent(spec, seed=None):
+    if spec['name'] == 'scoring':
+        from .scoring import ScoringAgent, ScoringWeights
+        from .tactics import TacticalWeights
+        return ScoringAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']),
+                            ScoringWeights(**spec['scoring']))
     if spec['name'] == 'baseline':
         return BaselineAgent()
     if spec['name'] in ('tactical', 'stochastic'):
@@ -40,6 +45,9 @@ def make_agent(spec, seed=None):
 
 
 def agent_spec(name, model=None, **options):
+    if name == 'scoring':
+        from .scoring import read_spec
+        return read_spec(model)
     if name == 'baseline':
         return {'name': name}
     if name == 'competitive':
@@ -290,7 +298,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     evaluation = sub.add_parser('evaluate')
-    evaluation.add_argument('--candidate', choices=('baseline', 'strategic', 'trained', 'competitive'), default='trained')
+    evaluation.add_argument('--candidate', choices=('baseline', 'strategic', 'trained', 'competitive', 'scoring'), default='trained')
     evaluation.add_argument('--opponent', choices=('baseline', 'strategic', 'trained', 'competitive'), default='baseline')
     evaluation.add_argument('--model', type=Path, help='candidate checkpoint override')
     evaluation.add_argument('--opponent-model', type=Path, help='opponent checkpoint override')

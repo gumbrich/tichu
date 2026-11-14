@@ -1,0 +1,34 @@
+{
+  "name": "scoring",
+  "weights": {
+    "groups": 5.458282277686771,
+    "loose": 1.604891668643716,
+    "control": 1.155002272745673,
+    "shed": 0.9000494238189236,
+    "rank": 0.18969898183480047,
+    "partner": 19.48261303856557,
+    "bomb": 0.7120625322337926,
+    "urgency": 2.205474808853247,
+    "lead": 4.955103409315264,
+    "gift": 0.4667632719773091,
+    "call_threshold": 0.42120497714779304
+  },
+  "tactics": {
+    "secure": 4.132504017561105,
+    "threat": 9.81262431475611,
+    "points": 0.03531422887444835
+  },
+  "schema_version": 2,
+  "policy": "scoring",
+  "scoring": {
+    "points": 0.4480522996338303,
+    "initiative": 4.1394305850953605,
+    "call_defense": 0.38461046826770967,
+    "partner_call": 1.0,
+    "grand_threshold": 3.5912253160880248,
+    "small_adjustment": -0.5963936777905884,
+    "king_control": 0.3111934024655449,
+    "partner_finish": true,
+    "strong_finish": true
+  }
+}
