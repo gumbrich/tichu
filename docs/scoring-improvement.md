@@ -43,6 +43,13 @@ v2 on new seeds starting 19000000. A global default promotion additionally requi
 a positive native round margin and full-match advantage with uncertainty excluding
 zero/50%. If not met, keep the candidate opt-in and report the limitation.
 
+The native final test uses 1,000 paired rounds at 19000000 and 150 paired full
+matches at 19100000. These sizes and seeds are fixed before candidate selection.
+Optional diagnostic removals use 128 paired external deals at 19200000 and do
+not change the selected model. A candidate must improve the external validation
+mean over frozen v2 as well as have a positive native validation mean to proceed
+to final testing; a worse validation candidate is not promoted by trying test seeds.
+
 Do not claim that a threshold is calibrated merely because it was tuned: report
 held-out call frequency, success rate and point contribution. Feature removals use
 separate diagnostic deals and do not change the frozen final candidate.
