@@ -183,3 +183,38 @@ The [AlphaTichu comparison](alphatichu-comparison.md) changes the priority of th
 search milestone: generic determinization is an experiment, not an assumed
 upgrade. Retain a single observation-consistent strategy, frozen evaluation
 opponents and a promotion gate before making a search agent the default.
+
+## Search distillation and the next engine step
+
+The November scoring experiment adds a versioned, public-observation feature
+encoder and a small learned legal-move ranker (`tichu/imitation.py`). A separate
+replay exporter reconstructs the reference engine's games, checks terminal
+results, and exports only the acting player's view and legal choices. Whole
+deals stay together in training/validation splits. Runtime inference uses only
+the Python standard library; the optional trainer uses NumPy. The same policy
+runs under our native referee and the external adapter.
+
+This does not add hidden-hand rollout search to our bot. Its counterplay bounds,
+finish proofs and learned ranking remain separate from authoritative rules.
+Preserve that boundary while developing these next pieces:
+
+1. **Stateless move evaluation.** Expose versioned `score(observation, legal_actions)`
+   alongside `choose`, with immutable model parameters and per-decision caches.
+   Keep exchange, declarations, ordinary play, interrupts, wishes and Dragon gifts
+   explicit, rather than forcing them into one undifferentiated move category.
+2. **Belief and simulator interfaces.** Sample only states consistent with the
+   acting player's information. Run the same reducer and scoring rules inside
+   search; never reconstruct an opponent's actual hidden hand from audit logs.
+   Return action estimates, uncertainty and consumed budget, with a seeded RNG.
+3. **Outcome learning and a broader league.** Use the distilled policy as a warm
+   start/rollout baseline, then learn from terminal team-score rewards against
+   diverse policies. Keep an opponent family entirely out of training and model
+   selection. Benchmark by complete matches as well as round score.
+4. **Declaration calibration.** Collect substantially more eight-card decisions,
+   including counterfactual call exploration, and validate success probabilities
+   separately from play strength. Add simultaneous partner-call coordination and
+   match-score-aware risk; a threshold search alone does not establish calibration.
+
+The fixed search teacher is also a benchmark opponent, so fresh-deal results
+against it must not be described as performance against an unseen policy family.
+See [the scoring experiment](scoring-improvement.md) for the protocol and evidence.
