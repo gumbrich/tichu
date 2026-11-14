@@ -1,0 +1,141 @@
+{
+  "purpose": "Representational collision only; not a strength or optimal-action proof",
+  "model_sha256": "f46c02e4160dbf597ed13d3485171f15e35976d564b9f2c9b4815e1426fc90d6",
+  "hand": [
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      8
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      8
+    ],
+    [
+      3,
+      2
+    ]
+  ],
+  "public_cards": [
+    [
+      0,
+      14
+    ],
+    [
+      1,
+      14
+    ],
+    [
+      2,
+      14
+    ],
+    [
+      3,
+      14
+    ],
+    [
+      4,
+      1
+    ],
+    [
+      4,
+      15
+    ],
+    [
+      4,
+      16
+    ]
+  ],
+  "counts": [
+    7,
+    14,
+    14,
+    14
+  ],
+  "has_played": true,
+  "calls": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "on_lead": true,
+  "full_house_options": [
+    {
+      "cards": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "remaining_ranks": [
+        2,
+        2
+      ]
+    },
+    {
+      "cards": [
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "remaining_ranks": [
+        4,
+        4
+      ]
+    }
+  ],
+  "feature_vectors_equal": true,
+  "selected_remaining_ranks": [
+    2,
+    2
+  ]
+}

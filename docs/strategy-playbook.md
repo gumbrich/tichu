@@ -57,6 +57,10 @@ deployment randomness are different issues.
 Equal bot scores also do not prove equal strategic value: the current evaluator
 cannot represent every distinction. Tie variation may avoid a bad fixed ordering;
 that would be different evidence from successfully exploiting an adaptive opponent.
+For example, with `22 44 888`, playing `22 888` leaves fours while `44 888` leaves
+twos. A constructed position gives these actions identical feature vectors, and
+the fixed ordering keeps the twos. This is a concrete representation gap, not a
+proof that random play or either action is optimal in every partnership situation.
 
 ## Evidence standard
 

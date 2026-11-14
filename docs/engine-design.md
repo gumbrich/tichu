@@ -204,6 +204,10 @@ Preserve that boundary while developing these next pieces:
    and per-decision caches.
    Keep exchange, declarations, ordinary play, interrupts, wishes and Dragon gifts
    explicit, rather than forcing them into one undifferentiated move category.
+   Add residual combination strengths: the current encoder can collapse different
+   full-house kickers even when they leave different pairs. The reproducible
+   `experiments/partnership/representation-diagnostic.json` records one collision.
+   More training cannot recover distinctions that the feature encoder discards.
 2. **Belief and simulator interfaces.** Sample only states consistent with the
    acting player's information. Run the same reducer and scoring rules inside
    search; never reconstruct an opponent's actual hidden hand from audit logs.
