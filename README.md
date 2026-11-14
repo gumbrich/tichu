@@ -154,6 +154,12 @@ See [Strategic findings](docs/strategic-findings.md) for measured strength,
 feature-removal experiments, practical tactics and limits, and
 [the experiment record](experiments/selfplay/README.md) for seeds and raw evidence.
 The [competitive experiment record](experiments/competitive/README.md) covers v2.
+The [local external benchmark](docs/local-benchmark.md) connects this frozen bot
+to Dave Orr's October 2026 Rust search engine without an account. It uses paired
+deals, an independently checked legal-action boundary and a separate score audit.
+Build its optional Rust adapter with
+`cargo build --release --locked --manifest-path tools/dave_bridge/Cargo.toml`.
+Our terminal game and normal tests still require only Python.
 The [AlphaTichu comparison](docs/alphatichu-comparison.md) explains the other
 project's approach, its available artifacts and the requirements for a fair match.
 The [randomization experiment](docs/randomization-findings.md) tests an LLM-like

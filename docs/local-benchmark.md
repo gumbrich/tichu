@@ -22,8 +22,13 @@ uses `mix(seed, pair_index, 0)` from the external arena and is played twice,
 swapping teams. Primary outcome: our mean round point margin and a normal
 approximation 95% interval across pair averages. Pilot seed 11000000 (ten pairs)
 is excluded. No stopping based on scores or discarding unfavorable deals. Any
-rule/transport failure invalidates the aggregate until investigated. Full-match
-win rates and human ladder strength are separate future measurements.
+rule/transport failure invalidates the aggregate until investigated.
+
+Secondary fixed test: **100 paired match seeds**, base seed **15000000**, two
+games to 1,000 per seed (200 full matches). Use the same frozen participants.
+Report wins and a 95% interval across paired win indicators. Both seatings share
+the deck stream, although match lengths can differ. Do not tune or stop based on
+outcomes. Human ladder strength remains a separate future measurement.
 
 ## Referee and adapter
 

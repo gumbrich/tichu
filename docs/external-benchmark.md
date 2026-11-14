@@ -1,16 +1,17 @@
 # External engine benchmark access and protocol
 
-**14 November 2026.** AlphaTichu is the preferred external target. Its live site
-is reachable, but selecting Find match redirects to login. The user does not yet
-have an account. No external matches have been played and no external win rate
-has been measured. This document records verified access facts and the proposed
-benchmark; a live adapter is not yet implemented.
+**14 November 2026.** The immediate target is now Dave Orr's local Rust engine,
+which requires no account. Its adapter, pinned opponent and fixed evaluation
+protocol are described in [the local benchmark](local-benchmark.md). AlphaTichu
+remains a later neural-opponent target: its live lobby redirects to login and the
+public repository lacks the master model. No online matches have been played.
 
 ## Available targets
 
 | Target | Verified access | Benchmark suitability |
 | --- | --- | --- |
-| [AlphaTichu](https://tichu.inzelabs.com/) | Live game page, login and signup load. The match lobby requires authentication. | Best first target, subject to verifying master selection, private bot matches and model identity after login. |
+| [Dave Orr Tichu-ai](https://github.com/dave-orr/Tichu-ai) | Pinned October 2026 Rust source; local search bots and arena run without an account. No explicit license found. | Current local target; unmodified external referee, legal-list checks and independent score audit. |
+| [AlphaTichu](https://tichu.inzelabs.com/) | Live game page, login and signup load. The match lobby requires authentication. | Later neural target, subject to verifying master selection, private bot matches and model identity after login. |
 | [ETH Tichu AI demo](https://tichu-ai.netlify.app/) | Setup UI loads with human/AI seat selectors. It explicitly says straight bombs and out-of-order bombs are not implemented. Actual backend gameplay was not tested. | Secondary variant benchmark only; cannot silently present it as full-rule Tichu. |
 | [OnlineTichu](https://www.onlinetichu.com/) | Login/registration page loads. The linked Policy page is a privacy policy. | Later field testing; a fixed-version AI opponent or public bot API was not established from these pages. |
 
@@ -44,9 +45,9 @@ export must be checked directly before implementing the adapter, especially for
 public history. Sending an older state shape with empty history could weaken the
 opponent while appearing operational.
 
-## Immediate next step
+## Later AlphaTichu access
 
-The user needs to create an account at
+If pursuing the live AlphaTichu target, create an account at
 [AlphaTichu signup](https://tichu.inzelabs.com/signup), then sign in. Passwords
 and email verification should stay in the site's own flow, not this chat.
 After login, inspect the available difficulty, private-table and seat controls.
@@ -57,7 +58,7 @@ For a controlled batch, the best option is an agreed master inference endpoint
 with a model identifier, or compatible exported model files for local execution.
 No message requesting access has been sent to the author.
 
-## Proposed benchmark
+## Proposed later AlphaTichu benchmark
 
 1. **Freeze the participants.** Use our deterministic v2 checkpoint, SHA-256
    `f791544998479c02946dcd9e4b1b5df89d6fa78d72d09b5338a14fec2ffe277e`, with

@@ -70,10 +70,10 @@ arena as its baseline; it should earn promotion through held-out results.
 
 ## External benchmark access check on 14 November 2026
 
-The [external benchmark audit and protocol](external-benchmark.md) identifies
-AlphaTichu as the first target. Its live lobby requires login; the user needs an
-account. The public inference contract exists, but a master service address or
-model export is still needed for a controlled batch. The ETH online demo omits
-straight bombs and out-of-turn bombs, so it is a variant test only. No external
-matches have yet been played. The proposed pilot, paired rounds, full matches and
-mixed-partner tests are recorded in that document.
+The [external benchmark audit](external-benchmark.md) now prioritizes Dave Orr's
+recent local Rust search bots. The [local adapter and protocol](local-benchmark.md)
+require no account and leave online registration for later. AlphaTichu's live
+lobby requires login; a master service address or model export is still needed
+for a controlled neural-opponent batch. The ETH online demo omits straight bombs
+and out-of-turn bombs, so it is a variant test only. No online matches have been
+played. Local external-engine results must not be described as online ladder wins.
