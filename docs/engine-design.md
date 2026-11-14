@@ -235,3 +235,42 @@ and neither another seat's private state nor the deal shuffler is consumed.
 When delaying Small, it projects its own public declaration before choosing the
 following action. Rule validation still belongs to the referee. These are policy
 extensions, not a learned equilibrium strategy or hidden-hand search.
+
+### Next learning cycle: concrete acceptance criteria
+
+Keep the current final model and its test seeds frozen. Changes below need new
+training, selection and final-test deals; none is an explanation established by
+the current comparisons.
+
+1. **Represent the hand left behind.** Add the ranks and control potential of
+   residual singles, pairs and triples, plus partner/enemy finish constraints.
+   Preserve suit-sensitive bomb information. The recorded full-house collision
+   must become distinguishable, while card ordering must not change the features.
+   Compare the richer encoder with the old encoder on the same training corpus
+   before attributing any benefit to additional data or a larger model.
+2. **Learn calls as separate decisions.** Grand sees eight cards; Small sees the
+   information available before the player's first play. Collect both call and
+   no-call continuations on training deals, with the partner and opponents reacting
+   to the public declaration in each branch. Evaluate expected team points and
+   match wins, not only the success rate among calls the old policy selected.
+   Check calibration on whole held-out deals and report counts near the decision
+   threshold. Post-game private hands can supply training outcomes, never features.
+3. **Train partnership roles across partners.** Compare identical-policy teams,
+   mixed teams with a frozen partner, and partners with different passing habits.
+   Expose a passing convention as an agreed policy setting; do not infer secret
+   agreements or transfer full partner observations. Measure caller support,
+   doubles and trick points alongside final team utility. A gain with an identical
+   teammate alone is not evidence of reliable human-partner play.
+4. **Separate exploration from deployment.** Self-play can sample actions to
+   collect alternatives without requiring temperature at deployment. If a mixed
+   policy is learned, test it against both frozen opponents and an opponent trained
+   to exploit the deterministic baseline. Separate exploiter-training and
+   evaluation deals, and reserve opponent variants for final testing. Compare
+   several fixed policy RNG seeds and preserve forced/proven finishes; a single
+   seeded tie-breaking run is not an equilibrium
+   or exploitability measurement.
+5. **Use a league and a time budget.** Include old checkpoints, varied declaration
+   policies, and another independent opponent family. Reserve one family entirely
+   for final testing. Compare a richer fast ranker, outcome-trained ranker and
+   bounded belief search at the same per-action budget. Retain a new policy only
+   after predeclared paired round and full-match checks pass without illegal moves.

@@ -1,0 +1,66 @@
+{
+  "rounds_paired_gain": {
+    "mean": 9.715,
+    "ci95": [
+      2.972734779293657,
+      16.457265220706343
+    ]
+  },
+  "games_paired_gain": {
+    "mean": 70.375,
+    "ci95": [
+      7.284900880490397,
+      133.4650991195096
+    ]
+  },
+  "native": {
+    "round": {
+      "deal_pairs": 1000,
+      "games": 2000,
+      "mean_score_difference": 0.355,
+      "score_difference_95ci": [
+        -3.8697867834632462,
+        4.579786783463247
+      ],
+      "win_rate": 0.52375,
+      "win_rate_95ci": [
+        0.5069525730824317,
+        0.5405474269175684
+      ],
+      "call_success_rate": 0.591743119266055,
+      "mean_decision_ms": 1.6233260415705264,
+      "rounds": 2000,
+      "calls": 218,
+      "successful_calls": 129,
+      "first_out": 946,
+      "double_victories": 250,
+      "decision_seconds": 105.71910845728053,
+      "decisions": 65125
+    },
+    "match": {
+      "deal_pairs": 150,
+      "games": 300,
+      "mean_score_difference": 25.6,
+      "score_difference_95ci": [
+        -12.839527471040384,
+        64.03952747104039
+      ],
+      "win_rate": 0.5066666666666667,
+      "win_rate_95ci": [
+        0.4603266195133511,
+        0.5530067138199823
+      ],
+      "call_success_rate": 0.6153846153846154,
+      "mean_decision_ms": 1.7522935680075131,
+      "rounds": 3828,
+      "calls": 416,
+      "successful_calls": 256,
+      "first_out": 1802,
+      "double_victories": 513,
+      "decision_seconds": 218.97010884535484,
+      "decisions": 124962
+    }
+  },
+  "reference_target_passed": false,
+  "default_promotion_passed": false
+}

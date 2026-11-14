@@ -212,17 +212,31 @@ and stated 100-point deck total establish the intended **−25** value.
 
 ### Partnership and randomness experiments
 
-The current default remains the verified v3 policy. The next-cycle research and
-results are in [the partnership study](docs/partnership-improvement.md), including
-forum sources, declaration thresholds, Dog passing, coordinated gifts, and bounded
-move randomization. These alternatives are experimental until independent full
-matches support promotion. To try the v3-based low-temperature model locally:
+The current default remains the verified v3 policy. The larger training cycle
+distilled 2,048 fresh search self-play rounds into a new move ranker and compared
+declaration thresholds, Dog passing, coordinated gifts, call timing, match-score
+risk and bounded move randomization. The selected candidate uses a 75% learned /
+25% tactical score blend and remains deterministic. On fresh final tests it improves
+round scoring against the reference by 9.72 points/round over v3 (paired 95% interval
++2.97 to +16.46), but its 202/400 match wins (50.5%, 45.69–55.31%) do not establish
+superiority. Direct native comparisons with v3 are also inconclusive, so it remains
+opt-in:
 
 ```sh
+python3 main.py --bot scoring --weights experiments/partnership/freeze/candidate.json
+# Optional, separately tested low-temperature experiment on the v3 ranker:
 python3 main.py --bot partnership --weights experiments/partnership/team-candidates/temp003.json
 python3 -m unittest discover -v
 ```
 
-The experimental model stores its temperature, tie-breaking seed and maximum allowed score loss.
+See the [short strategy playbook](docs/strategy-playbook.md),
+[research and fixed evaluation protocol](docs/partnership-improvement.md), and
+[experiment evidence and reproduction commands](experiments/partnership/README.md).
+The isolated tie-randomization test did not establish a benefit, and the more
+aggressive declaration settings did not win their screen. Those alternatives
+remain opt-in experiments, not proven upgrades.
+
+The experimental partnership model stores its temperature, tie-breaking seed and
+maximum allowed score loss.
 The older standalone `--temperature` controls still select frozen v2 unless a bot
 is explicitly chosen; use the model above to try randomness on the v3 ranker.

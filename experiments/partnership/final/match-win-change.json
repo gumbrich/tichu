@@ -1,0 +1,12 @@
+{
+  "unit": "fraction of full matches won; paired seed is the uncertainty unit",
+  "comparison": "candidate minus frozen v3 against eg:pimc20/hibs",
+  "pairs": 200,
+  "change": {
+    "mean": 0.0525,
+    "ci95": [
+      -0.006200397214719329,
+      0.11120039721471933
+    ]
+  }
+}

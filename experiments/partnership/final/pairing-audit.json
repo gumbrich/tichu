@@ -1,0 +1,39 @@
+{
+  "status": "complete",
+  "model_unchanged": true,
+  "default_unchanged": true,
+  "external": {
+    "rounds": {
+      "pairs": 1000,
+      "rounds": 4000,
+      "shared_four_way_deck_prefixes": 1000,
+      "all_available_same_seating_prefixes_match": true,
+      "log_sha256": {
+        "candidate": "c2628a13826e9c0efe0897168a96b301d4121b829d0d4b157eee8de3f14f1041",
+        "v3": "e6dd2343d2cb8ba9d143b8702fec2663c39523022ec58e4b249820741db72e2a"
+      }
+    },
+    "games": {
+      "pairs": 200,
+      "rounds": 9315,
+      "shared_four_way_deck_prefixes": 1813,
+      "all_available_same_seating_prefixes_match": true,
+      "log_sha256": {
+        "candidate": "6668509abe9c72f9cc3a438589b78e9619fbb8f6e369afa4b1f562450def903e",
+        "v3": "280d6375adba1c2ae72fe38f4ad2c9ac31bb81e879492f25354b3363ce52aa72"
+      }
+    }
+  },
+  "native": {
+    "round": {
+      "pairs": 1000,
+      "rounds": 2000,
+      "log_sha256": "8c2d3ca2ff04b2393c794a8f5f53a95af32dc2abf1432e1f905094b5e7b9bfbf"
+    },
+    "match": {
+      "pairs": 150,
+      "rounds": 3828,
+      "log_sha256": "1f4ee132e9041330909faa336ae0d9240ed3ecb0b8125fc64fceb3168cbfb0fb"
+    }
+  }
+}

@@ -20,6 +20,9 @@ Screening results are provisional, not established improvements.
 - Our 20-setting screen did not select more aggressive thresholds. Success rates
   from human databases or another bot cannot simply be copied to our bot.
 
+The external simulator offers Small only during play. These experiments therefore
+do not measure the benefit of announcing before the exchange to guide gifts.
+
 See [the official rules](https://www.riograndegames.com/wp-content/uploads/2013/02/Tichu-Rules.pdf)
 and [Aaron Fuegi's strategy discussion](https://scv.bu.edu/~aarondf/Games/Tichu/tichu_strategy.html).
 
@@ -48,6 +51,11 @@ did not lead the screen; the results favor testing flexible policies over slogan
 
 ## Randomness
 
+Given the dealt hands and chosen actions, Tichu's rule transitions are deterministic.
+Random deals and hidden information can make mixed strategies useful; they do not
+make an arbitrary temperature setting a good strategy or establish that the game
+is unsolvable.
+
 Keep proven finishes deterministic. Exact-tie variation and a small, bounded
 temperature are worth testing; broader noise had worse means in our first screen.
 None of those initial intervals established a benefit. The pinned search opponent
@@ -70,6 +78,9 @@ selected finalist is deterministic; the diagnostic did not select that finalist.
 ## Evidence standard
 
 Evaluate team points and complete matches, not just first finishes or successful
-calls. Use swapped seats and held-out deal seeds. A win over Dave Orr's pinned
-search configuration would not establish superiority to AlphaTichu, the Reddit
-author's unpublished trained model, or strong human partnerships.
+calls. Use swapped seats and held-out deal seeds. The larger-corpus candidate
+improved round scoring against Dave Orr's pinned search configuration by **9.72
+points/round** over v3 (paired 95% interval +2.97 to +16.46), but won **202/400
+final matches: 50.5%** (45.69–55.31%). Beating that reference is not established,
+and v3 remains the default. This also says nothing about superiority to AlphaTichu,
+the Reddit author's unpublished trained model, or strong human partnerships.

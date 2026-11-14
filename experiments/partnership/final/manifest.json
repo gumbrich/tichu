@@ -1,0 +1,29 @@
+{
+  "stage": "final",
+  "status": "complete",
+  "policy": "scoring",
+  "model_sha256": "f46c02e4160dbf597ed13d3485171f15e35976d564b9f2c9b4815e1426fc90d6",
+  "code_revision": "c519852929327e16ee8d0997e7a09d7cbb69bf0a",
+  "schedule": [
+    [
+      "rounds",
+      1000,
+      23000000
+    ],
+    [
+      "games",
+      200,
+      24000000
+    ],
+    [
+      "round",
+      1000,
+      25000000
+    ],
+    [
+      "match",
+      150,
+      25100000
+    ]
+  ]
+}

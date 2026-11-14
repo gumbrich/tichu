@@ -1,5 +1,46 @@
 # What self-play taught our Tichu bots
 
+## Larger training and forum-inspired partnership tests
+
+**14 November 2026 · experimental candidate; v3 remains the default.** The next
+cycle trained on 2,048 fresh search self-play rounds, four times the earlier
+corpus, and tested calls, partner gifts, delayed declarations, match-score risk
+and move randomness. Independent validation selected the new learned ranker at
+75% with the existing tactical planner at 25%, retaining deterministic play and
+v3's exchange/calling policies. This is supervised distillation, not neural RL.
+
+On the fixed final round test, it improves over v3 against the pinned search bot
+by **9.72 points/round (paired 95% interval +2.97 to +16.46)**. Its absolute margin
+is +5.55 (−1.36 to +12.45), so superiority over the opponent is not established.
+The final 400 external matches produced **202 wins / 50.5% (45.69–55.31%)**.
+Mean final score margin is +82.13 points (+27.07 to +137.18), illustrating why
+average points and match-win probability must both be measured. Direct native
+play against v3 is also inconclusive: +0.36 points/round (−3.87 to +4.58) over
+2,000 rounds, and 152/300 match wins (50.67%, 46.03–55.30%). The reference-victory
+and default-promotion gates are not met. On the same 200 paired external match seeds,
+v3 won 181 (45.25%). The candidate's paired win-rate improvement is +5.25 percentage
+points (−0.62 to +11.12), also inconclusive, while its match-score improvement is
++70.38 points (+7.28 to +133.47). All 13,315 externally refereed final rounds
+completed with zero errors/fallbacks and passed the independent score audit.
+
+**Keep tactical advice conditional.** Forum discussions favor preserving control,
+helping an announced partner and coordinating gifts, but disagree about power
+concentration and Dog passing. Our broad passing bundles and more aggressive
+calling thresholds did not earn selection. The isolated random-tie diagnostic on
+the new learned model found −7.81 points/round (−19.22 to +3.59), with no established
+benefit. Do not promote randomization because an exploratory screen looked good.
+
+**Improve representation before simply adding more data.** The current encoder
+can give two full houses the same features even when they leave different pairs.
+That prevents training from learning the distinction. Add residual-hand strength,
+calibrate calls with call/no-call continuations, and test diverse partners and
+opponents on new reserved deals. These are next hypotheses, not benefits already
+established by this experiment.
+
+See the [short strategy playbook](strategy-playbook.md),
+[full research and protocol](partnership-improvement.md), and
+[reproducible evidence](../experiments/partnership/README.md).
+
 ## Learning better scoring from search
 
 **14 November 2026 · v3 · now the default.** A new policy learns move preferences from 512 games of the

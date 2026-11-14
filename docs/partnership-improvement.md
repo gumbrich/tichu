@@ -287,3 +287,55 @@ deterministic play was −7.81 points/round (−19.22 to +3.59), 256 paired deal
 setting, with zero errors/fallbacks. That does not establish harm or a benefit;
 it was excluded from model selection as declared. The initial favorable tie means
 are not a basis for claiming that randomization helps the stronger model.
+
+
+## Completed final results
+
+These are the fixed final sets, with the frozen candidate unchanged. All runs
+are complete. Intervals use the normal approximation over paired seed averages.
+
+| Completed test | Result | Paired 95% interval |
+| --- | ---: | ---: |
+| Candidate vs search, 2,000 rounds | +5.545 points/round | −1.36 to +12.45 |
+| Frozen v3 vs search, same 2,000 rounds | −4.170 points/round | −11.34 to +3.00 |
+| Paired improvement against search | **+9.715 points/round** | **+2.97 to +16.46** |
+| Candidate directly vs v3, 2,000 native rounds | +0.355 points/round | −3.87 to +4.58 |
+| Candidate directly vs v3, 300 native matches | 152 wins / 50.67% | 46.03% to 55.30% |
+| Candidate vs search, 400 full matches | 202 wins / 50.50% | 45.69% to 55.31% |
+| Candidate vs search, full-match score margin | +82.125 points/match | +27.07 to +137.18 |
+| Frozen v3 vs search, same 400 full matches | 181 wins / 45.25% | 40.61% to 49.89% |
+| Paired external match-win improvement | +5.25 percentage points | −0.62 to +11.12 points |
+| Paired external match-score improvement | +70.375 points/match | +7.28 to +133.47 |
+
+The external round-score improvement over v3 passes its check. Absolute superiority over the
+reference does not pass the required round check; the direct native checks also
+fail. Accordingly the default remains v3. The candidate's external match-win check
+also fails, despite its positive mean final-score margin. Its match-win improvement
+over v3 is inconclusive as well. Maximizing average points is not the same as
+maximizing match wins. This is not a reason to change the model, thresholds or gates.
+
+The +9.715-point external gain accounts for +5.465 ordinary card points
+(+3.12 to +7.81), +4.600 double-victory points (+0.08 to +9.12), −0.750 Small
+bonuses (−3.04 to +1.54), and +0.400 Grand bonuses (−2.64 to +3.44). These are
+outcome components, not causal feature contributions. In absolute terms the
+candidate still loses 2.905 ordinary card points and 5.900 Grand points per round,
+while gaining 16.100 double-victory points. Its Small calls succeed 142/228 times;
+its Grand calls succeed 13/24 times. The opponent makes 191/321 Grand calls.
+Copying that frequency is not justified by these observations, and a sample of
+24 own Grand calls is inadequate for fine-grained calibration.
+
+The candidate's full-match Grand calls succeeded 42/57 times. That differs from
+13/24 in the isolated-round set, further illustrating the limits of small selected
+call samples. Neither set observes the outcomes of the calls the policy declined.
+No calling thresholds were changed after either result.
+
+The final suite contains 19,143 rounds: 13,315 under the external referee and
+5,828 under the native referee, including 800 external and 300 native full matches.
+All external games passed independent scoring and card-conservation checks with
+zero errors or fallback moves. A separate audit verified the shared deck prefixes
+across both policies and both seatings, the native seed sets, model identities,
+and the unchanged default checkpoint. See `final/pairing-audit.json`,
+`final/match-win-change.json` and `final/score-components.json` beneath
+`experiments/partnership/`. All 103 unit tests and the selected model's CLI demo
+pass. The candidate is available explicitly; the final games are now spent test
+evidence and must not select another model.
