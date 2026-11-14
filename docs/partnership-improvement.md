@@ -259,3 +259,31 @@ Run 256 paired rounds per setting at 22300000. This tests the user's randomness
 question without combining it with passing, declaration timing or match risk.
 It will not change the two already-frozen finalists, their selection rule, or the
 final promotion gates. It is a separate conditional-effect estimate on unseen deals.
+
+## Completed validation and final freeze
+
+All suites completed with zero external errors or fallback moves. On the same
+100 paired full-match seeds, candidate A won 116/200 (58%, paired interval
+50.80–65.20%); candidate B won 108/200 (54%, 47.82–60.18%); v3 won 88/200
+(44%, 37.57–50.43%). A's paired win-rate gain over v3 was +14 percentage points
+(+5.07 to +22.93); B's was +10 (+1.53 to +18.47). A minus B was +4 points
+(−4.77 to +12.77), so their difference itself is inconclusive.
+
+On the 256 paired external round seeds, A averaged +9.71 points/round and B +9.94,
+versus v3 −3.75. A's paired gain over v3 was +13.46 (+1.57 to +25.34). Direct native
+round means against v3 were A +3.93 (−4.48 to +12.33) and B +4.92 (−4.98 to +14.82).
+Both met the predeclared positive-mean selection criterion. A therefore won the
+fixed selection rule. These validation results select the model; they are not the
+final claim of superiority.
+
+The final model is frozen at `experiments/partnership/freeze/candidate.json`,
+SHA-256 `f46c02e4160dbf597ed13d3485171f15e35976d564b9f2c9b4815e1426fc90d6`.
+It uses the larger-corpus ranker at 0.75 and the frozen tactical planner at 0.25.
+It retains v3's declarations and exchanges and is deterministic. Final games will
+use only the reserved 23000000/24000000/25000000/25100000 schedules.
+
+The separate 22300000 tie diagnostic also completed: random exact ties minus
+deterministic play was −7.81 points/round (−19.22 to +3.59), 256 paired deals per
+setting, with zero errors/fallbacks. That does not establish harm or a benefit;
+it was excluded from model selection as declared. The initial favorable tie means
+are not a basis for claiming that randomization helps the stronger model.

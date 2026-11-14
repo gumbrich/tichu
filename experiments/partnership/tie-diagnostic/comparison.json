@@ -1,0 +1,11 @@
+{
+  "purpose": "Predeclared isolated effect estimate; not used for finalist selection",
+  "unit": "points per round; deal-pair confidence interval",
+  "random_ties_minus_deterministic": {
+    "mean": -7.8125,
+    "ci95": [
+      -19.21785486012137,
+      3.592854860121369
+    ]
+  }
+}

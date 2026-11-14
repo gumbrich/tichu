@@ -1,0 +1,25 @@
+{
+  "stage": "validation",
+  "status": "complete",
+  "policy": "partnership",
+  "model_sha256": "468b62051abc2004a15ea4c865d87d729928869a8798a0916af72db0b2d46faa",
+  "code_revision": "db5a913a21f16b6b94f9460a31e1ab820182b84a",
+  "schedule": [
+    [
+      "rounds",
+      256,
+      22000000
+    ],
+    [
+      "games",
+      100,
+      22100000
+    ],
+    [
+      "round",
+      256,
+      22200000
+    ]
+  ],
+  "baseline_reused_from": "experiments/partnership/validation/learned"
+}

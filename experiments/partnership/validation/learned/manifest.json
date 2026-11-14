@@ -1,0 +1,24 @@
+{
+  "stage": "validation",
+  "status": "complete",
+  "policy": "scoring",
+  "model_sha256": "f46c02e4160dbf597ed13d3485171f15e35976d564b9f2c9b4815e1426fc90d6",
+  "code_revision": "165ddd20e24732673557cd140a384ec246fac1fd",
+  "schedule": [
+    [
+      "rounds",
+      256,
+      22000000
+    ],
+    [
+      "games",
+      100,
+      22100000
+    ],
+    [
+      "round",
+      256,
+      22200000
+    ]
+  ]
+}

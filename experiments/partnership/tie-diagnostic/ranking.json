@@ -1,0 +1,80 @@
+[
+  {
+    "candidate": "deterministic",
+    "model": "experiments/partnership/tie-diagnostic-candidates/deterministic.json",
+    "summary": {
+      "pairs": 256,
+      "games_or_rounds": 512,
+      "rounds": 512,
+      "paired_margin": {
+        "mean": 7.03125,
+        "ci95": [
+          -6.408753295100189,
+          20.47125329510019
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 21485,
+      "max_python_request_ms": 177.99995900000002,
+      "round_wins": 260,
+      "round_ties": 10,
+      "ours": {
+        "small_calls": 66,
+        "small_made": 45,
+        "grand_calls": 1,
+        "grand_made": 0,
+        "double_victories": 81,
+        "first_out": 287
+      },
+      "opponent": {
+        "small_calls": 105,
+        "small_made": 62,
+        "grand_calls": 93,
+        "grand_made": 60,
+        "double_victories": 42,
+        "first_out": 225
+      },
+      "elapsed_seconds": 202.44051958300042
+    }
+  },
+  {
+    "candidate": "random-ties",
+    "model": "experiments/partnership/tie-diagnostic-candidates/random-ties.json",
+    "summary": {
+      "pairs": 256,
+      "games_or_rounds": 512,
+      "rounds": 512,
+      "paired_margin": {
+        "mean": -0.78125,
+        "ci95": [
+          -14.264967935221636,
+          12.702467935221636
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 21559,
+      "max_python_request_ms": 171.199333,
+      "round_wins": 248,
+      "round_ties": 13,
+      "ours": {
+        "small_calls": 66,
+        "small_made": 46,
+        "grand_calls": 1,
+        "grand_made": 0,
+        "double_victories": 81,
+        "first_out": 289
+      },
+      "opponent": {
+        "small_calls": 103,
+        "small_made": 69,
+        "grand_calls": 93,
+        "grand_made": 60,
+        "double_victories": 51,
+        "first_out": 223
+      },
+      "elapsed_seconds": 192.4807317909981
+    }
+  }
+]

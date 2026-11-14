@@ -1,0 +1,219 @@
+{
+  "status": "frozen-before-final-tests",
+  "rule": "Highest external validation match win rate among positive native round means; tie: match margin",
+  "code_revision": "b40f9675b9528cea3af81d02059f018ac2a7062d",
+  "selected": "learned",
+  "model_sha256": "f46c02e4160dbf597ed13d3485171f15e35976d564b9f2c9b4815e1426fc90d6",
+  "candidates": [
+    {
+      "name": "learned",
+      "model": "experiments/partnership/validation/learned/candidate.json",
+      "model_sha256": "f46c02e4160dbf597ed13d3485171f15e35976d564b9f2c9b4815e1426fc90d6",
+      "policy": "scoring",
+      "native": {
+        "deal_pairs": 256,
+        "games": 512,
+        "mean_score_difference": 3.92578125,
+        "score_difference_95ci": [
+          -4.47862832907888,
+          12.33019082907888
+        ],
+        "win_rate": 0.5400390625,
+        "win_rate_95ci": [
+          0.5083844984445294,
+          0.5716936265554706
+        ],
+        "call_success_rate": 0.6428571428571429,
+        "mean_decision_ms": 2.3915418214003625,
+        "rounds": 512,
+        "calls": 56,
+        "successful_calls": 36,
+        "first_out": 231,
+        "double_victories": 71,
+        "decision_seconds": 39.82634595178024,
+        "decisions": 16653
+      },
+      "external_rounds": {
+        "pairs": 256,
+        "games_or_rounds": 512,
+        "rounds": 512,
+        "paired_margin": {
+          "mean": 9.70703125,
+          "ci95": [
+            -4.772543587230864,
+            24.186606087230864
+          ]
+        },
+        "errors": 0,
+        "fallbacks": 0,
+        "decision_requests": 20961,
+        "max_python_request_ms": 235.84325,
+        "round_wins": 255,
+        "round_ties": 11,
+        "ours": {
+          "small_calls": 55,
+          "small_made": 33,
+          "grand_calls": 5,
+          "grand_made": 4,
+          "double_victories": 97,
+          "first_out": 302
+        },
+        "opponent": {
+          "small_calls": 100,
+          "small_made": 60,
+          "grand_calls": 90,
+          "grand_made": 52,
+          "double_victories": 49,
+          "first_out": 210
+        },
+        "elapsed_seconds": 255.41454325000086
+      },
+      "external_matches": {
+        "pairs": 100,
+        "games_or_rounds": 200,
+        "rounds": 2377,
+        "paired_margin": {
+          "mean": 137.45,
+          "ci95": [
+            54.60590294944839,
+            220.29409705055158
+          ]
+        },
+        "errors": 0,
+        "fallbacks": 0,
+        "decision_requests": 99338,
+        "max_python_request_ms": 221.217042,
+        "match_win_rate": {
+          "mean": 0.58,
+          "ci95": [
+            0.5079984736413192,
+            0.6520015263586807
+          ]
+        },
+        "match_wins": 116,
+        "ours": {
+          "small_calls": 300,
+          "small_made": 179,
+          "grand_calls": 33,
+          "grand_made": 25,
+          "double_victories": 406,
+          "first_out": 1401
+        },
+        "opponent": {
+          "small_calls": 508,
+          "small_made": 301,
+          "grand_calls": 361,
+          "grand_made": 216,
+          "double_victories": 189,
+          "first_out": 976
+        },
+        "elapsed_seconds": 1100.4389323329997
+      }
+    },
+    {
+      "name": "partnership",
+      "model": "experiments/partnership/validation/partnership/candidate.json",
+      "model_sha256": "468b62051abc2004a15ea4c865d87d729928869a8798a0916af72db0b2d46faa",
+      "policy": "partnership",
+      "native": {
+        "deal_pairs": 256,
+        "games": 512,
+        "mean_score_difference": 4.921875,
+        "score_difference_95ci": [
+          -4.975962204877257,
+          14.819712204877257
+        ],
+        "win_rate": 0.5380859375,
+        "win_rate_95ci": [
+          0.5007472385821523,
+          0.5754246364178477
+        ],
+        "call_success_rate": 0.6538461538461539,
+        "mean_decision_ms": 2.0087803138017,
+        "rounds": 512,
+        "calls": 52,
+        "successful_calls": 34,
+        "first_out": 243,
+        "double_victories": 69,
+        "decision_seconds": 33.10871713207962,
+        "decisions": 16482
+      },
+      "external_rounds": {
+        "pairs": 256,
+        "games_or_rounds": 512,
+        "rounds": 512,
+        "paired_margin": {
+          "mean": 9.94140625,
+          "ci95": [
+            -3.342204805181698,
+            23.225017305181698
+          ]
+        },
+        "errors": 0,
+        "fallbacks": 0,
+        "decision_requests": 21159,
+        "max_python_request_ms": 200.43466600000002,
+        "round_wins": 255,
+        "round_ties": 15,
+        "ours": {
+          "small_calls": 52,
+          "small_made": 37,
+          "grand_calls": 5,
+          "grand_made": 3,
+          "double_victories": 93,
+          "first_out": 299
+        },
+        "opponent": {
+          "small_calls": 103,
+          "small_made": 56,
+          "grand_calls": 90,
+          "grand_made": 58,
+          "double_victories": 35,
+          "first_out": 213
+        },
+        "elapsed_seconds": 225.51464441699864
+      },
+      "external_matches": {
+        "pairs": 100,
+        "games_or_rounds": 200,
+        "rounds": 2362,
+        "paired_margin": {
+          "mean": 101.2,
+          "ci95": [
+            30.19975199246616,
+            172.20024800753384
+          ]
+        },
+        "errors": 0,
+        "fallbacks": 0,
+        "decision_requests": 98481,
+        "max_python_request_ms": 297.587042,
+        "match_win_rate": {
+          "mean": 0.54,
+          "ci95": [
+            0.4782074634299775,
+            0.6017925365700226
+          ]
+        },
+        "match_wins": 108,
+        "ours": {
+          "small_calls": 282,
+          "small_made": 193,
+          "grand_calls": 32,
+          "grand_made": 21,
+          "double_victories": 385,
+          "first_out": 1381
+        },
+        "opponent": {
+          "small_calls": 499,
+          "small_made": 301,
+          "grand_calls": 361,
+          "grand_made": 218,
+          "double_victories": 204,
+          "first_out": 981
+        },
+        "elapsed_seconds": 1016.5115646250015
+      }
+    }
+  ]
+}

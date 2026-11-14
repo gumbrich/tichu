@@ -62,6 +62,11 @@ twos. A constructed position gives these actions identical feature vectors, and
 the fixed ordering keeps the twos. This is a concrete representation gap, not a
 proof that random play or either action is optimal in every partnership situation.
 
+The later isolated test on the stronger learned model found a tie-randomization
+effect of **−7.81 points/round**, with a paired 95% interval of **−19.22 to +3.59**
+over 256 paired deals. It did not establish a benefit or conclusive harm. The
+selected finalist is deterministic; the diagnostic did not select that finalist.
+
 ## Evidence standard
 
 Evaluate team points and complete matches, not just first finishes or successful

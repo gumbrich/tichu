@@ -1,0 +1,41 @@
+{
+  "rounds_paired_gain": {
+    "mean": 13.45703125,
+    "ci95": [
+      1.5723758037002078,
+      25.341686696299792
+    ]
+  },
+  "games_paired_gain": {
+    "mean": 165.55,
+    "ci95": [
+      63.35577711499194,
+      267.74422288500807
+    ]
+  },
+  "native": {
+    "round": {
+      "deal_pairs": 256,
+      "games": 512,
+      "mean_score_difference": 3.92578125,
+      "score_difference_95ci": [
+        -4.47862832907888,
+        12.33019082907888
+      ],
+      "win_rate": 0.5400390625,
+      "win_rate_95ci": [
+        0.5083844984445294,
+        0.5716936265554706
+      ],
+      "call_success_rate": 0.6428571428571429,
+      "mean_decision_ms": 2.3915418214003625,
+      "rounds": 512,
+      "calls": 56,
+      "successful_calls": 36,
+      "first_out": 231,
+      "double_victories": 71,
+      "decision_seconds": 39.82634595178024,
+      "decisions": 16653
+    }
+  }
+}
