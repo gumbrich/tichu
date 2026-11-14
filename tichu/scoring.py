@@ -49,6 +49,10 @@ def read_spec(path=None):
     if path is None and Path(__file__).with_name('scoring_weights.json').exists():
         path = Path(__file__).with_name('scoring_weights.json')
     value = json.loads(Path(path).read_text()) if path else initial_spec()
+    return validate_spec(value)
+
+
+def validate_spec(value):
     if value.get('schema_version') != 2 or value.get('policy') != 'scoring':
         raise ValueError('Unsupported scoring policy')
     result = {'name': 'scoring', 'schema_version': 2, 'policy': 'scoring',

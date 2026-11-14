@@ -30,6 +30,8 @@ class Observation:
     can_pass: bool
     pile_points: int
     history: tuple[PublicAction, ...] = ()
+    match_scores: tuple[int, int] = (0, 0)
+    target: int = 1000
 
 
 @dataclass(frozen=True)
@@ -64,7 +66,8 @@ def observe(game, seat):
                        tuple(sorted(public)), sent,
                        game.available_plays(seat, interrupt=interrupt),
                        game.can_pass(seat), sum(c.points for c in game.pile),
-                       tuple(game.public_history))
+                       tuple(game.public_history), getattr(game, 'match_scores', (0, 0)),
+                       getattr(game, 'target', 1000))
 
 
 def apply_decision(game, seat, decision):
@@ -347,6 +350,9 @@ def load_agent(name=None, path=None, *, temperature=0., random_ties=False,
         return ScoringAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']),
                             ScoringWeights(**spec['scoring']), spec.get('move_weights'),
                             spec.get('move_blend', 1.0))
+    if name == 'partnership':
+        from .partnership import from_spec, read_spec
+        return from_spec(read_spec(path))
     if name == 'competitive':
         from .tactics import TacticalAgent, TacticalWeights, load_spec, DEFAULT_COMPETITIVE_MODEL
         spec = load_spec(path if path is not None else DEFAULT_COMPETITIVE_MODEL)

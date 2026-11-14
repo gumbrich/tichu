@@ -82,11 +82,11 @@ def features(obs, play, plan=None, control=None):
     return row
 
 
-def choose(obs, coefficients, baseline=None, blend=1.0):
+def score_choices(obs, coefficients, baseline=None, blend=1.0):
     plan, control = hand_plan(obs.hand), ControlEstimate(obs)
     choices = ([None] if obs.can_pass else []) + list(obs.plays)
     if not choices:
-        return None
+        return choices, []
     scores = [sum(w*x for w, x in zip(coefficients, features(obs, p, plan, control)))
               for p in choices]
     if baseline is not None:
@@ -97,7 +97,12 @@ def choose(obs, coefficients, baseline=None, blend=1.0):
             scale = math.sqrt(sum((v-mean)**2 for v in values)/len(values))
             return [(v-mean)/scale if scale else 0.0 for v in values]
         scores = [blend*a+(1-blend)*b for a, b in zip(normalize(scores), normalize(baseline))]
-    return choices[max(range(len(scores)), key=scores.__getitem__)]
+    return choices, scores
+
+
+def choose(obs, coefficients, baseline=None, blend=1.0):
+    choices, scores = score_choices(obs, coefficients, baseline, blend)
+    return choices[max(range(len(scores)), key=scores.__getitem__)] if choices else None
 
 
 def encode_record(record):

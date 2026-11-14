@@ -306,6 +306,7 @@ class Match:
         self.winner = None
         self.history = []
         self.round = Round(names=names, rng=self.rng)
+        self.round.match_scores, self.round.target = tuple(self.scores), self.target
 
     def next_round(self):
         if self.round.phase != 'over' or self.winner is not None:
@@ -316,4 +317,5 @@ class Match:
             self.winner = 0 if self.scores[0] > self.scores[1] else 1
             return None
         self.round = Round(len(self.history) + 1, self.names, self.rng)
+        self.round.match_scores, self.round.target = tuple(self.scores), self.target
         return self.round

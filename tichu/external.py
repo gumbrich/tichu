@@ -155,7 +155,8 @@ def observation(request):
         players[seat]['has_played_first_card'], top, view['last_played_by'], view['wish'],
         outs, public, sent, plays, can_pass,
         sum(card_from_wire(c).points for p in view['trick_plays'] for c in p['combo']['cards']),
-        public_history(view['log']))
+        public_history(view['log']), tuple(view.get('scores', (0, 0))),
+        view['settings'].get('target_score', 1000))
 
 
 class Bridge:
@@ -179,6 +180,8 @@ class Bridge:
             return self.agent.choose(replace(obs, plays=plays,
                                             can_pass=obs.top is not None and not required)).call
         if kind == 'wish':
+            if hasattr(self.agent, 'wish'):
+                return self.agent.wish(obs)
             return next((c.rank for s, c in obs.sent if s == (obs.seat + 1) % 4
                          and 2 <= c.rank <= 14 and c not in obs.public_cards), None)
         decision = self.agent.choose(obs)
@@ -305,6 +308,8 @@ def audit_score(round_):
 
 
 def benchmark(args):
+    if args.candidate == 'partnership' and not args.model:
+        raise ValueError('Experimental partnership policy requires --model')
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=False)
     model = Path(args.model).resolve() if args.model else (
@@ -358,12 +363,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     server = sub.add_parser('serve')
-    server.add_argument('--candidate', choices=('competitive', 'scoring'), default='competitive')
+    server.add_argument('--candidate', choices=('competitive', 'scoring', 'partnership'), default='competitive')
     server.add_argument('--model')
     run = sub.add_parser('benchmark')
     run.add_argument('--binary', default='tools/dave_bridge/target/release/tichu-external-benchmark')
     run.add_argument('--opponent', default='pimc20')
-    run.add_argument('--candidate', choices=('competitive', 'scoring'), default='competitive')
+    run.add_argument('--candidate', choices=('competitive', 'scoring', 'partnership'), default='competitive')
     run.add_argument('--model')
     run.add_argument('--pairs', type=int, default=1000)
     run.add_argument('--seed', type=int, default=14000000)

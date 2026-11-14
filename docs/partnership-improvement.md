@@ -57,3 +57,16 @@ If development/validation fails, keep v3 as default and develop a new family bef
 using final seeds. Do not repeatedly reuse a final set until a candidate wins.
 Track round scoring, call frequency/success, doubles, errors, latency and complete
 matches. Training-time exploration and deployment randomness are separate questions.
+
+### Recorded partnership screen (before results)
+
+At 21100000, 96 paired deals per variant, keep v3 bidding and test: unchanged
+control; team Dog/power passing; Greek and concentration conventions; parity
+assignment alone; delayed Small alone; gentle multi-card Mahjong wishes alone;
+team+parity+delay+gentle combined; random exact ties; and temperature 0.03/0.10/0.25
+with maximum score loss 0.25 in the normalized blend. Twelve candidates total.
+The team policy keeps Dog with the partnership and gives the declared partner its
+best power card. This bundle must earn its place empirically. Temperature changes
+only ordinary uncertain choices, after forced/proven finish checks. Random draws
+are reproducible from the acting seat's observation and a fixed policy seed.
+Match-score risk is available for a later match-only test; it is zero here.

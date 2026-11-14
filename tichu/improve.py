@@ -39,13 +39,14 @@ def main():
     parser.add_argument('--pairs', type=int, default=64)
     parser.add_argument('--seed', type=int, default=16001000)
     parser.add_argument('--workers', type=int, default=8)
+    parser.add_argument('--policy', choices=('scoring', 'partnership'), default='scoring')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
     rows = []
     for path in sorted(args.candidates.glob('*.json')):
         print(f'Candidate {path.stem}', flush=True)
         report = evaluate(path, args.output/path.stem, pairs=args.pairs,
-                          seed=args.seed, workers=args.workers)
+                          seed=args.seed, workers=args.workers, candidate=args.policy)
         rows.append({'candidate': path.stem, 'model': str(path), 'summary': report})
         (args.output/'ranking.json').write_text(json.dumps(sorted(rows,
             key=lambda r: r['summary']['paired_margin']['mean'], reverse=True), indent=2)+'\n')
