@@ -61,6 +61,8 @@ def main():
         winner = max(positive_temps, key=lambda r: r['summary']['paired_margin']['mean'])
         temperature = json.loads((team_root/winner['candidate']/'candidate.json').read_text())['partnership']['temperature']
         options['parity-delay-temperature'] = {'parity': True, 'wait_small': True, 'temperature': temperature}
+    if paired_change(team_root/'ties', team_root/'control')['mean'] > 0:
+        options['parity-delay-ties'] = {'parity': True, 'wait_small': True, 'random_ties': True}
     combined = {name: {**best, 'name': 'partnership', 'policy': 'partnership', 'schema_version': 3,
                       'partnership': asdict(PartnershipWeights(**option))}
                 for name, option in options.items()}

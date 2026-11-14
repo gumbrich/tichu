@@ -157,3 +157,9 @@ The scripted development runner includes frozen v3 as the control in the blend
 screen. If all larger-corpus blends trail it, v3 supplies the base for subsequent
 combinations. Match-risk variants rank by match win rate, breaking ties by final
 score margin; the chosen setting still requires independent validation.
+
+Before the 21310000 deals are used, add one fourth combination when the completed
+tie-only screen has positive mean gain: parity+delay+random exact ties. It led the
+initial randomness screen (+9.32 points/round, interval −12.67 to +31.32), so it
+deserves a fresh-deal comparison with positive-temperature sampling. This is a
+development hypothesis generated from the earlier screen, not confirmatory evidence.
