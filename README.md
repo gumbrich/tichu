@@ -160,6 +160,11 @@ deals, an independently checked legal-action boundary and a separate score audit
 Build its optional Rust adapter with
 `cargo build --release --locked --manifest-path tools/dave_bridge/Cargo.toml`.
 Our terminal game and normal tests still require only Python.
+Against its `eg:pimc20/hibs` search configuration, v2 won **49/200 full matches
+(24.5%, paired 95% interval 18.5–30.5%)** and trailed by **18.67 points per round**
+on 2,000 separate rounds. This is a stronger independent benchmark under that
+engine's documented rules; [results and logs](experiments/external/README.md)
+record all 4,268 rounds with zero adapter errors or fallback moves.
 The [AlphaTichu comparison](docs/alphatichu-comparison.md) explains the other
 project's approach, its available artifacts and the requirements for a fair match.
 The [randomization experiment](docs/randomization-findings.md) tests an LLM-like

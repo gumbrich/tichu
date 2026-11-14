@@ -1,0 +1,25 @@
+{
+  "external_repository": "https://github.com/dave-orr/Tichu-ai",
+  "external_revision": "ede1c2948eff1bcbc27bafd8c8af385253475b59",
+  "opponent": "pimc20",
+  "our_bot": "competitive-v2",
+  "our_git_revision": "51404db7dcfaec5798a0220f4283f4f1af1d164e",
+  "model_sha256": "f791544998479c02946dcd9e4b1b5df89d6fa78d72d09b5338a14fec2ffe277e",
+  "binary_sha256": "8ebc798fc4b9a36c02b998ba1382c83191d647688d47267c8d74a1c71e77a5a1",
+  "seed": 11000000,
+  "pairs": 10,
+  "mode": "rounds",
+  "workers": 4,
+  "referee": "pinned external engine; default counterclockwise rules",
+  "command": [
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu/tools/dave_bridge/target/release/tichu-external-benchmark",
+    "pimc20",
+    "10",
+    "11000000",
+    "4",
+    "rounds",
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu"
+  ],
+  "status": "failed"
+}

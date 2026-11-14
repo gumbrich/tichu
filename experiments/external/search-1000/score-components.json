@@ -1,0 +1,24 @@
+{
+  "card_margin": {
+    "mean": -9.42,
+    "ci95": [
+      -14.405102154344407,
+      -4.434897845655593
+    ]
+  },
+  "small_margin": {
+    "mean": -2.65,
+    "ci95": [
+      -5.195861696120938,
+      -0.10413830387906264
+    ]
+  },
+  "grand_margin": {
+    "mean": -6.6,
+    "ci95": [
+      -10.08395146662835,
+      -3.1160485333716506
+    ]
+  },
+  "interpretation": "Descriptive point decomposition, not a causal feature-removal experiment."
+}

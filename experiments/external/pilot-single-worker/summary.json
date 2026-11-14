@@ -1,0 +1,19 @@
+{
+  "pairs": 10,
+  "games_or_rounds": 20,
+  "rounds": 20,
+  "paired_margin": {
+    "mean": 41,
+    "ci95": [
+      -25.688021912984226,
+      107.68802191298423
+    ]
+  },
+  "errors": 0,
+  "fallbacks": 0,
+  "decision_requests": 877,
+  "max_python_request_ms": 123.737334,
+  "round_wins": 14,
+  "round_ties": 1,
+  "elapsed_seconds": 27.260804833000293
+}

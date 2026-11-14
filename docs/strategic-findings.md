@@ -1,5 +1,45 @@
 # What self-play taught our Tichu bots
 
+## First independent engine benchmark
+
+**14 November 2026.** The frozen v2 team trails Dave Orr's October 2026 search
+configuration `eg:pimc20/hibs` by **18.67 points per round** over 1,000 paired
+deals / 2,000 rounds. Our paired 95% interval is **−26.00 to −11.34**. No account
+was needed: both teams played under the pinned external Rust referee, with an
+observation-only adapter and independent legal-move and score checks. These are
+not AlphaTichu master results, online wins, or a measurement of the author's
+unpublished neural model. See [the protocol](local-benchmark.md).
+
+**Finishing first is not enough.** Our team finished first in 1,157/2,000 rounds
+(57.85%) and took 297 double victories, versus 843 first finishes and 253 doubles
+for the opponent. Nevertheless, it lost on total points. Evaluate improvements
+on score and whole matches rather than promoting a policy for its first-out rate.
+
+The separate **200 full matches** confirm the gap: ours won **49 (24.5%)**, with
+a paired 95% interval of **18.5–30.5%**. The average final-score margin was
+**−287.45 points** (−351.26 to −223.64). The two fixed tests contain **4,268
+rounds total**, all completed with zero adapter errors or fallback moves. The
+external opponent won 151 matches. This is a useful stronger benchmark for the
+next training cycle; it is not a human rating estimate.
+
+**Both card scoring and declarations need work.** The average deficit decomposes
+into **−9.42 card points**, **−2.65 Small Tichu points**, and **−6.60 Grand Tichu
+points** per round. Our Small calls succeeded 145/226 times (64.2%); the external
+team called more often, making 256/395 (64.8%). It also made 193/320 Grand calls
+(60.3%), while our frozen policy never calls Grand. This is arithmetic accounting
+of the observed games, not a causal ablation: enabling calls changes subsequent
+play, so we cannot assume that copying its call rate recovers the deficit.
+
+**Next experiments:** improve point capture and defense of opposing declarations;
+calibrate Small and Grand calls against several opponents; then compare bounded
+hidden-hand search with our current planner. The benchmark demonstrates a gap to
+one search configuration, not that search alone caused the gap. Keep this v2
+baseline frozen, train on new deals, and reserve new final-test seeds. Do not tune
+on these now-observed test outcomes and then report them as fresh validation.
+
+The [raw experiment record](../experiments/external/README.md) contains seeds,
+version/checksum manifests, full post-game logs and uncertainty estimates.
+
 ## Move randomization follow-up
 
 **13 November 2026.** An additional 13,571 simulated rounds tested six randomized

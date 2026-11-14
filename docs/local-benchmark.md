@@ -52,7 +52,9 @@ Differences from our normal referee:
 - Small Tichu is available only during play, before one's first card and before
   anyone goes out. The simulator offers calls initially and before own turns;
   it cannot combine a call with an interrupt bomb. Our adapter preserves v2's
-  own-turn call behavior rather than adding earlier calls.
+  own-turn call behavior rather than adding earlier calls. Its separate call
+  callback also means play is evaluated again after a successful declaration,
+  unlike our native combined call/play decision.
 - Grand decisions are simultaneous. Our terminal game exposes them sequentially;
   our frozen v2 always declines Grand.
 
@@ -92,5 +94,18 @@ session; a normal Rust installation works with the commands above.
   It is retained as failed development evidence, excluded from strength results.
 - Corrected 20-round pilots passed legality, transport, scoring and conservation
   checks. Pilot results are not strength claims.
+- The standard-search pilot reproduced identical actions, scores and request
+  counts with one worker and four workers (timings excluded).
+- [GitHub Actions run 43604832988](https://github.com/gumbrich/tichu/actions/runs/43604832988)
+  passed the Python matrix and new Rust adapter compatibility job on Linux.
 
-See `experiments/external` for the experiment record and subsequent main results.
+## Completed results
+
+Our team scored **−18.67 points per round** (paired 95% interval −26.00 to −11.34)
+over the 2,000 independent test rounds. It won **49/200 full matches (24.5%)**
+(paired 95% interval 18.5–30.5%), with mean final margin −287.45 points. The two
+tests completed 4,268 rounds with zero errors/fallbacks and 178,165 Python decision
+requests. Every recorded round passed independent scoring and card conservation.
+
+See [the complete experiment record](../experiments/external/README.md) for raw
+results and [strategic findings](strategic-findings.md) for the measured gaps.
