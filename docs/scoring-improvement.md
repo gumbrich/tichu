@@ -80,3 +80,33 @@ deals (16002000), select its best on screening only, and add it to the separate
 256-pair external / 128-pair native validation. This isolates calls from the
 point-weight changes instead of concluding that calls caused a combined
 policy's regression. Final seeds remain untouched.
+
+## Reproduce training and validation
+
+The game, learned-policy inference and normal tests remain standard-library
+Python. Only fitting/extracting the optional policy requires NumPy (this run used
+2.2.6). Build the pinned optional Rust reference adapter as described in
+[the local benchmark](local-benchmark.md). Do not substitute a different opponent
+revision when comparing recorded results.
+
+```sh
+tools/dave_bridge/target/release/tichu-external-benchmark \
+  collect-teacher 512 16200000 4 > teacher.jsonl
+python3 -m tichu.imitation extract teacher.jsonl --output teacher.npz \
+  --binary tools/dave_bridge/target/release/tichu-external-benchmark --workers 4
+python3 -m tichu.imitation train teacher.npz --epochs 30 --output learned
+python3 main.py --bot scoring --weights learned/weights.json
+
+python3 -m tichu.improve --candidates experiments/scoring/candidates \
+  --pairs 64 --seed 16002000 --workers 4 --output fresh-screen
+python3 -m tools.validate_scoring --screen fresh-screen \
+  --output fresh-validation --workers 4
+```
+
+All output directories are new paths; completed experiment records are not
+overwritten. Reusing recorded seeds reproduces a known experiment, not a fresh
+estimate. The teacher corpus contains 512 independently seeded rounds, 19,905
+nontrivial decisions and 109,208 distinct feature options. The grouped split has
+17,475 training decisions and 2,430 validation decisions. Its compressed raw logs,
+feature dataset, checksums, training history and selected weights are retained
+under `experiments/scoring`. Teacher action prediction is not a strength benchmark.

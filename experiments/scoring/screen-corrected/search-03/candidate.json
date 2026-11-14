@@ -1,0 +1,35 @@
+{
+  "name": "scoring",
+  "schema_version": 2,
+  "policy": "scoring",
+  "weights": {
+    "groups": 4.869693760983105,
+    "loose": 1.604891668643716,
+    "control": 1.2344816753910386,
+    "shed": 0.9000494238189236,
+    "rank": 0.004485130973455354,
+    "partner": 20.331544767528285,
+    "bomb": 0.5196490196211103,
+    "urgency": 2.205474808853247,
+    "lead": 3.859543246592671,
+    "gift": 0.4667632719773091,
+    "call_threshold": 0.42120497714779304
+  },
+  "tactics": {
+    "secure": 4.132504017561105,
+    "threat": 9.81262431475611,
+    "points": 0.03531422887444835
+  },
+  "scoring": {
+    "points": 0.24020597499462953,
+    "initiative": 1.775849351885324,
+    "call_defense": 0.07231995540592288,
+    "partner_call": 1.0,
+    "grand_threshold": 3.631314669561208,
+    "small_adjustment": -0.6868181576923095,
+    "king_control": 0.30425464337238517,
+    "partner_finish": true,
+    "strong_finish": true,
+    "dragon_gifts": true
+  }
+}

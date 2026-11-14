@@ -1,0 +1,14 @@
+{
+  "purpose": "training only; external-search self-play",
+  "rounds": 512,
+  "seed": 16200000,
+  "opponent": "eg:pimc20/hibs",
+  "external_revision": "ede1c2948eff1bcbc27bafd8c8af385253475b59",
+  "workers": 4,
+  "export_fields": "acting PlayerView, legal plays and teacher action only",
+  "binary_sha256": "8d2004f89b30aa4d5d6a81733e44013fd7309a61068d85f8aa72d86332975749",
+  "code_revision": "539521636d3325f6dfe24d3aff717d0b273eefbf",
+  "status": "complete",
+  "audited_rounds": 512,
+  "corpus_sha256": "e2dbabb60b05ebbb8d074659e36e881e37cd4508239c1ac055d7c84e53084c0f"
+}

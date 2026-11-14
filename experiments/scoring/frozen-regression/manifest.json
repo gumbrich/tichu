@@ -1,0 +1,28 @@
+{
+  "external_repository": "https://github.com/dave-orr/Tichu-ai",
+  "external_revision": "ede1c2948eff1bcbc27bafd8c8af385253475b59",
+  "opponent": "pimc20",
+  "our_bot": "competitive",
+  "our_git_revision": "da1293594f178a0ee32cdc797e82563c32608401",
+  "model_sha256": "f791544998479c02946dcd9e4b1b5df89d6fa78d72d09b5338a14fec2ffe277e",
+  "binary_sha256": "97167bc9869bf2fdb283e816808420a49a86a8fe726c12efc9ffb87d58582339",
+  "adapter_sha256": "7c3c52d515ffa9d8059aeb3cefb07035533506293577f30ace879633acf0a18c",
+  "seed": 11000000,
+  "pairs": 10,
+  "mode": "rounds",
+  "workers": 4,
+  "referee": "pinned external engine; default counterclockwise rules",
+  "command": [
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu/tools/dave_bridge/target/release/tichu-external-benchmark",
+    "pimc20",
+    "10",
+    "11000000",
+    "4",
+    "rounds",
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu",
+    "competitive",
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu/experiments/scoring/frozen-regression/candidate.json"
+  ],
+  "status": "complete"
+}

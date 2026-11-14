@@ -1,0 +1,119 @@
+[
+  {
+    "candidate": "blend-50",
+    "model": "experiments/scoring/learned-candidates/blend-50.json",
+    "summary": {
+      "pairs": 64,
+      "games_or_rounds": 128,
+      "rounds": 128,
+      "paired_margin": {
+        "mean": 6.796875,
+        "ci95": [
+          -24.773971135918615,
+          38.367721135918615
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 5149,
+      "max_python_request_ms": 164.46175,
+      "round_wins": 66,
+      "round_ties": 5,
+      "ours": {
+        "small_calls": 17,
+        "small_made": 12,
+        "grand_calls": 2,
+        "grand_made": 1,
+        "double_victories": 24,
+        "first_out": 80
+      },
+      "opponent": {
+        "small_calls": 15,
+        "small_made": 12,
+        "grand_calls": 17,
+        "grand_made": 9,
+        "double_victories": 16,
+        "first_out": 48
+      },
+      "elapsed_seconds": 61.10381920800137
+    }
+  },
+  {
+    "candidate": "blend-25",
+    "model": "experiments/scoring/learned-candidates/blend-25.json",
+    "summary": {
+      "pairs": 64,
+      "games_or_rounds": 128,
+      "rounds": 128,
+      "paired_margin": {
+        "mean": 2.421875,
+        "ci95": [
+          -26.506041448361827,
+          31.349791448361827
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 5173,
+      "max_python_request_ms": 131.08283300000002,
+      "round_wins": 59,
+      "round_ties": 7,
+      "ours": {
+        "small_calls": 17,
+        "small_made": 11,
+        "grand_calls": 2,
+        "grand_made": 2,
+        "double_victories": 22,
+        "first_out": 80
+      },
+      "opponent": {
+        "small_calls": 15,
+        "small_made": 11,
+        "grand_calls": 17,
+        "grand_made": 8,
+        "double_victories": 14,
+        "first_out": 48
+      },
+      "elapsed_seconds": 69.56902033300139
+    }
+  },
+  {
+    "candidate": "pure",
+    "model": "experiments/scoring/learned-candidates/pure.json",
+    "summary": {
+      "pairs": 64,
+      "games_or_rounds": 128,
+      "rounds": 128,
+      "paired_margin": {
+        "mean": 1.640625,
+        "ci95": [
+          -29.295888750413344,
+          32.57713875041334
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 5180,
+      "max_python_request_ms": 156.889542,
+      "round_wins": 62,
+      "round_ties": 7,
+      "ours": {
+        "small_calls": 17,
+        "small_made": 11,
+        "grand_calls": 2,
+        "grand_made": 1,
+        "double_victories": 20,
+        "first_out": 78
+      },
+      "opponent": {
+        "small_calls": 15,
+        "small_made": 9,
+        "grand_calls": 17,
+        "grand_made": 11,
+        "double_victories": 12,
+        "first_out": 50
+      },
+      "elapsed_seconds": 68.76814291600022
+    }
+  }
+]

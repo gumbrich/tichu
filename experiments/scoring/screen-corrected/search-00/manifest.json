@@ -1,0 +1,28 @@
+{
+  "external_repository": "https://github.com/dave-orr/Tichu-ai",
+  "external_revision": "ede1c2948eff1bcbc27bafd8c8af385253475b59",
+  "opponent": "eg:pimc20/hibs",
+  "our_bot": "scoring",
+  "our_git_revision": "539521636d3325f6dfe24d3aff717d0b273eefbf",
+  "model_sha256": "6601ad3a243d7d367748ca70c5e4e3cfbe01849607c724f214c7cec8ea11e772",
+  "binary_sha256": "97167bc9869bf2fdb283e816808420a49a86a8fe726c12efc9ffb87d58582339",
+  "adapter_sha256": "7c3c52d515ffa9d8059aeb3cefb07035533506293577f30ace879633acf0a18c",
+  "seed": 16002000,
+  "pairs": 64,
+  "mode": "rounds",
+  "workers": 8,
+  "referee": "pinned external engine; default counterclockwise rules",
+  "command": [
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu/tools/dave_bridge/target/release/tichu-external-benchmark",
+    "eg:pimc20/hibs",
+    "64",
+    "16002000",
+    "8",
+    "rounds",
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu",
+    "scoring",
+    "/Users/jknoerzer/Documents/ChatGPT/Tichu/experiments/scoring/screen-corrected/search-00/candidate.json"
+  ],
+  "status": "complete"
+}
