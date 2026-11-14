@@ -223,6 +223,6 @@ python3 main.py --bot partnership --weights experiments/partnership/team-candida
 python3 -m unittest discover -v
 ```
 
-The experimental model stores its temperature and maximum allowed score loss.
+The experimental model stores its temperature, tie-breaking seed and maximum allowed score loss.
 The older standalone `--temperature` controls still select frozen v2 unless a bot
 is explicitly chosen; use the model above to try randomness on the v3 ranker.

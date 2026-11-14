@@ -54,6 +54,9 @@ None of those initial intervals established a benefit. The pinned search opponen
 does not learn our tendencies across matches, so these games do not demonstrate
 that we “confused” it. Random deals, hidden information, training exploration and
 deployment randomness are different issues.
+Equal bot scores also do not prove equal strategic value: the current evaluator
+cannot represent every distinction. Tie variation may avoid a bad fixed ordering;
+that would be different evidence from successfully exploiting an adaptive opponent.
 
 ## Evidence standard
 
