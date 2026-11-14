@@ -134,3 +134,21 @@ and matched all actions, cards and scores exactly. Missing indices are collected
 without changing the predeclared 2,048-deal training set or inspecting outcomes for
 selection. `tools.collect_search` checks provenance, completeness and scoring before
 writing a sorted compressed corpus.
+
+### Combination and match-risk screens (declared before results)
+
+After the three larger-corpus blends finish the 21300000 screen, choose the
+highest mean and compare its unmodified version, parity+delayed Small, and those
+two plus the best positive-temperature setting from the completed 21100000 screen.
+Omit the temperature combination if no tested temperature has a positive paired
+mean gain. Use 128 paired rounds at 21310000 for each. Keep original exchange
+planning and wishes: the broad team-passing bundles have not earned selection.
+The highest-mean combination then gets a full-match development comparison of
+risk weights 0/0.4/0.8, each on 32 paired matches at 21400000. Risk uses only public
+match scores and becomes active near the target. These are selection samples,
+not the reserved validation or final sets. Up to three finalists from these
+screens enter the previously declared validation suite.
+
+The native Mahjong wrapper was corrected before native validation so disabled
+extensions preserve even a proof-selected Mahjong play's original wish. External
+play uses its separate wish callback, so the ongoing external screen is unchanged.

@@ -175,6 +175,6 @@ class PartnershipAgent(ScoringAgent):
         decision = super().choose(obs)
         if self.partnership.wait_small and decision.kind in ('pass', 'decline'):
             decision = replace(decision, call=False)
-        if decision.play and any(c.rank == MAHJONG for c in decision.play.cards):
+        if self.partnership.gentle_wish and decision.play and any(c.rank == MAHJONG for c in decision.play.cards):
             decision = replace(decision, wish=self.wish(obs, decision.play))
         return decision

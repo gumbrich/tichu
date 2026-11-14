@@ -41,6 +41,16 @@ class PartnershipTests(unittest.TestCase):
             if calls[2]:
                 self.assertNotIn(next(c for c in obs.hand if c.rank == 0), gifts.values())
 
+    def test_disabled_wish_extension_preserves_proven_plan(self):
+        from tichu.agents import load_agent
+        from tichu.cards import Card
+        obs = observe(scenario((1, 2, 3, 4, 5, 14), (6, 7), (8, 9), (10, 11)), 0)
+        obs = replace(obs, sent=((1, Card(0, 7)),))
+        old = load_agent('scoring').choose(obs)
+        self.assertEqual(old.play.kind, 'straight')
+        self.assertIsNone(old.wish)
+        self.assertEqual(agent().choose(obs), old)
+
     def test_randomness_is_local_reproducible_and_bounded(self):
         obs = observe(scenario((2, 5, 9, 13, 14), (3, 6), (4, 7), (8, 10)), 0)
         bot = agent(temperature=.1, max_gap=.25)

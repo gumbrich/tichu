@@ -209,3 +209,20 @@ Rules reference: [Fata Morgana's official English rules and FAQ](https://fatamor
 The implementation is for four-player Nanking Tichu only. The source page's
 points list accidentally omits the minus sign on Phoenix; its Phoenix section
 and stated 100-point deck total establish the intended **−25** value.
+
+### Partnership and randomness experiments
+
+The current default remains the verified v3 policy. The next-cycle research and
+results are in [the partnership study](docs/partnership-improvement.md), including
+forum sources, declaration thresholds, Dog passing, coordinated gifts, and bounded
+move randomization. These alternatives are experimental until independent full
+matches support promotion. To try the v3-based low-temperature model locally:
+
+```sh
+python3 main.py --bot partnership --weights experiments/partnership/team-candidates/temp003.json
+python3 -m unittest discover -v
+```
+
+The experimental model stores its temperature and maximum allowed score loss.
+The older standalone `--temperature` controls still select frozen v2 unless a bot
+is explicitly chosen; use the model above to try randomness on the v3 ranker.
