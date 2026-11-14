@@ -175,6 +175,14 @@ class PartnershipAgent(ScoringAgent):
         decision = super().choose(obs)
         if self.partnership.wait_small and decision.kind in ('pass', 'decline'):
             decision = replace(decision, call=False)
+        if self.partnership.wait_small and decision.call and not obs.calls[obs.seat]:
+            # A declaration changes the play ranker's objective. Project our
+            # public call first so the separate external call/play callbacks
+            # agree, and never announce merely to pass immediately afterward.
+            calls = list(obs.calls)
+            calls[obs.seat] = 100
+            projected = self.choose(replace(obs, calls=tuple(calls)))
+            decision = replace(projected, call=projected.kind in ('play', 'bomb'))
         if self.partnership.gentle_wish and decision.play and any(c.rank == MAHJONG for c in decision.play.cards):
             decision = replace(decision, wish=self.wish(obs, decision.play))
         return decision

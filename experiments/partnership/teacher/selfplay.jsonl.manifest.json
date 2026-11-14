@@ -1,0 +1,11 @@
+{
+  "rounds": 2048,
+  "seed": 21200000,
+  "resumed_records": 220,
+  "workers": 12,
+  "external_revision": "ede1c2948eff1bcbc27bafd8c8af385253475b59",
+  "binary_sha256": "e8469adcadce6dcf0264c135789a08c78c61ac059d6012e1d0be0858db921b27",
+  "corpus_sha256": "fd1a27f65b3a9a174a4fb9a774595a2052dac4258ebedfce50c7bfcd12676399",
+  "audited_rounds": 2048,
+  "status": "complete"
+}

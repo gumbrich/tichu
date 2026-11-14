@@ -1,0 +1,16 @@
+{
+  "purpose": "training only; independent search self-play",
+  "rounds": 2048,
+  "seed": 21200000,
+  "opponent": "eg:pimc20/hibs",
+  "external_revision": "ede1c2948eff1bcbc27bafd8c8af385253475b59",
+  "binary_sha256": "e8469adcadce6dcf0264c135789a08c78c61ac059d6012e1d0be0858db921b27",
+  "code_revision": "54ceb654c293f65af617493eccf8c47a13367777",
+  "workers": 12,
+  "status": "complete",
+  "initial_binary_sha256": "8d2004f89b30aa4d5d6a81733e44013fd7309a61068d85f8aa72d86332975749",
+  "initial_workers": 4,
+  "resumed_records": 220,
+  "corpus_sha256": "fd1a27f65b3a9a174a4fb9a774595a2052dac4258ebedfce50c7bfcd12676399",
+  "audited_rounds": 2048
+}

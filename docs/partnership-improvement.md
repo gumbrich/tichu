@@ -189,3 +189,16 @@ It does not prove that randomness helps. Likewise, the poor passing-bundle means
 do not prove that keeping the Dog is wrong in every hand; hard rules can sacrifice
 valuable combinations, and this screen is small. Full raw games and all twelve
 comparisons are in `experiments/partnership/team-screen/`.
+
+### Declaration callback correction before combination testing
+
+Auditing the completed screen found that 11 of control's 34 Small calls were
+followed by a pass. The delay variant reduced this to 1 of 33. The remaining case
+exposed a protocol nuance: announcing changes the ranker's own-call features, so
+a pre-announcement planned play can become a pass after announcement. Before any
+21310000 combination deals, the delay option was tightened to project its own
+public declaration and choose consistently in that resulting state. If it would
+pass there, it defers the call. This applies to both the native atomic action and
+the external separate call/play callbacks. The earlier screen remains recorded
+as the earlier, planned-pass variant; the fresh combination screen tests this
+corrected behavior.

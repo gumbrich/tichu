@@ -78,6 +78,22 @@ class PartnershipTests(unittest.TestCase):
             self.assertFalse(agent(wait_small=True).choose(obs).call)
             self.assertTrue(agent().choose(obs).call)
 
+    def test_declaration_projects_the_changed_play_objective(self):
+        from unittest.mock import patch
+        from tichu.agents import Decision
+        obs = observe(scenario((2,), (3,), (4,), (5,)), 0)
+        def choose_after_call(view):
+            return Decision('pass') if view.calls[view.seat] else Decision('play', play=combo(2), call=True)
+        with patch('tichu.scoring.ScoringAgent.choose', side_effect=choose_after_call):
+            result = agent(wait_small=True).choose(obs)
+            self.assertEqual(result, Decision('pass'))
+        def choose_consistent_play(view):
+            return Decision('play', play=combo(2), call=not view.calls[view.seat])
+        with patch('tichu.scoring.ScoringAgent.choose', side_effect=choose_consistent_play):
+            result = agent(wait_small=True).choose(obs)
+            self.assertTrue(result.call)
+            self.assertEqual(result.play, combo(2))
+
     def test_match_risk_uses_only_public_score_and_target(self):
         game = Match(target=500, seed=91)
         obs = observe(game.round, 0)
