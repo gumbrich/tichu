@@ -70,3 +70,44 @@ best power card. This bundle must earn its place empirically. Temperature change
 only ordinary uncertain choices, after forced/proven finish checks. Random draws
 are reproducible from the acting seat's observation and a fixed policy seed.
 Match-score risk is available for a later match-only test; it is zero here.
+
+### Larger teacher corpus (before collection)
+
+Collect 2,048 additional search self-play rounds at seed 21200000, independent of
+all screens and final tests. Fit the existing linear action ranker for 30 epochs,
+selecting epoch only by grouped held-out imitation loss. Compare blends 0.25,
+0.50 and 0.75 on 128 paired external development deals at 21300000 against v3.
+No final seeds or match outcomes enter the supervised training objective. This
+is a larger supervised search-distillation experiment, not a claim of RL.
+
+## Strategic interpretation
+
+**Calls are team decisions with individual first-out requirements.** A teammate
+finishing first defeats your declaration even if the team wins the round. For a
+call considered in isolation, expected bonus is `stake × (2p − 1)`: both Small
+and Grand break even at 50% success, not 75% or 80%. That calculation does not
+account for changed gifts, opponents' defensive play, card points or match score.
+A high observed success rate can reflect missed profitable calls; a higher call
+rate can also throw away points. We measure total outcomes under each policy.
+Grand uses only the initial eight cards; Small can wait until before the first
+card is played. The external simulator does not expose an equivalent pre-exchange
+Small decision, so these experiments do not establish the value of early Small.
+
+**Choose a role, but do not blindly obey slogans.** Help a declared partner take
+first place, retain ways to feed them the lead, and avoid consuming their control
+merely to shed one small card. Without a declaration, the hand with useful groups
+and ways to regain the lead usually deserves support. Sometimes taking control
+from a partner prevents an opponent finishing or opens a better shape. A voluntary
+pass does not prove the player lacks a higher card. Shared passing conventions
+only convey information when both partners really follow them; none of our agents
+receives private partner cards or secret signals.
+
+**Randomness is not automatically deception.** Tichu combines random deals with
+hidden information. Once hands and actions are fixed, rule transitions are
+deterministic. Imperfect information can make mixed strategies useful against
+exploiting opponents, but this does not prove a particular softmax temperature
+helps. The pinned opponent does not adapt a persistent model of our tendencies
+across matches. These tests measure the result of move variation, not whether a
+bot became confused. Training exploration, varied opponents and deployment
+randomness are separate choices. Keep proven finishes deterministic and compare
+small bounded temperatures on independent match seeds.
