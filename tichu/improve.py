@@ -16,6 +16,12 @@ def evaluate(model, output, *, pairs, seed, workers, candidate='scoring'):
 
 
 def paired_change(candidate, baseline):
+    manifests = [json.loads((Path(p)/'manifest.json').read_text()) for p in (candidate, baseline)]
+    for key in ('seed', 'pairs', 'mode', 'opponent', 'external_revision'):
+        if manifests[0][key] != manifests[1][key]:
+            raise ValueError(f'Unpaired experiments: {key} differs')
+    if any(m['status'] != 'complete' for m in manifests):
+        raise ValueError('Cannot compare incomplete experiments')
     def margins(path):
         with gzip.open(Path(path)/'pairs.jsonl.gz', 'rt') as handle:
             return {r['pair']: sum(g['our_margin'] for g in r['games'])/2
