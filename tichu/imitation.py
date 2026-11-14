@@ -251,7 +251,7 @@ def main():
     sub = p.add_subparsers(dest='command', required=True)
     e = sub.add_parser('extract'); e.add_argument('sources', nargs='+')
     e.add_argument('--output', required=True)
-    e.add_argument('--binary', default='/private/tmp/tichu-teacher-build/release/tichu-external-benchmark')
+    e.add_argument('--binary', default='tools/dave_bridge/target/release/tichu-external-benchmark')
     e.add_argument('--workers', type=int, default=4)
     t = sub.add_parser('train'); t.add_argument('data'); t.add_argument('--output', required=True)
     t.add_argument('--epochs', type=int, default=30)
