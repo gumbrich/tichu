@@ -111,3 +111,26 @@ across matches. These tests measure the result of move variation, not whether a
 bot became confused. Training exploration, varied opponents and deployment
 randomness are separate choices. Keep proven finishes deterministic and compare
 small bounded temperatures on independent match seeds.
+
+## Bidding-screen result
+
+All 20 combinations completed: 2,560 rounds, plus 128 baseline rounds, with zero
+adapter errors or fallback actions. The unchanged v3 thresholds led this small
+screen. Its mean was +3.59 points/round against search. Lowering only the Small
+threshold by 0.4 changed the paired mean by −3.28 (95% interval −9.33 to +2.77).
+Lowering only the Grand threshold from 4.2 to 2.8 changed it by −12.66
+(−35.96 to +10.64); Grand successes changed from 1/1 to 10/23. These intervals
+do not establish harm, but the screen provides no reason to select more aggressive
+thresholds. Retain v3 bidding for the partnership and larger-corpus experiments.
+This does not establish that the current thresholds are optimal.
+
+### Resumable collection check
+
+The initial four-worker training collector was interrupted after 220 completed
+deals solely to increase collection parallelism to twelve workers. Every completed
+deal is retained. The new optional start index regenerates exactly the same deal
+from its original seed/index; deal 1 was compared against the original collector
+and matched all actions, cards and scores exactly. Missing indices are collected
+without changing the predeclared 2,048-deal training set or inspecting outcomes for
+selection. `tools.collect_search` checks provenance, completeness and scoring before
+writing a sorted compressed corpus.

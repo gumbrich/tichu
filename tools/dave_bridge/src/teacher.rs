@@ -44,7 +44,7 @@ pub fn export() {
     output.flush().unwrap();
 }
 
-pub fn collect(count: usize, seed: u64, workers: usize) {
+pub fn collect(count: usize, seed: u64, workers: usize, start: usize) {
     use rand::{SeedableRng, rngs::StdRng};
     use std::sync::{Mutex, atomic::{AtomicUsize, Ordering}};
     use tichu_engine::{arena::mix, bot::Bot, bots, sim::play_round};
@@ -54,8 +54,9 @@ pub fn collect(count: usize, seed: u64, workers: usize) {
     std::thread::scope(|scope| {
         for _ in 0..workers.min(count) {
             scope.spawn(|| loop {
-                let i = next.fetch_add(1, Ordering::Relaxed);
-                if i >= count { break; }
+                let index = next.fetch_add(1, Ordering::Relaxed);
+                if index >= count { break; }
+                let i = start.checked_add(index).expect("teacher index overflow");
                 let mut players: [Box<dyn Bot>; 4] = [0,1,2,3].map(|s|
                     bots::by_name("eg:pimc20/hibs", mix(seed, i as u64, s+1)).unwrap());
                 assert!(players.iter().all(|p| !p.cheats()));
