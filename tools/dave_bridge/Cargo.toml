@@ -1,0 +1,10 @@
+[package]
+name = "tichu-external-benchmark"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tichu_engine = { git = "https://github.com/dave-orr/Tichu-ai", rev = "ede1c2948eff1bcbc27bafd8c8af385253475b59" }
+rand = "0.8"
+serde_json = "1"
+
