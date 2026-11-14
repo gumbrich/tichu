@@ -7,6 +7,7 @@ from pathlib import Path
 import subprocess
 import sys
 import shutil
+import time
 from types import SimpleNamespace
 
 from tichu.external import benchmark, EXTERNAL_REV
@@ -20,6 +21,29 @@ SCHEDULES = {
     'final': [('rounds', 1000, 23000000), ('games', 200, 24000000),
               ('round', 1000, 25000000), ('match', 150, 25100000)],
 }
+
+
+def completed_baseline(source, timeout=3600):
+    """Permit concurrent suites to share a control without counting it twice."""
+    deadline = time.monotonic() + timeout
+    announced = False
+    while True:
+        for path in (source.parent/'manifest.json', source/'manifest.json'):
+            if path.exists():
+                try:
+                    recorded = json.loads(path.read_text())
+                except json.JSONDecodeError:  # A short concurrent manifest write.
+                    continue
+                if recorded.get('status') == 'failed':
+                    raise RuntimeError('Shared baseline suite failed')
+                if path.parent == source and recorded.get('status') == 'complete':
+                    return recorded
+        if time.monotonic() >= deadline:
+            raise TimeoutError('Shared baseline did not complete')
+        if not announced:
+            print('Waiting for the shared frozen-v3 control:', source, flush=True)
+            announced = True
+        time.sleep(5)
 
 
 def main():
@@ -56,7 +80,7 @@ def main():
             for label, name, path in [('candidate', policy, model), ('v3', 'scoring', baseline)]:
                 if label == 'v3' and args.reuse_baseline:
                     source = args.reuse_baseline/f'v3-{mode}'
-                    recorded = json.loads((source/'manifest.json').read_text())
+                    recorded = completed_baseline(source)
                     expected = {'seed': seed, 'pairs': pairs, 'mode': mode, 'status': 'complete',
                                 'opponent': 'eg:pimc20/hibs', 'external_revision': EXTERNAL_REV,
                                 'model_sha256': hashlib.sha256(baseline.read_bytes()).hexdigest()}
