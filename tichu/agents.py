@@ -343,7 +343,8 @@ def load_agent(name='competitive', path=None, *, temperature=0., random_ties=Fal
         from .tactics import TacticalWeights
         spec = read_spec(path)
         return ScoringAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']),
-                            ScoringWeights(**spec['scoring']), spec.get('move_weights'))
+                            ScoringWeights(**spec['scoring']), spec.get('move_weights'),
+                            spec.get('move_blend', 1.0))
     if name == 'competitive':
         from .tactics import TacticalAgent, TacticalWeights, load_spec, DEFAULT_COMPETITIVE_MODEL
         spec = load_spec(path if path is not None else DEFAULT_COMPETITIVE_MODEL)

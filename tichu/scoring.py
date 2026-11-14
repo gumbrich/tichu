@@ -62,6 +62,10 @@ def read_spec(path=None):
         if any(type(x) not in (int, float) or not math.isfinite(x) for x in value['move_weights']):
             raise ValueError('Nonfinite learned move weight')
         result.update(move_features=list(FEATURES), move_weights=value['move_weights'])
+        blend = value.get('move_blend', 1.0)
+        if type(blend) not in (int, float) or not math.isfinite(blend) or not 0 <= blend <= 1:
+            raise ValueError('Move blend must be between zero and one')
+        result['move_blend'] = blend
     return result
 
 
@@ -171,7 +175,7 @@ def grand_strength(hand):
 
 
 class ScoringAgent(TacticalAgent):
-    def __init__(self, weights=None, tactics=None, scoring=None, move_weights=None):
+    def __init__(self, weights=None, tactics=None, scoring=None, move_weights=None, move_blend=1.0):
         spec = initial_spec()
         super().__init__(weights or Weights(**spec['weights']),
                          tactics or TacticalWeights(**spec['tactics']))
@@ -183,11 +187,18 @@ class ScoringAgent(TacticalAgent):
                     type(x) not in (int, float) or not math.isfinite(x) for x in move_weights):
                 raise ValueError('Invalid learned move weights')
         self.move_weights = tuple(move_weights) if move_weights is not None else None
+        if type(move_blend) not in (int, float) or not math.isfinite(move_blend) or not 0 <= move_blend <= 1:
+            raise ValueError('Move blend must be between zero and one')
+        self.move_blend = move_blend
 
     def _select_play(self, obs, plan):
         if self.move_weights is not None and obs.phase == 'playing':
             from .imitation import choose
-            return choose(obs, self.move_weights)
+            baseline = None
+            if self.move_blend < 1:
+                baseline = ([TacticalAgent._pass_score(self, obs, plan)] if obs.can_pass else [])
+                baseline += [TacticalAgent._play_score(self, obs, plan, p) for p in obs.plays]
+            return choose(obs, self.move_weights, baseline, self.move_blend)
         return super()._select_play(obs, plan)
 
     def _call(self, obs, plan):

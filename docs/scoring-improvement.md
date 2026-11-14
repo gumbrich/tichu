@@ -65,6 +65,13 @@ tested scoring-policy components, with a conservative Grand threshold until
 arena validation supports a different setting. Teacher training examples do not
 use any previous benchmark's final-test deals.
 
+Screen learned move scores alone and at 50% / 25% influence, with the remaining
+influence coming from the frozen tactical planner. Normalize each policy's legal
+choice scores within the decision before blending, to avoid arbitrary score units.
+These three settings use the spent 64-pair screening deals; validate only their
+screen winner on the separate arena validation set. Non-play preferences retain
+frozen weights plus the structural corrections, with Grand threshold 4.2.
+
 The initial screen also motivates a separate call-only diagnostic: keep the
 structural corrections and zero additional point/initiative/defense weights,
 then compare Grand thresholds 3.0, 3.6 and 4.2; a fourth candidate adds king

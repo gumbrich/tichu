@@ -8,6 +8,7 @@ import argparse
 import gzip
 import hashlib
 import json
+import math
 from pathlib import Path
 import subprocess
 import sys
@@ -81,13 +82,22 @@ def features(obs, play, plan=None, control=None):
     return row
 
 
-def choose(obs, coefficients):
+def choose(obs, coefficients, baseline=None, blend=1.0):
     plan, control = hand_plan(obs.hand), ControlEstimate(obs)
     choices = ([None] if obs.can_pass else []) + list(obs.plays)
     if not choices:
         return None
-    return max(choices, key=lambda p: sum(w*x for w, x in zip(
-        coefficients, features(obs, p, plan, control))))
+    scores = [sum(w*x for w, x in zip(coefficients, features(obs, p, plan, control)))
+              for p in choices]
+    if baseline is not None:
+        if len(baseline) != len(scores):
+            raise ValueError('Baseline must score every legal choice')
+        def normalize(values):
+            mean = sum(values)/len(values)
+            scale = math.sqrt(sum((v-mean)**2 for v in values)/len(values))
+            return [(v-mean)/scale if scale else 0.0 for v in values]
+        scores = [blend*a+(1-blend)*b for a, b in zip(normalize(scores), normalize(baseline))]
+    return choices[max(range(len(scores)), key=scores.__getitem__)]
 
 
 def encode_record(record):
@@ -221,6 +231,9 @@ def train(data, output, epochs=30):
             spec['move_weights'] = w.tolist()
             # Calls remain conservative until separately tested in arena.
             spec['scoring']['grand_threshold'] = 4.2
+            # Preserve frozen play/call preferences outside learned ordinary turns.
+            for key in ('points', 'initiative', 'call_defense', 'king_control'):
+                spec['scoring'][key] = 0.0
             (output/'weights.json').write_text(json.dumps(spec, indent=2)+'\n')
     (output/'training.json').write_text(json.dumps({
         'method': 'supervised linear softmax policy distillation with Adam',

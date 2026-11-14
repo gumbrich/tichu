@@ -26,7 +26,8 @@ def make_agent(spec, seed=None):
         from .scoring import ScoringAgent, ScoringWeights
         from .tactics import TacticalWeights
         return ScoringAgent(Weights(**spec['weights']), TacticalWeights(**spec['tactics']),
-                            ScoringWeights(**spec['scoring']), spec.get('move_weights'))
+                            ScoringWeights(**spec['scoring']), spec.get('move_weights'),
+                            spec.get('move_blend', 1.0))
     if spec['name'] == 'baseline':
         return BaselineAgent()
     if spec['name'] in ('tactical', 'stochastic'):

@@ -57,6 +57,14 @@ class ImitationTests(unittest.TestCase):
         obs = replace(obs, top=combo(14), trick_winner=1, can_pass=True, plays=())
         self.assertIsNone(choose(obs, [0.0]*len(FEATURES)))
 
+    def test_blending_preserves_baseline_at_zero_and_handles_equal_scores(self):
+        obs = observe(scenario((2, 3, 4), (5,), (6,), (7,)), 0)
+        baseline = list(range(len(obs.plays)))
+        self.assertEqual(choose(obs, [0.0]*len(FEATURES), baseline, 0), obs.plays[-1])
+        self.assertIn(choose(obs, [0.0]*len(FEATURES), [0.0]*len(obs.plays), .5), obs.plays)
+        with self.assertRaises(ValueError):
+            ScoringAgent(move_blend=1.01)
+
 
 if __name__ == '__main__':
     unittest.main()
