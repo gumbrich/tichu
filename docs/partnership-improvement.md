@@ -152,3 +152,8 @@ screens enter the previously declared validation suite.
 The native Mahjong wrapper was corrected before native validation so disabled
 extensions preserve even a proof-selected Mahjong play's original wish. External
 play uses its separate wish callback, so the ongoing external screen is unchanged.
+
+The scripted development runner includes frozen v3 as the control in the blend
+screen. If all larger-corpus blends trail it, v3 supplies the base for subsequent
+combinations. Match-risk variants rank by match win rate, breaking ties by final
+score margin; the chosen setting still requires independent validation.

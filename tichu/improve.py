@@ -8,10 +8,10 @@ from types import SimpleNamespace
 from .external import benchmark, interval
 
 
-def evaluate(model, output, *, pairs, seed, workers, candidate='scoring'):
+def evaluate(model, output, *, pairs, seed, workers, candidate='scoring', mode='rounds'):
     benchmark(SimpleNamespace(binary='tools/dave_bridge/target/release/tichu-external-benchmark',
         opponent='eg:pimc20/hibs', pairs=pairs, seed=seed, workers=workers,
-        mode='rounds', output=str(output), candidate=candidate, model=str(model) if model else None))
+        mode=mode, output=str(output), candidate=candidate, model=str(model) if model else None))
     return json.loads((Path(output)/'summary.json').read_text())
 
 
@@ -40,16 +40,18 @@ def main():
     parser.add_argument('--seed', type=int, default=16001000)
     parser.add_argument('--workers', type=int, default=8)
     parser.add_argument('--policy', choices=('scoring', 'partnership'), default='scoring')
+    parser.add_argument('--mode', choices=('rounds', 'games'), default='rounds')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
     rows = []
     for path in sorted(args.candidates.glob('*.json')):
         print(f'Candidate {path.stem}', flush=True)
         report = evaluate(path, args.output/path.stem, pairs=args.pairs,
-                          seed=args.seed, workers=args.workers, candidate=args.policy)
+                          seed=args.seed, workers=args.workers, candidate=args.policy, mode=args.mode)
         rows.append({'candidate': path.stem, 'model': str(path), 'summary': report})
         (args.output/'ranking.json').write_text(json.dumps(sorted(rows,
-            key=lambda r: r['summary']['paired_margin']['mean'], reverse=True), indent=2)+'\n')
+            key=lambda r: r['summary']['match_win_rate' if args.mode == 'games' else 'paired_margin']['mean'],
+            reverse=True), indent=2)+'\n')
     print('Screen complete; these are selection results, not held-out estimates.', flush=True)
 
 
