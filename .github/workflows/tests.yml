@@ -29,3 +29,9 @@ jobs:
           python -m tichu.external benchmark --opponent eg:pimc20/hibs
           --pairs 2 --seed 11000000 --workers 2
           --output experiments/external/ci-smoke
+      - name: Experimental partnership compatibility smoke test
+        run: >-
+          python -m tichu.external benchmark --candidate partnership
+          --model experiments/partnership/team-candidates/team-combined.json
+          --opponent eg:pimc20/hibs --pairs 2 --seed 21199950 --workers 2
+          --output experiments/external/ci-partnership-smoke

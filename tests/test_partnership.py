@@ -77,6 +77,22 @@ class PartnershipTests(unittest.TestCase):
         self.assertGreater(bot._risk(replace(obs, match_scores=(0, 490))), 0)
         self.assertLess(bot._risk(replace(obs, match_scores=(490, 0))), 0)
 
+    def test_public_score_context_advances_with_match(self):
+        game = Match(target=500, seed=91)
+        game.round.phase, game.round.scores = 'over', [120, -20]
+        game.next_round()
+        obs = observe(game.round, 1)
+        self.assertEqual(obs.match_scores, (120, -20))
+        self.assertEqual(obs.target, 500)
+        from tichu.external import observation
+        from tests.test_external import request
+        wire = request(list(obs.hand))
+        wire['view']['scores'] = [120, -20]
+        wire['view']['settings']['target_score'] = 500
+        converted = observation(wire)
+        self.assertEqual(converted.match_scores, obs.match_scores)
+        self.assertEqual(converted.target, obs.target)
+
     def test_bad_options_rejected(self):
         for options in ({'temperature': float('nan')}, {'risk': -1}, {'exchange': 'magic'},
                         {'parity': 1}, {'seed': True}):
