@@ -46,3 +46,21 @@ zero/50%. If not met, keep the candidate opt-in and report the limitation.
 Do not claim that a threshold is calibrated merely because it was tuned: report
 held-out call frequency, success rate and point contribution. Feature removals use
 separate diagnostic deals and do not change the frozen final candidate.
+
+## Search-policy distillation experiment
+
+In parallel with screening, generate 512 fresh rounds of external-search-bot
+self-play, base seed 16200000. Replay these rounds through the pinned referee to
+export only each acting seat's `PlayerView`, legal choices and chosen move.
+No private opponent hand enters the feature encoder. Learn a linear softmax move
+ranker with Adam (NumPy during training; standard-library inference). Keep entire
+deals together: indices divisible by eight form the imitation validation split.
+This is supervised imitation of search decisions, not neural RL, and prediction
+accuracy alone is not evidence of playing strength.
+
+After training, compare this candidate on the same separate arena validation
+deals as the heuristic finalists. It must pass the same fresh final-test and
+native-engine gates before promotion. Its calls, exchanges and bombs remain the
+tested scoring-policy components, with a conservative Grand threshold until
+arena validation supports a different setting. Teacher training examples do not
+use any previous benchmark's final-test deals.

@@ -51,10 +51,18 @@ def read_spec(path=None):
     value = json.loads(Path(path).read_text()) if path else initial_spec()
     if value.get('schema_version') != 2 or value.get('policy') != 'scoring':
         raise ValueError('Unsupported scoring policy')
-    return {'name': 'scoring', 'schema_version': 2, 'policy': 'scoring',
+    result = {'name': 'scoring', 'schema_version': 2, 'policy': 'scoring',
             'weights': asdict(Weights(**value['weights'])),
             'tactics': asdict(TacticalWeights(**value['tactics'])),
             'scoring': asdict(ScoringWeights(**value['scoring']))}
+    if 'move_weights' in value:
+        from .imitation import FEATURES
+        if value.get('move_features') != list(FEATURES) or len(value['move_weights']) != len(FEATURES):
+            raise ValueError('Learned move feature schema mismatch')
+        if any(type(x) not in (int, float) or not math.isfinite(x) for x in value['move_weights']):
+            raise ValueError('Nonfinite learned move weight')
+        result.update(move_features=list(FEATURES), move_weights=value['move_weights'])
+    return result
 
 
 @lru_cache(maxsize=4096)
@@ -163,12 +171,24 @@ def grand_strength(hand):
 
 
 class ScoringAgent(TacticalAgent):
-    def __init__(self, weights=None, tactics=None, scoring=None):
+    def __init__(self, weights=None, tactics=None, scoring=None, move_weights=None):
         spec = initial_spec()
         super().__init__(weights or Weights(**spec['weights']),
                          tactics or TacticalWeights(**spec['tactics']))
         self.scoring = scoring or ScoringWeights()
         self.control = None
+        if move_weights is not None:
+            from .imitation import FEATURES
+            if len(move_weights) != len(FEATURES) or any(
+                    type(x) not in (int, float) or not math.isfinite(x) for x in move_weights):
+                raise ValueError('Invalid learned move weights')
+        self.move_weights = tuple(move_weights) if move_weights is not None else None
+
+    def _select_play(self, obs, plan):
+        if self.move_weights is not None and obs.phase == 'playing':
+            from .imitation import choose
+            return choose(obs, self.move_weights)
+        return super()._select_play(obs, plan)
 
     def _call(self, obs, plan):
         if not self.calls or obs.has_played or obs.calls[obs.seat] or obs.finish_order:

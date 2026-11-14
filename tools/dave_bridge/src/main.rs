@@ -9,6 +9,7 @@ use tichu_engine::{arena::mix, bot::Bot, bots, engine::GameState,
     sim::play_round, types::*, view::PlayerView};
 
 const REV: &str = "ede1c2948eff1bcbc27bafd8c8af385253475b59";
+mod teacher;
 
 #[derive(Default)]
 struct Metrics { requests: usize, max_ms: f64 }
@@ -148,6 +149,11 @@ fn play_pair(pair: usize, seed: u64, spec: &str, mode: &str, python: &str, root:
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
+    if args.len() == 2 && args[1] == "export-teacher" { teacher::export(); return; }
+    if args.len() == 5 && args[1] == "collect-teacher" {
+        teacher::collect(args[2].parse().unwrap(), args[3].parse().unwrap(), args[4].parse().unwrap());
+        return;
+    }
     assert!(args.len() == 8 || args.len() == 10,
         "usage: bridge OPPONENT PAIRS SEED WORKERS rounds|games PYTHON REPO_ROOT [POLICY MODEL]");
     run(&args);
