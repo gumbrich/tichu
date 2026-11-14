@@ -1,5 +1,83 @@
 # What self-play taught our Tichu bots
 
+## Learning better scoring from search
+
+**14 November 2026.** A new policy learns move preferences from 512 games of the
+pinned search bot playing against itself, then blends those scores equally with
+our frozen tactical planner. It uses 41 features from the player's own hand and
+public information, existing finish proofs and the existing legal-move generator. This is supervised search
+distillation plus reward-based policy selection, not neural reinforcement learning.
+Inference still needs only standard-library Python.
+Only ordinary move ranking is learned; the other decision phases retain their
+explicit heuristic policies, including the tested structural and calling changes.
+
+The model was selected on separate validation deals and committed before these
+fresh final tests. Confidence intervals use paired deals, not individual games.
+
+| Final test | Result | Approximate paired 95% interval |
+| --- | ---: | ---: |
+| Direct native play vs frozen v2, 2,000 rounds | +25.55 points/round | +21.34 to +29.75 |
+| Direct native play vs frozen v2, 300 full matches | **213 wins / 71.0%** | 66.4% to 75.6% |
+| New policy vs external search, 2,000 rounds | +2.22 points/round | −5.11 to +9.54 |
+| Frozen v2 vs that search bot on the same deals | −21.91 points/round | −29.00 to −14.82 |
+| Paired improvement over v2 against search | **+24.13 points/round** | **+17.11 to +31.14** |
+
+The round result establishes an improvement over our previous bot. It does not
+establish superiority over the search opponent: the new policy's absolute margin
+still includes zero. The teacher and benchmark both use `eg:pimc20/hibs`, so these
+are unseen deals against a familiar policy, not an unseen-opponent benchmark.
+
+**Plan for points and team finishes together.** Of the +24.13-point external gain,
+score accounting assigns +8.03 to ordinary-round card points, +10.00 to double
+victories, +3.00 to Small calls and +3.10 to Grand calls. The first three changes
+have paired intervals above zero; the Grand change does not. These are outcome
+components, not causal feature contributions: changing a move changes the rest
+of the round. Directly raising hand-written point weights mostly performed
+poorly in screening. The structural-only finalist was essentially tied with v2
+in external validation (+0.02 points/round).
+
+**Preserve useful planning while learning preferences.** The chosen blend keeps
+the old hand planner, counterplay checks and finish proofs. Screening preferred
+it to replacing the planner's scores entirely. The final tests validate this
+specific blend; they do not prove that a 50/50 blend is universally optimal or
+that an imitation loss predicts playing strength.
+
+**Calling still needs careful calibration.** On the final external round set,
+the new policy made 177/252 Small calls and 19/25 Grand calls. Its Grand threshold
+is conservative, and 25 calls is a small sample. The opponent made 200/327 Grand
+calls; Grand bonuses still account for a net −6.00 points/round for our team.
+A call-only finalist improved its declaration frequency but produced no total
+score gain on separate validation deals. Recalibrate calls for the new playing
+policy on fresh data instead of copying the opponent's call rate or assuming that
+more successful calls automatically improve whole-match results.
+
+**The small component checks do not identify the cause of the gain.** On 128
+separate paired deals per setting, every removal's interval included zero:
+
+| Component retained in the full policy | Full policy minus removal, points/round | Paired 95% interval |
+| --- | ---: | ---: |
+| Entire learned move ranker | −0.47 | −21.27 to +20.33 |
+| Learned point features | −3.48 | −19.28 to +12.33 |
+| Learned enemy-call feature | −0.27 | −8.40 to +7.86 |
+| Grand calls | +2.15 | −0.80 to +5.09 |
+
+These diagnostics were inconclusive, including the full-ranker removal. The
+larger final comparisons establish the combined policy's gain over v2; they do
+not by themselves isolate which component caused it. No settings were changed
+after the model freeze. Larger ablations and new opponents are needed before
+turning individual coefficients into general strategic advice.
+
+All agents receive their own cards and public information. The teacher's full
+post-game logs support referee replay and score auditing; private opponent hands
+are excluded from training features and runtime observations. Human partners,
+other strong opponent families and online ratings remain untested. The next
+steps are broader league play, calibrated declarations, match-score-aware risk,
+and budgeted belief-consistent search/value learning.
+
+See the [experiment record](../experiments/scoring/README.md),
+[fixed protocol](scoring-improvement.md), and
+[score-component accounting](../experiments/scoring/final/score-components.json).
+
 ## First independent engine benchmark
 
 **14 November 2026.** The frozen v2 team trails Dave Orr's October 2026 search

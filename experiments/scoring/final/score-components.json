@@ -1,0 +1,101 @@
+{
+  "unit": "points per round; paired deal is the uncertainty unit",
+  "interpretation": "Score accounting, not causal feature effects; policy changes alter trajectories.",
+  "total_improvement": {
+    "mean": 24.125,
+    "ci95": [
+      17.112181014376237,
+      31.137818985623763
+    ]
+  },
+  "candidate": {
+    "ordinary_card_points": {
+      "mean": -7.235,
+      "ci95": [
+        -9.354429008710357,
+        -5.115570991289644
+      ]
+    },
+    "double_victory_points": {
+      "mean": 14.2,
+      "ci95": [
+        9.807070498448034,
+        18.592929501551964
+      ]
+    },
+    "small_calls": {
+      "mean": 1.25,
+      "ci95": [
+        -1.2848568004916965,
+        3.7848568004916965
+      ]
+    },
+    "grand_calls": {
+      "mean": -6.0,
+      "ci95": [
+        -9.596676031904803,
+        -2.403323968095197
+      ]
+    }
+  },
+  "baseline": {
+    "ordinary_card_points": {
+      "mean": -15.26,
+      "ci95": [
+        -17.34079591009293,
+        -13.17920408990707
+      ]
+    },
+    "double_victory_points": {
+      "mean": 4.2,
+      "ci95": [
+        -0.1241114828501031,
+        8.524111482850103
+      ]
+    },
+    "small_calls": {
+      "mean": -1.75,
+      "ci95": [
+        -4.306383029632725,
+        0.8063830296327255
+      ]
+    },
+    "grand_calls": {
+      "mean": -9.1,
+      "ci95": [
+        -12.500585992015065,
+        -5.699414007984934
+      ]
+    }
+  },
+  "change": {
+    "ordinary_card_points": {
+      "mean": 8.025,
+      "ci95": [
+        5.554106397637852,
+        10.495893602362148
+      ]
+    },
+    "double_victory_points": {
+      "mean": 10.0,
+      "ci95": [
+        5.301824092601804,
+        14.698175907398195
+      ]
+    },
+    "small_calls": {
+      "mean": 3.0,
+      "ci95": [
+        0.5187587464822858,
+        5.481241253517714
+      ]
+    },
+    "grand_calls": {
+      "mean": 3.1,
+      "ci95": [
+        -0.36399906372872914,
+        6.56399906372873
+      ]
+    }
+  }
+}

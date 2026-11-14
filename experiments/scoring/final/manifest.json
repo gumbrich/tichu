@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "model_sha256": "b7883435e25b66f84baaf84383465848bcdbb7157e4b0d1b522acd82df73f5dd",
+  "code_revision": "0ef6557651ef83c8ffa0018f8a6041fea88fb224",
+  "external_round_pairs": 1000,
+  "external_round_seed": 18000000,
+  "external_match_pairs": 100,
+  "external_match_seed": 18100000,
+  "native_round_pairs": 1000,
+  "native_round_seed": 19000000,
+  "native_match_pairs": 150,
+  "native_match_seed": 19100000
+}

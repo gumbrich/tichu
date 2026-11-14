@@ -1,0 +1,34 @@
+{
+  "unit": "full policy minus ablated policy, points per round",
+  "interpretation": "independent diagnostics; not used for retuning",
+  "results": {
+    "no-learned-points": {
+      "mean": -3.4765625,
+      "ci95": [
+        -19.28410458377394,
+        12.330979583773939
+      ]
+    },
+    "no-learned-policy": {
+      "mean": -0.46875,
+      "ci95": [
+        -21.26775785005746,
+        20.33025785005746
+      ]
+    },
+    "no-enemy-call-feature": {
+      "mean": -0.2734375,
+      "ci95": [
+        -8.403027037679644,
+        7.856152037679644
+      ]
+    },
+    "no-grand": {
+      "mean": 2.1484375,
+      "ci95": [
+        -0.7979129288150602,
+        5.094787928815061
+      ]
+    }
+  }
+}

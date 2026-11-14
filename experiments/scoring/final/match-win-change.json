@@ -1,0 +1,8 @@
+{
+  "unit": "match win probability change: new policy minus frozen v2",
+  "mean": 0.15,
+  "ci95": [
+    0.07307395654515851,
+    0.22692604345484146
+  ]
+}

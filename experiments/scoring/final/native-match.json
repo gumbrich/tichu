@@ -1,0 +1,4223 @@
+{
+  "candidate": {
+    "name": "scoring",
+    "schema_version": 2,
+    "policy": "scoring",
+    "weights": {
+      "groups": 6.16312264418097,
+      "loose": 1.604891668643716,
+      "control": 1.1464812701499478,
+      "shed": 0.9000494238189236,
+      "rank": 0.004388498162690602,
+      "partner": 20.250394357407252,
+      "bomb": 6.047966846348529,
+      "urgency": 2.205474808853247,
+      "lead": 5.080433270410164,
+      "gift": 0.4667632719773091,
+      "call_threshold": 0.42120497714779304
+    },
+    "tactics": {
+      "secure": 4.132504017561105,
+      "threat": 9.81262431475611,
+      "points": 0.03531422887444835
+    },
+    "scoring": {
+      "points": 0.0,
+      "initiative": 0.0,
+      "call_defense": 0.0,
+      "partner_call": 1.0,
+      "grand_threshold": 4.2,
+      "small_adjustment": 0.0,
+      "king_control": 0.0,
+      "partner_finish": true,
+      "strong_finish": true,
+      "dragon_gifts": true
+    },
+    "move_features": [
+      "pass",
+      "remaining_groups",
+      "remaining_loose",
+      "remaining_control",
+      "remaining_cards",
+      "shed",
+      "rank",
+      "bomb",
+      "dog",
+      "dragon",
+      "phoenix_single",
+      "enemy_secure",
+      "signed_pot",
+      "played_points",
+      "pass_partner",
+      "overtake_partner",
+      "play_partner_call",
+      "own_call_groups",
+      "enemy_call_danger",
+      "matching_enemy_size",
+      "lead_rank",
+      "lead_shed",
+      "enemy_size_remaining",
+      "pass_partner_size",
+      "finish",
+      "break_bomb",
+      "partner_first_remaining",
+      "enemy_first_control",
+      "unresolved_groups",
+      "single_present",
+      "single_rank",
+      "pair_present",
+      "pair_rank",
+      "triple_present",
+      "triple_rank",
+      "full_house_present",
+      "full_house_rank",
+      "straight_present",
+      "straight_rank",
+      "pairs_present",
+      "pairs_rank"
+    ],
+    "move_weights": [
+      -0.8026772936127488,
+      -0.7314284860501413,
+      -2.720569140857984,
+      2.1349004608798063,
+      -1.5587749817912335,
+      1.558774351408222,
+      -0.9573264006500288,
+      -0.7065380903118356,
+      0.6913204316882637,
+      0.2757882872410141,
+      0.17358089651239603,
+      -0.029159573061956472,
+      0.7501527260298433,
+      -0.14415130943885085,
+      0.6763645224288934,
+      -0.6763645224288927,
+      -0.27087803686186546,
+      -1.8448134484234289,
+      -1.0922144866163106,
+      0.05520462978296945,
+      -0.17977194687937137,
+      3.2132599489736235,
+      2.8118799423559424,
+      -0.4979435065925403,
+      0.6569864032317649,
+      -0.14418463258729736,
+      -1.352523531907901,
+      -0.20027076983928185,
+      -0.7779797477705774,
+      -0.4716166805881111,
+      0.7118615233753536,
+      0.1811913161143825,
+      -0.10694587781521132,
+      0.5928281177912932,
+      -0.9211613161838832,
+      0.23915198328514473,
+      -0.27205638368658985,
+      0.3752080736999726,
+      -0.47868025029653444,
+      0.5618089131727989,
+      -0.9184507934706164
+    ],
+    "move_blend": 0.5
+  },
+  "opponent": {
+    "name": "tactical",
+    "weights": {
+      "groups": 6.16312264418097,
+      "loose": 1.604891668643716,
+      "control": 1.1464812701499478,
+      "shed": 0.9000494238189236,
+      "rank": 0.004388498162690602,
+      "partner": 20.250394357407252,
+      "bomb": 6.047966846348529,
+      "urgency": 2.205474808853247,
+      "lead": 5.080433270410164,
+      "gift": 0.4667632719773091,
+      "call_threshold": 0.42120497714779304
+    },
+    "tactics": {
+      "secure": 4.132504017561105,
+      "threat": 9.81262431475611,
+      "points": 0.03531422887444835
+    },
+    "options": {}
+  },
+  "mode": "match",
+  "target": 1000,
+  "summary": {
+    "deal_pairs": 150,
+    "games": 300,
+    "mean_score_difference": 243,
+    "score_difference_95ci": [
+      204.10858822799452,
+      281.8914117720055
+    ],
+    "win_rate": 0.71,
+    "win_rate_95ci": [
+      0.6643293494446636,
+      0.7556706505553363
+    ],
+    "call_success_rate": 0.6564885496183206,
+    "mean_decision_ms": 2.246834133469646,
+    "rounds": 3796,
+    "calls": 393,
+    "successful_calls": 258,
+    "first_out": 1965,
+    "double_victories": 628,
+    "decision_seconds": 279.3309131412134,
+    "decisions": 124322
+  },
+  "pairs": [
+    {
+      "seed": 19100000,
+      "games": [
+        {
+          "score_difference": -570,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 1.1240469759686675,
+          "decisions": 397
+        },
+        {
+          "score_difference": 380,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 0.6889624720715801,
+          "decisions": 391
+        }
+      ]
+    },
+    {
+      "seed": 19100001,
+      "games": [
+        {
+          "score_difference": 800,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 2.045796293001331,
+          "decisions": 467
+        },
+        {
+          "score_difference": 380,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.2965369110715983,
+          "decisions": 555
+        }
+      ]
+    },
+    {
+      "seed": 19100002,
+      "games": [
+        {
+          "score_difference": 230,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 0,
+          "decision_seconds": 2.106793277012912,
+          "decisions": 506
+        },
+        {
+          "score_difference": 440,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 4,
+          "decision_seconds": 0.8403715340100462,
+          "decisions": 419
+        }
+      ]
+    },
+    {
+      "seed": 19100003,
+      "games": [
+        {
+          "score_difference": -130,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 2.261992669038591,
+          "decisions": 469
+        },
+        {
+          "score_difference": 510,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.7399702900474949,
+          "decisions": 455
+        }
+      ]
+    },
+    {
+      "seed": 19100004,
+      "games": [
+        {
+          "score_difference": 250,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.4375215499931073,
+          "decisions": 482
+        },
+        {
+          "score_difference": -100,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 0,
+          "decision_seconds": 0.7281992879761674,
+          "decisions": 518
+        }
+      ]
+    },
+    {
+      "seed": 19100005,
+      "games": [
+        {
+          "score_difference": 470,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 10,
+          "double_victories": 2,
+          "decision_seconds": 2.199827470987657,
+          "decisions": 525
+        },
+        {
+          "score_difference": 290,
+          "win": 1.0,
+          "rounds": 18,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 10,
+          "double_victories": 1,
+          "decision_seconds": 1.089675844024896,
+          "decisions": 594
+        }
+      ]
+    },
+    {
+      "seed": 19100006,
+      "games": [
+        {
+          "score_difference": 210,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 1.2130794239928946,
+          "decisions": 387
+        },
+        {
+          "score_difference": 10,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 10,
+          "double_victories": 1,
+          "decision_seconds": 0.8484218679841433,
+          "decisions": 413
+        }
+      ]
+    },
+    {
+      "seed": 19100007,
+      "games": [
+        {
+          "score_difference": -260,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.541102627004875,
+          "decisions": 444
+        },
+        {
+          "score_difference": -220,
+          "win": 0.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 0.6075654859669157,
+          "decisions": 346
+        }
+      ]
+    },
+    {
+      "seed": 19100008,
+      "games": [
+        {
+          "score_difference": 810,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 4,
+          "decision_seconds": 1.2350176589934563,
+          "decisions": 330
+        },
+        {
+          "score_difference": 100,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.1122089579839667,
+          "decisions": 601
+        }
+      ]
+    },
+    {
+      "seed": 19100009,
+      "games": [
+        {
+          "score_difference": 410,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 4,
+          "decision_seconds": 1.8909197019893327,
+          "decisions": 421
+        },
+        {
+          "score_difference": -310,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 0.8349400750012137,
+          "decisions": 485
+        }
+      ]
+    },
+    {
+      "seed": 19100010,
+      "games": [
+        {
+          "score_difference": -450,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 0.8501938380286447,
+          "decisions": 380
+        },
+        {
+          "score_difference": 480,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.6010522220021812,
+          "decisions": 382
+        }
+      ]
+    },
+    {
+      "seed": 19100011,
+      "games": [
+        {
+          "score_difference": 190,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.2078398779667623,
+          "decisions": 451
+        },
+        {
+          "score_difference": 460,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 0.4761861949955346,
+          "decisions": 354
+        }
+      ]
+    },
+    {
+      "seed": 19100012,
+      "games": [
+        {
+          "score_difference": 450,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.8268180269733421,
+          "decisions": 377
+        },
+        {
+          "score_difference": 130,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 4,
+          "decision_seconds": 0.6410649910430948,
+          "decisions": 405
+        }
+      ]
+    },
+    {
+      "seed": 19100013,
+      "games": [
+        {
+          "score_difference": 720,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 4,
+          "double_victories": 3,
+          "decision_seconds": 0.7340627300363849,
+          "decisions": 327
+        },
+        {
+          "score_difference": 560,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.5213869960170996,
+          "decisions": 338
+        }
+      ]
+    },
+    {
+      "seed": 19100014,
+      "games": [
+        {
+          "score_difference": -60,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.4301013820295339,
+          "decisions": 593
+        },
+        {
+          "score_difference": 20,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 0,
+          "decision_seconds": 0.7342587859930063,
+          "decisions": 528
+        }
+      ]
+    },
+    {
+      "seed": 19100015,
+      "games": [
+        {
+          "score_difference": 600,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 1.0348383340315195,
+          "decisions": 287
+        },
+        {
+          "score_difference": 730,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.3509419539986993,
+          "decisions": 304
+        }
+      ]
+    },
+    {
+      "seed": 19100016,
+      "games": [
+        {
+          "score_difference": 570,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 0.7176975810034492,
+          "decisions": 377
+        },
+        {
+          "score_difference": 120,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 4,
+          "successful_calls": 3,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.49668949800980045,
+          "decisions": 371
+        }
+      ]
+    },
+    {
+      "seed": 19100017,
+      "games": [
+        {
+          "score_difference": -380,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.2473314269736875,
+          "decisions": 408
+        },
+        {
+          "score_difference": 220,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.5364007019597921,
+          "decisions": 426
+        }
+      ]
+    },
+    {
+      "seed": 19100018,
+      "games": [
+        {
+          "score_difference": 450,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 4,
+          "successful_calls": 2,
+          "first_out": 9,
+          "double_victories": 4,
+          "decision_seconds": 1.4499102500158187,
+          "decisions": 464
+        },
+        {
+          "score_difference": -80,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 0.9661920689686667,
+          "decisions": 521
+        }
+      ]
+    },
+    {
+      "seed": 19100019,
+      "games": [
+        {
+          "score_difference": -160,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 1.6836982099775923,
+          "decisions": 527
+        },
+        {
+          "score_difference": 250,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.5714283619818161,
+          "decisions": 469
+        }
+      ]
+    },
+    {
+      "seed": 19100020,
+      "games": [
+        {
+          "score_difference": 270,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 1.1188017199710885,
+          "decisions": 375
+        },
+        {
+          "score_difference": -190,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 1.0253551240311936,
+          "decisions": 510
+        }
+      ]
+    },
+    {
+      "seed": 19100021,
+      "games": [
+        {
+          "score_difference": 440,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.9940049189572164,
+          "decisions": 396
+        },
+        {
+          "score_difference": -390,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.5291354560067703,
+          "decisions": 399
+        }
+      ]
+    },
+    {
+      "seed": 19100022,
+      "games": [
+        {
+          "score_difference": 490,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 0.6809558369895967,
+          "decisions": 326
+        },
+        {
+          "score_difference": -440,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 4,
+          "double_victories": 0,
+          "decision_seconds": 0.6323775869968813,
+          "decisions": 480
+        }
+      ]
+    },
+    {
+      "seed": 19100023,
+      "games": [
+        {
+          "score_difference": 200,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.946083707982325,
+          "decisions": 389
+        },
+        {
+          "score_difference": 330,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 3,
+          "successful_calls": 3,
+          "first_out": 10,
+          "double_victories": 1,
+          "decision_seconds": 0.6672334749782749,
+          "decisions": 486
+        }
+      ]
+    },
+    {
+      "seed": 19100024,
+      "games": [
+        {
+          "score_difference": 770,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 0.95204852302777,
+          "decisions": 443
+        },
+        {
+          "score_difference": 30,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.7345878020169039,
+          "decisions": 614
+        }
+      ]
+    },
+    {
+      "seed": 19100025,
+      "games": [
+        {
+          "score_difference": -100,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 1.2458874770127295,
+          "decisions": 495
+        },
+        {
+          "score_difference": 360,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.5587816200350062,
+          "decisions": 459
+        }
+      ]
+    },
+    {
+      "seed": 19100026,
+      "games": [
+        {
+          "score_difference": -720,
+          "win": 0.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 0.8862044569832506,
+          "decisions": 285
+        },
+        {
+          "score_difference": 840,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 0.45303166901430814,
+          "decisions": 290
+        }
+      ]
+    },
+    {
+      "seed": 19100027,
+      "games": [
+        {
+          "score_difference": 830,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 1.2218282869907853,
+          "decisions": 284
+        },
+        {
+          "score_difference": -900,
+          "win": 0.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 2,
+          "double_victories": 0,
+          "decision_seconds": 0.30472540299524553,
+          "decisions": 283
+        }
+      ]
+    },
+    {
+      "seed": 19100028,
+      "games": [
+        {
+          "score_difference": -780,
+          "win": 0.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 2,
+          "double_victories": 0,
+          "decision_seconds": 0.7772640480397968,
+          "decisions": 309
+        },
+        {
+          "score_difference": 960,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 4,
+          "decision_seconds": 0.36100233995966846,
+          "decisions": 291
+        }
+      ]
+    },
+    {
+      "seed": 19100029,
+      "games": [
+        {
+          "score_difference": 220,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 2,
+          "decision_seconds": 1.6008066949543718,
+          "decisions": 506
+        },
+        {
+          "score_difference": -300,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 0,
+          "decision_seconds": 0.737022417022672,
+          "decisions": 516
+        }
+      ]
+    },
+    {
+      "seed": 19100030,
+      "games": [
+        {
+          "score_difference": -230,
+          "win": 0.0,
+          "rounds": 17,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.5871855750629038,
+          "decisions": 612
+        },
+        {
+          "score_difference": 710,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.4340999970154371,
+          "decisions": 285
+        }
+      ]
+    },
+    {
+      "seed": 19100031,
+      "games": [
+        {
+          "score_difference": -620,
+          "win": 0.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 2,
+          "double_victories": 0,
+          "decision_seconds": 0.7420943200049805,
+          "decisions": 338
+        },
+        {
+          "score_difference": 200,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 10,
+          "double_victories": 3,
+          "decision_seconds": 1.2970527160796337,
+          "decisions": 509
+        }
+      ]
+    },
+    {
+      "seed": 19100032,
+      "games": [
+        {
+          "score_difference": 420,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 3,
+          "successful_calls": 3,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 1.0939174119921518,
+          "decisions": 328
+        },
+        {
+          "score_difference": -140,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 3,
+          "double_victories": 1,
+          "decision_seconds": 0.39068426502490183,
+          "decisions": 377
+        }
+      ]
+    },
+    {
+      "seed": 19100033,
+      "games": [
+        {
+          "score_difference": -30,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.6129917760408716,
+          "decisions": 585
+        },
+        {
+          "score_difference": 240,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 9,
+          "double_victories": 2,
+          "decision_seconds": 0.6103127029964526,
+          "decisions": 461
+        }
+      ]
+    },
+    {
+      "seed": 19100034,
+      "games": [
+        {
+          "score_difference": 590,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 0.5759886280029605,
+          "decisions": 306
+        },
+        {
+          "score_difference": -120,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 0.6845033399986278,
+          "decisions": 513
+        }
+      ]
+    },
+    {
+      "seed": 19100035,
+      "games": [
+        {
+          "score_difference": -180,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.4980128279676137,
+          "decisions": 435
+        },
+        {
+          "score_difference": 560,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.6772099510199041,
+          "decisions": 477
+        }
+      ]
+    },
+    {
+      "seed": 19100036,
+      "games": [
+        {
+          "score_difference": 210,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.8397293790076219,
+          "decisions": 396
+        },
+        {
+          "score_difference": 740,
+          "win": 1.0,
+          "rounds": 8,
+          "calls": 4,
+          "successful_calls": 3,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.3424888340305188,
+          "decisions": 240
+        }
+      ]
+    },
+    {
+      "seed": 19100037,
+      "games": [
+        {
+          "score_difference": 610,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.2087854950113979,
+          "decisions": 344
+        },
+        {
+          "score_difference": -540,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 2,
+          "double_victories": 1,
+          "decision_seconds": 0.6359070300095482,
+          "decisions": 451
+        }
+      ]
+    },
+    {
+      "seed": 19100038,
+      "games": [
+        {
+          "score_difference": 340,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.0859939540277992,
+          "decisions": 413
+        },
+        {
+          "score_difference": 570,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 4,
+          "successful_calls": 3,
+          "first_out": 11,
+          "double_victories": 1,
+          "decision_seconds": 0.9663725800128304,
+          "decisions": 528
+        }
+      ]
+    },
+    {
+      "seed": 19100039,
+      "games": [
+        {
+          "score_difference": 590,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.252282914963871,
+          "decisions": 383
+        },
+        {
+          "score_difference": 340,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 0.6622961180437414,
+          "decisions": 466
+        }
+      ]
+    },
+    {
+      "seed": 19100040,
+      "games": [
+        {
+          "score_difference": 310,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 1.6522890089654538,
+          "decisions": 437
+        },
+        {
+          "score_difference": 450,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 3,
+          "double_victories": 3,
+          "decision_seconds": 0.5293516789970454,
+          "decisions": 406
+        }
+      ]
+    },
+    {
+      "seed": 19100041,
+      "games": [
+        {
+          "score_difference": 360,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 4,
+          "decision_seconds": 1.9587007210357115,
+          "decisions": 418
+        },
+        {
+          "score_difference": -600,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 3,
+          "double_victories": 0,
+          "decision_seconds": 0.6705759920041601,
+          "decisions": 461
+        }
+      ]
+    },
+    {
+      "seed": 19100042,
+      "games": [
+        {
+          "score_difference": 700,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 1.1375353690236807,
+          "decisions": 344
+        },
+        {
+          "score_difference": -500,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 0.6581123740252224,
+          "decisions": 458
+        }
+      ]
+    },
+    {
+      "seed": 19100043,
+      "games": [
+        {
+          "score_difference": 1010,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 0.7960301610000897,
+          "decisions": 258
+        },
+        {
+          "score_difference": -260,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.7027051389741246,
+          "decisions": 387
+        }
+      ]
+    },
+    {
+      "seed": 19100044,
+      "games": [
+        {
+          "score_difference": 550,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 1.0609737799604773,
+          "decisions": 296
+        },
+        {
+          "score_difference": -190,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.0142099149852584,
+          "decisions": 559
+        }
+      ]
+    },
+    {
+      "seed": 19100045,
+      "games": [
+        {
+          "score_difference": 310,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 1.2484776249984861,
+          "decisions": 419
+        },
+        {
+          "score_difference": -510,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 0,
+          "decision_seconds": 0.6147097190114437,
+          "decisions": 442
+        }
+      ]
+    },
+    {
+      "seed": 19100046,
+      "games": [
+        {
+          "score_difference": -290,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.338105874026951,
+          "decisions": 439
+        },
+        {
+          "score_difference": 920,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.4139942540350603,
+          "decisions": 269
+        }
+      ]
+    },
+    {
+      "seed": 19100047,
+      "games": [
+        {
+          "score_difference": 590,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.659507841010054,
+          "decisions": 415
+        },
+        {
+          "score_difference": -240,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.7020755029734573,
+          "decisions": 503
+        }
+      ]
+    },
+    {
+      "seed": 19100048,
+      "games": [
+        {
+          "score_difference": 520,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 3,
+          "successful_calls": 3,
+          "first_out": 4,
+          "double_victories": 2,
+          "decision_seconds": 0.9139065279850911,
+          "decisions": 294
+        },
+        {
+          "score_difference": -570,
+          "win": 0.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 3,
+          "double_victories": 1,
+          "decision_seconds": 0.38081300504200044,
+          "decisions": 296
+        }
+      ]
+    },
+    {
+      "seed": 19100049,
+      "games": [
+        {
+          "score_difference": 810,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 0.9460350890294649,
+          "decisions": 341
+        },
+        {
+          "score_difference": 880,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.5275395340395335,
+          "decisions": 393
+        }
+      ]
+    },
+    {
+      "seed": 19100050,
+      "games": [
+        {
+          "score_difference": -220,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 1.653234919962415,
+          "decisions": 503
+        },
+        {
+          "score_difference": 900,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.5242163640068611,
+          "decisions": 366
+        }
+      ]
+    },
+    {
+      "seed": 19100051,
+      "games": [
+        {
+          "score_difference": 930,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 1.1375544259717572,
+          "decisions": 306
+        },
+        {
+          "score_difference": 170,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 1.032466039971041,
+          "decisions": 412
+        }
+      ]
+    },
+    {
+      "seed": 19100052,
+      "games": [
+        {
+          "score_difference": -210,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 5,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 1.37490483502188,
+          "decisions": 431
+        },
+        {
+          "score_difference": 420,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.5297486810050032,
+          "decisions": 395
+        }
+      ]
+    },
+    {
+      "seed": 19100053,
+      "games": [
+        {
+          "score_difference": 80,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 1.2562201999498939,
+          "decisions": 502
+        },
+        {
+          "score_difference": 200,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.6141689630021574,
+          "decisions": 378
+        }
+      ]
+    },
+    {
+      "seed": 19100054,
+      "games": [
+        {
+          "score_difference": 360,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 1.083998664009414,
+          "decisions": 375
+        },
+        {
+          "score_difference": -410,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 0.49721705602132715,
+          "decisions": 385
+        }
+      ]
+    },
+    {
+      "seed": 19100055,
+      "games": [
+        {
+          "score_difference": 260,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 1.4591234979743604,
+          "decisions": 484
+        },
+        {
+          "score_difference": -400,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.7209011939776246,
+          "decisions": 521
+        }
+      ]
+    },
+    {
+      "seed": 19100056,
+      "games": [
+        {
+          "score_difference": 360,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.1092325309909938,
+          "decisions": 380
+        },
+        {
+          "score_difference": 630,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.5257922519849672,
+          "decisions": 267
+        }
+      ]
+    },
+    {
+      "seed": 19100057,
+      "games": [
+        {
+          "score_difference": -530,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 0,
+          "decision_seconds": 1.7074395929557795,
+          "decisions": 481
+        },
+        {
+          "score_difference": 900,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.44203220597773907,
+          "decisions": 307
+        }
+      ]
+    },
+    {
+      "seed": 19100058,
+      "games": [
+        {
+          "score_difference": 280,
+          "win": 1.0,
+          "rounds": 19,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.451899240975763,
+          "decisions": 599
+        },
+        {
+          "score_difference": -430,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 0.5897799949671025,
+          "decisions": 403
+        }
+      ]
+    },
+    {
+      "seed": 19100059,
+      "games": [
+        {
+          "score_difference": -610,
+          "win": 0.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 3,
+          "double_victories": 0,
+          "decision_seconds": 0.6229358730233798,
+          "decisions": 370
+        },
+        {
+          "score_difference": 1050,
+          "win": 1.0,
+          "rounds": 8,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 0.3598811250049039,
+          "decisions": 274
+        }
+      ]
+    },
+    {
+      "seed": 19100060,
+      "games": [
+        {
+          "score_difference": -240,
+          "win": 0.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 1.1063800850097323,
+          "decisions": 373
+        },
+        {
+          "score_difference": -40,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 0.819721628951811,
+          "decisions": 465
+        }
+      ]
+    },
+    {
+      "seed": 19100061,
+      "games": [
+        {
+          "score_difference": -70,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.210588613022992,
+          "decisions": 459
+        },
+        {
+          "score_difference": -410,
+          "win": 0.0,
+          "rounds": 11,
+          "calls": 5,
+          "successful_calls": 3,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 0.45787543705955613,
+          "decisions": 327
+        }
+      ]
+    },
+    {
+      "seed": 19100062,
+      "games": [
+        {
+          "score_difference": 380,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 1.6719554270384833,
+          "decisions": 386
+        },
+        {
+          "score_difference": 50,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 0,
+          "decision_seconds": 0.9256637809921813,
+          "decisions": 591
+        }
+      ]
+    },
+    {
+      "seed": 19100063,
+      "games": [
+        {
+          "score_difference": 220,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 1,
+          "decision_seconds": 1.4936256229921128,
+          "decisions": 537
+        },
+        {
+          "score_difference": 340,
+          "win": 1.0,
+          "rounds": 18,
+          "calls": 3,
+          "successful_calls": 0,
+          "first_out": 11,
+          "double_victories": 3,
+          "decision_seconds": 0.891736582005251,
+          "decisions": 602
+        }
+      ]
+    },
+    {
+      "seed": 19100064,
+      "games": [
+        {
+          "score_difference": -250,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.8564659540024877,
+          "decisions": 414
+        },
+        {
+          "score_difference": -250,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 4,
+          "double_victories": 2,
+          "decision_seconds": 0.8754421200319484,
+          "decisions": 516
+        }
+      ]
+    },
+    {
+      "seed": 19100065,
+      "games": [
+        {
+          "score_difference": -200,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.0242652779561467,
+          "decisions": 516
+        },
+        {
+          "score_difference": 650,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.49007094401531504,
+          "decisions": 319
+        }
+      ]
+    },
+    {
+      "seed": 19100066,
+      "games": [
+        {
+          "score_difference": -400,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 0,
+          "decision_seconds": 1.181168745009927,
+          "decisions": 362
+        },
+        {
+          "score_difference": 70,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 0.8627875040074287,
+          "decisions": 494
+        }
+      ]
+    },
+    {
+      "seed": 19100067,
+      "games": [
+        {
+          "score_difference": 780,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 0.9918377159956435,
+          "decisions": 336
+        },
+        {
+          "score_difference": 170,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 4,
+          "decision_seconds": 0.31357174906952423,
+          "decisions": 301
+        }
+      ]
+    },
+    {
+      "seed": 19100068,
+      "games": [
+        {
+          "score_difference": 560,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.2525549170313752,
+          "decisions": 539
+        },
+        {
+          "score_difference": 420,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.5654205549762992,
+          "decisions": 366
+        }
+      ]
+    },
+    {
+      "seed": 19100069,
+      "games": [
+        {
+          "score_difference": 240,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 1.2416435050072323,
+          "decisions": 427
+        },
+        {
+          "score_difference": -320,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 0.5758324989619723,
+          "decisions": 381
+        }
+      ]
+    },
+    {
+      "seed": 19100070,
+      "games": [
+        {
+          "score_difference": 400,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 1.4555634679963987,
+          "decisions": 502
+        },
+        {
+          "score_difference": 700,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.4546970299743407,
+          "decisions": 329
+        }
+      ]
+    },
+    {
+      "seed": 19100071,
+      "games": [
+        {
+          "score_difference": 230,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.9943205890522222,
+          "decisions": 495
+        },
+        {
+          "score_difference": 320,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.4624968789939885,
+          "decisions": 330
+        }
+      ]
+    },
+    {
+      "seed": 19100072,
+      "games": [
+        {
+          "score_difference": 670,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 10,
+          "double_victories": 3,
+          "decision_seconds": 1.2405211530240194,
+          "decisions": 343
+        },
+        {
+          "score_difference": 130,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 2,
+          "decision_seconds": 0.8260835590481292,
+          "decisions": 521
+        }
+      ]
+    },
+    {
+      "seed": 19100073,
+      "games": [
+        {
+          "score_difference": 300,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 10,
+          "double_victories": 3,
+          "decision_seconds": 1.8354878660029499,
+          "decisions": 538
+        },
+        {
+          "score_difference": 830,
+          "win": 1.0,
+          "rounds": 8,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 0.41880736903476645,
+          "decisions": 281
+        }
+      ]
+    },
+    {
+      "seed": 19100074,
+      "games": [
+        {
+          "score_difference": 310,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 10,
+          "double_victories": 2,
+          "decision_seconds": 1.0444637799773773,
+          "decisions": 363
+        },
+        {
+          "score_difference": 380,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 0.45059541496812017,
+          "decisions": 335
+        }
+      ]
+    },
+    {
+      "seed": 19100075,
+      "games": [
+        {
+          "score_difference": 980,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.7651517049744143,
+          "decisions": 322
+        },
+        {
+          "score_difference": -380,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 0,
+          "decision_seconds": 0.9144545330564142,
+          "decisions": 571
+        }
+      ]
+    },
+    {
+      "seed": 19100076,
+      "games": [
+        {
+          "score_difference": -280,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 1.3974930790463986,
+          "decisions": 493
+        },
+        {
+          "score_difference": 520,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 4,
+          "decision_seconds": 0.37868837902351515,
+          "decisions": 253
+        }
+      ]
+    },
+    {
+      "seed": 19100077,
+      "games": [
+        {
+          "score_difference": -290,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 1.6376886400139483,
+          "decisions": 475
+        },
+        {
+          "score_difference": 450,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 12,
+          "double_victories": 2,
+          "decision_seconds": 0.7240542539693706,
+          "decisions": 473
+        }
+      ]
+    },
+    {
+      "seed": 19100078,
+      "games": [
+        {
+          "score_difference": -170,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 3,
+          "double_victories": 1,
+          "decision_seconds": 1.354292834032094,
+          "decisions": 455
+        },
+        {
+          "score_difference": 720,
+          "win": 1.0,
+          "rounds": 6,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 4,
+          "double_victories": 3,
+          "decision_seconds": 0.31842029397012084,
+          "decisions": 220
+        }
+      ]
+    },
+    {
+      "seed": 19100079,
+      "games": [
+        {
+          "score_difference": 530,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.6395474260025367,
+          "decisions": 351
+        },
+        {
+          "score_difference": 560,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 3,
+          "successful_calls": 3,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.819850294963544,
+          "decisions": 413
+        }
+      ]
+    },
+    {
+      "seed": 19100080,
+      "games": [
+        {
+          "score_difference": 210,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.1394474579647067,
+          "decisions": 476
+        },
+        {
+          "score_difference": 60,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 0.6108034160133684,
+          "decisions": 444
+        }
+      ]
+    },
+    {
+      "seed": 19100081,
+      "games": [
+        {
+          "score_difference": 390,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 0.7331166209987714,
+          "decisions": 334
+        },
+        {
+          "score_difference": 540,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.5320345850341255,
+          "decisions": 319
+        }
+      ]
+    },
+    {
+      "seed": 19100082,
+      "games": [
+        {
+          "score_difference": -640,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 3,
+          "double_victories": 0,
+          "decision_seconds": 0.9485795019863872,
+          "decisions": 472
+        },
+        {
+          "score_difference": 1010,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 0.42081899303593673,
+          "decisions": 297
+        }
+      ]
+    },
+    {
+      "seed": 19100083,
+      "games": [
+        {
+          "score_difference": 650,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 0.7186899950429506,
+          "decisions": 329
+        },
+        {
+          "score_difference": 1230,
+          "win": 1.0,
+          "rounds": 6,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 4,
+          "decision_seconds": 0.2676616559874674,
+          "decisions": 170
+        }
+      ]
+    },
+    {
+      "seed": 19100084,
+      "games": [
+        {
+          "score_difference": 620,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.9571018329988874,
+          "decisions": 322
+        },
+        {
+          "score_difference": -400,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 0,
+          "decision_seconds": 0.6280851130759402,
+          "decisions": 469
+        }
+      ]
+    },
+    {
+      "seed": 19100085,
+      "games": [
+        {
+          "score_difference": -110,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.4805896359794133,
+          "decisions": 476
+        },
+        {
+          "score_difference": -100,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 0.6625090850175184,
+          "decisions": 432
+        }
+      ]
+    },
+    {
+      "seed": 19100086,
+      "games": [
+        {
+          "score_difference": 670,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.5179579269824899,
+          "decisions": 480
+        },
+        {
+          "score_difference": 430,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 0.7472398429927125,
+          "decisions": 492
+        }
+      ]
+    },
+    {
+      "seed": 19100087,
+      "games": [
+        {
+          "score_difference": -520,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 1.1659288270493562,
+          "decisions": 460
+        },
+        {
+          "score_difference": 490,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.6232440849817067,
+          "decisions": 405
+        }
+      ]
+    },
+    {
+      "seed": 19100088,
+      "games": [
+        {
+          "score_difference": -200,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 10,
+          "double_victories": 2,
+          "decision_seconds": 1.2654582430186565,
+          "decisions": 472
+        },
+        {
+          "score_difference": 390,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 0.7017438909533666,
+          "decisions": 491
+        }
+      ]
+    },
+    {
+      "seed": 19100089,
+      "games": [
+        {
+          "score_difference": 590,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 2,
+          "decision_seconds": 0.7641252460161922,
+          "decisions": 361
+        },
+        {
+          "score_difference": 350,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 0.851368629024364,
+          "decisions": 473
+        }
+      ]
+    },
+    {
+      "seed": 19100090,
+      "games": [
+        {
+          "score_difference": -1000,
+          "win": 0.0,
+          "rounds": 6,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 1,
+          "double_victories": 0,
+          "decision_seconds": 0.3242884140126989,
+          "decisions": 210
+        },
+        {
+          "score_difference": 610,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.9088100019725971,
+          "decisions": 343
+        }
+      ]
+    },
+    {
+      "seed": 19100091,
+      "games": [
+        {
+          "score_difference": 420,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.079018634998647,
+          "decisions": 403
+        },
+        {
+          "score_difference": 860,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 0.4803692479872552,
+          "decisions": 340
+        }
+      ]
+    },
+    {
+      "seed": 19100092,
+      "games": [
+        {
+          "score_difference": 870,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.8952118749912188,
+          "decisions": 277
+        },
+        {
+          "score_difference": -700,
+          "win": 0.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 1,
+          "double_victories": 0,
+          "decision_seconds": 0.32245458501347457,
+          "decisions": 321
+        }
+      ]
+    },
+    {
+      "seed": 19100093,
+      "games": [
+        {
+          "score_difference": 320,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.0789972849743208,
+          "decisions": 406
+        },
+        {
+          "score_difference": 910,
+          "win": 1.0,
+          "rounds": 8,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 4,
+          "double_victories": 3,
+          "decision_seconds": 0.5215742520267668,
+          "decisions": 268
+        }
+      ]
+    },
+    {
+      "seed": 19100094,
+      "games": [
+        {
+          "score_difference": 320,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 1.5390431970081409,
+          "decisions": 448
+        },
+        {
+          "score_difference": 170,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.7872295909983222,
+          "decisions": 546
+        }
+      ]
+    },
+    {
+      "seed": 19100095,
+      "games": [
+        {
+          "score_difference": 820,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 11,
+          "double_victories": 2,
+          "decision_seconds": 1.0662417839885165,
+          "decisions": 336
+        },
+        {
+          "score_difference": 450,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.3864807069985545,
+          "decisions": 351
+        }
+      ]
+    },
+    {
+      "seed": 19100096,
+      "games": [
+        {
+          "score_difference": 480,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 1.4501307790160354,
+          "decisions": 498
+        },
+        {
+          "score_difference": -340,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 3,
+          "double_victories": 1,
+          "decision_seconds": 0.42774004206148675,
+          "decisions": 390
+        }
+      ]
+    },
+    {
+      "seed": 19100097,
+      "games": [
+        {
+          "score_difference": 920,
+          "win": 1.0,
+          "rounds": 8,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.6807790819802904,
+          "decisions": 241
+        },
+        {
+          "score_difference": -230,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 0.7899453789868858,
+          "decisions": 425
+        }
+      ]
+    },
+    {
+      "seed": 19100098,
+      "games": [
+        {
+          "score_difference": 310,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 1.0682814990323095,
+          "decisions": 337
+        },
+        {
+          "score_difference": 200,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.5754064609936904,
+          "decisions": 444
+        }
+      ]
+    },
+    {
+      "seed": 19100099,
+      "games": [
+        {
+          "score_difference": 250,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.0524386399520154,
+          "decisions": 459
+        },
+        {
+          "score_difference": 860,
+          "win": 1.0,
+          "rounds": 8,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 0.4282183820105274,
+          "decisions": 279
+        }
+      ]
+    },
+    {
+      "seed": 19100100,
+      "games": [
+        {
+          "score_difference": 830,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.1514442459993006,
+          "decisions": 301
+        },
+        {
+          "score_difference": -180,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.6975905860272178,
+          "decisions": 479
+        }
+      ]
+    },
+    {
+      "seed": 19100101,
+      "games": [
+        {
+          "score_difference": 600,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.8355348049699387,
+          "decisions": 404
+        },
+        {
+          "score_difference": 250,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 4,
+          "double_victories": 2,
+          "decision_seconds": 0.44541816597848083,
+          "decisions": 313
+        }
+      ]
+    },
+    {
+      "seed": 19100102,
+      "games": [
+        {
+          "score_difference": 400,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.2355697540115216,
+          "decisions": 416
+        },
+        {
+          "score_difference": -240,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 0.5975693780310394,
+          "decisions": 412
+        }
+      ]
+    },
+    {
+      "seed": 19100103,
+      "games": [
+        {
+          "score_difference": 40,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 9,
+          "double_victories": 2,
+          "decision_seconds": 1.66508786994018,
+          "decisions": 548
+        },
+        {
+          "score_difference": 830,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 0.4620273739674303,
+          "decisions": 363
+        }
+      ]
+    },
+    {
+      "seed": 19100104,
+      "games": [
+        {
+          "score_difference": 810,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 1.233530418972805,
+          "decisions": 366
+        },
+        {
+          "score_difference": 30,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 0.7779998870137206,
+          "decisions": 592
+        }
+      ]
+    },
+    {
+      "seed": 19100105,
+      "games": [
+        {
+          "score_difference": 880,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.570462547988427,
+          "decisions": 373
+        },
+        {
+          "score_difference": -100,
+          "win": 0.0,
+          "rounds": 17,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 0.7487197709924658,
+          "decisions": 582
+        }
+      ]
+    },
+    {
+      "seed": 19100106,
+      "games": [
+        {
+          "score_difference": 520,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.1293376639769122,
+          "decisions": 419
+        },
+        {
+          "score_difference": 300,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.6465939650443033,
+          "decisions": 490
+        }
+      ]
+    },
+    {
+      "seed": 19100107,
+      "games": [
+        {
+          "score_difference": 470,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.0273613289900823,
+          "decisions": 361
+        },
+        {
+          "score_difference": -420,
+          "win": 0.0,
+          "rounds": 10,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 3,
+          "double_victories": 1,
+          "decision_seconds": 0.4562494600431819,
+          "decisions": 345
+        }
+      ]
+    },
+    {
+      "seed": 19100108,
+      "games": [
+        {
+          "score_difference": 410,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 1.2722261959897878,
+          "decisions": 472
+        },
+        {
+          "score_difference": 350,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.6682819590278086,
+          "decisions": 474
+        }
+      ]
+    },
+    {
+      "seed": 19100109,
+      "games": [
+        {
+          "score_difference": 880,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 1.0991135100448446,
+          "decisions": 367
+        },
+        {
+          "score_difference": 300,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 1.0094478190258087,
+          "decisions": 523
+        }
+      ]
+    },
+    {
+      "seed": 19100110,
+      "games": [
+        {
+          "score_difference": 1150,
+          "win": 1.0,
+          "rounds": 7,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 5,
+          "decision_seconds": 0.7855767219734844,
+          "decisions": 192
+        },
+        {
+          "score_difference": -70,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 0.7672428020377993,
+          "decisions": 388
+        }
+      ]
+    },
+    {
+      "seed": 19100111,
+      "games": [
+        {
+          "score_difference": 550,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.8838327080266026,
+          "decisions": 322
+        },
+        {
+          "score_difference": 200,
+          "win": 1.0,
+          "rounds": 18,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 1.525381810060935,
+          "decisions": 598
+        }
+      ]
+    },
+    {
+      "seed": 19100112,
+      "games": [
+        {
+          "score_difference": -670,
+          "win": 0.0,
+          "rounds": 10,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 0,
+          "decision_seconds": 0.6077103019961214,
+          "decisions": 304
+        },
+        {
+          "score_difference": 1030,
+          "win": 1.0,
+          "rounds": 8,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.31656883400137303,
+          "decisions": 235
+        }
+      ]
+    },
+    {
+      "seed": 19100113,
+      "games": [
+        {
+          "score_difference": -290,
+          "win": 0.0,
+          "rounds": 15,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 4,
+          "decision_seconds": 1.3079569799592718,
+          "decisions": 537
+        },
+        {
+          "score_difference": 90,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.0083967949940416,
+          "decisions": 544
+        }
+      ]
+    },
+    {
+      "seed": 19100114,
+      "games": [
+        {
+          "score_difference": 160,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 1.5952091220351576,
+          "decisions": 458
+        },
+        {
+          "score_difference": 540,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 4,
+          "decision_seconds": 0.5093532020182465,
+          "decisions": 340
+        }
+      ]
+    },
+    {
+      "seed": 19100115,
+      "games": [
+        {
+          "score_difference": 630,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 4,
+          "decision_seconds": 1.434539326994127,
+          "decisions": 363
+        },
+        {
+          "score_difference": 200,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.6554642289702315,
+          "decisions": 464
+        }
+      ]
+    },
+    {
+      "seed": 19100116,
+      "games": [
+        {
+          "score_difference": 210,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 0,
+          "decision_seconds": 1.419769332955184,
+          "decisions": 535
+        },
+        {
+          "score_difference": 300,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 10,
+          "double_victories": 2,
+          "decision_seconds": 0.6574391699432454,
+          "decisions": 455
+        }
+      ]
+    },
+    {
+      "seed": 19100117,
+      "games": [
+        {
+          "score_difference": 110,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 1.5004106729611522,
+          "decisions": 507
+        },
+        {
+          "score_difference": 850,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 3,
+          "successful_calls": 3,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.42761170499943546,
+          "decisions": 300
+        }
+      ]
+    },
+    {
+      "seed": 19100118,
+      "games": [
+        {
+          "score_difference": 610,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 0.891212082002312,
+          "decisions": 285
+        },
+        {
+          "score_difference": 50,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.6930126140105131,
+          "decisions": 489
+        }
+      ]
+    },
+    {
+      "seed": 19100119,
+      "games": [
+        {
+          "score_difference": 470,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.036675327042758,
+          "decisions": 392
+        },
+        {
+          "score_difference": 10,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 0.7575142059904465,
+          "decisions": 498
+        }
+      ]
+    },
+    {
+      "seed": 19100120,
+      "games": [
+        {
+          "score_difference": -120,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.734925849006686,
+          "decisions": 467
+        },
+        {
+          "score_difference": 290,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 0.5299671579705318,
+          "decisions": 436
+        }
+      ]
+    },
+    {
+      "seed": 19100121,
+      "games": [
+        {
+          "score_difference": 400,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.508514421984728,
+          "decisions": 376
+        },
+        {
+          "score_difference": 580,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 0.8021222499883152,
+          "decisions": 416
+        }
+      ]
+    },
+    {
+      "seed": 19100122,
+      "games": [
+        {
+          "score_difference": 880,
+          "win": 1.0,
+          "rounds": 7,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.6460340979974717,
+          "decisions": 209
+        },
+        {
+          "score_difference": -910,
+          "win": 0.0,
+          "rounds": 6,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 0,
+          "double_victories": 0,
+          "decision_seconds": 0.17237249601384974,
+          "decisions": 207
+        }
+      ]
+    },
+    {
+      "seed": 19100123,
+      "games": [
+        {
+          "score_difference": 890,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.053781574988534,
+          "decisions": 279
+        },
+        {
+          "score_difference": -200,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 3,
+          "double_victories": 1,
+          "decision_seconds": 1.0531720809412946,
+          "decisions": 555
+        }
+      ]
+    },
+    {
+      "seed": 19100124,
+      "games": [
+        {
+          "score_difference": 310,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 1.9364776029797213,
+          "decisions": 542
+        },
+        {
+          "score_difference": 400,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 4,
+          "decision_seconds": 0.5130788339774881,
+          "decisions": 392
+        }
+      ]
+    },
+    {
+      "seed": 19100125,
+      "games": [
+        {
+          "score_difference": 230,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 1.3321194969939825,
+          "decisions": 488
+        },
+        {
+          "score_difference": 110,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.6585877690158668,
+          "decisions": 434
+        }
+      ]
+    },
+    {
+      "seed": 19100126,
+      "games": [
+        {
+          "score_difference": 1050,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 1.2062267840046843,
+          "decisions": 325
+        },
+        {
+          "score_difference": 480,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.7549816999999166,
+          "decisions": 436
+        }
+      ]
+    },
+    {
+      "seed": 19100127,
+      "games": [
+        {
+          "score_difference": 800,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 3,
+          "successful_calls": 3,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.8235964199666341,
+          "decisions": 264
+        },
+        {
+          "score_difference": 500,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.7497502999540302,
+          "decisions": 439
+        }
+      ]
+    },
+    {
+      "seed": 19100128,
+      "games": [
+        {
+          "score_difference": -400,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 0,
+          "decision_seconds": 1.374417673010612,
+          "decisions": 356
+        },
+        {
+          "score_difference": -380,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.0047842479943938,
+          "decisions": 545
+        }
+      ]
+    },
+    {
+      "seed": 19100129,
+      "games": [
+        {
+          "score_difference": -190,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 1,
+          "decision_seconds": 1.0668932619300904,
+          "decisions": 441
+        },
+        {
+          "score_difference": 720,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.4683588250009052,
+          "decisions": 345
+        }
+      ]
+    },
+    {
+      "seed": 19100130,
+      "games": [
+        {
+          "score_difference": 580,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 1.1932894219607988,
+          "decisions": 358
+        },
+        {
+          "score_difference": -190,
+          "win": 0.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.0083414979890222,
+          "decisions": 438
+        }
+      ]
+    },
+    {
+      "seed": 19100131,
+      "games": [
+        {
+          "score_difference": -90,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 1.1223974199965596,
+          "decisions": 366
+        },
+        {
+          "score_difference": 360,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 3,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 0.6084749589608691,
+          "decisions": 487
+        }
+      ]
+    },
+    {
+      "seed": 19100132,
+      "games": [
+        {
+          "score_difference": 490,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 4,
+          "decision_seconds": 1.5465418310159293,
+          "decisions": 513
+        },
+        {
+          "score_difference": 430,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 4,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.6602708619575424,
+          "decisions": 533
+        }
+      ]
+    },
+    {
+      "seed": 19100133,
+      "games": [
+        {
+          "score_difference": 430,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 2,
+          "decision_seconds": 1.5177398219930183,
+          "decisions": 464
+        },
+        {
+          "score_difference": 820,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 3,
+          "decision_seconds": 0.6040315840000403,
+          "decisions": 422
+        }
+      ]
+    },
+    {
+      "seed": 19100134,
+      "games": [
+        {
+          "score_difference": 570,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.9166663789546874,
+          "decisions": 421
+        },
+        {
+          "score_difference": 560,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 6,
+          "successful_calls": 2,
+          "first_out": 7,
+          "double_victories": 5,
+          "decision_seconds": 1.130580376015132,
+          "decisions": 590
+        }
+      ]
+    },
+    {
+      "seed": 19100135,
+      "games": [
+        {
+          "score_difference": 630,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 1.516864338027517,
+          "decisions": 372
+        },
+        {
+          "score_difference": 80,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 10,
+          "double_victories": 1,
+          "decision_seconds": 0.8806362770410487,
+          "decisions": 519
+        }
+      ]
+    },
+    {
+      "seed": 19100136,
+      "games": [
+        {
+          "score_difference": -140,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 0.905948673014791,
+          "decisions": 438
+        },
+        {
+          "score_difference": 500,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 0.559938744037936,
+          "decisions": 411
+        }
+      ]
+    },
+    {
+      "seed": 19100137,
+      "games": [
+        {
+          "score_difference": -370,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 1,
+          "decision_seconds": 1.236430794975604,
+          "decisions": 406
+        },
+        {
+          "score_difference": 330,
+          "win": 1.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 0.48518450297706295,
+          "decisions": 331
+        }
+      ]
+    },
+    {
+      "seed": 19100138,
+      "games": [
+        {
+          "score_difference": -430,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 1.0722966159919451,
+          "decisions": 430
+        },
+        {
+          "score_difference": 950,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 3,
+          "successful_calls": 2,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 0.5595602140019764,
+          "decisions": 420
+        }
+      ]
+    },
+    {
+      "seed": 19100139,
+      "games": [
+        {
+          "score_difference": -850,
+          "win": 0.0,
+          "rounds": 10,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 0,
+          "decision_seconds": 0.7343327409762423,
+          "decisions": 305
+        },
+        {
+          "score_difference": 540,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.5772166660353832,
+          "decisions": 386
+        }
+      ]
+    },
+    {
+      "seed": 19100140,
+      "games": [
+        {
+          "score_difference": 400,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 4,
+          "decision_seconds": 1.4162273760048265,
+          "decisions": 385
+        },
+        {
+          "score_difference": 250,
+          "win": 1.0,
+          "rounds": 16,
+          "calls": 4,
+          "successful_calls": 2,
+          "first_out": 9,
+          "double_victories": 3,
+          "decision_seconds": 1.0888686900034372,
+          "decisions": 563
+        }
+      ]
+    },
+    {
+      "seed": 19100141,
+      "games": [
+        {
+          "score_difference": -140,
+          "win": 0.0,
+          "rounds": 16,
+          "calls": 2,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 1.0794063889770769,
+          "decisions": 550
+        },
+        {
+          "score_difference": 540,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 3,
+          "successful_calls": 1,
+          "first_out": 11,
+          "double_victories": 3,
+          "decision_seconds": 0.6659832629920857,
+          "decisions": 458
+        }
+      ]
+    },
+    {
+      "seed": 19100142,
+      "games": [
+        {
+          "score_difference": 170,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 1.3706220430285612,
+          "decisions": 419
+        },
+        {
+          "score_difference": 240,
+          "win": 1.0,
+          "rounds": 13,
+          "calls": 3,
+          "successful_calls": 3,
+          "first_out": 8,
+          "double_victories": 0,
+          "decision_seconds": 0.6071525799998199,
+          "decisions": 443
+        }
+      ]
+    },
+    {
+      "seed": 19100143,
+      "games": [
+        {
+          "score_difference": 180,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 1,
+          "decision_seconds": 1.5896179519950238,
+          "decisions": 419
+        },
+        {
+          "score_difference": 760,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 2,
+          "decision_seconds": 0.4889366709940077,
+          "decisions": 335
+        }
+      ]
+    },
+    {
+      "seed": 19100144,
+      "games": [
+        {
+          "score_difference": 430,
+          "win": 1.0,
+          "rounds": 17,
+          "calls": 3,
+          "successful_calls": 0,
+          "first_out": 10,
+          "double_victories": 3,
+          "decision_seconds": 1.799174836025486,
+          "decisions": 585
+        },
+        {
+          "score_difference": 570,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 7,
+          "double_victories": 3,
+          "decision_seconds": 0.48569429398412467,
+          "decisions": 381
+        }
+      ]
+    },
+    {
+      "seed": 19100145,
+      "games": [
+        {
+          "score_difference": -10,
+          "win": 0.0,
+          "rounds": 13,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 0.8893835369672161,
+          "decisions": 428
+        },
+        {
+          "score_difference": 500,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 2,
+          "successful_calls": 2,
+          "first_out": 6,
+          "double_victories": 2,
+          "decision_seconds": 0.5895139989588642,
+          "decisions": 393
+        }
+      ]
+    },
+    {
+      "seed": 19100146,
+      "games": [
+        {
+          "score_difference": 850,
+          "win": 1.0,
+          "rounds": 9,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 6,
+          "double_victories": 4,
+          "decision_seconds": 0.8279097119702783,
+          "decisions": 263
+        },
+        {
+          "score_difference": -580,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 4,
+          "double_victories": 1,
+          "decision_seconds": 0.7950111299578566,
+          "decisions": 394
+        }
+      ]
+    },
+    {
+      "seed": 19100147,
+      "games": [
+        {
+          "score_difference": 340,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 9,
+          "double_victories": 2,
+          "decision_seconds": 1.1158897439745488,
+          "decisions": 452
+        },
+        {
+          "score_difference": 170,
+          "win": 1.0,
+          "rounds": 15,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 6,
+          "double_victories": 1,
+          "decision_seconds": 0.7170802100190485,
+          "decisions": 529
+        }
+      ]
+    },
+    {
+      "seed": 19100148,
+      "games": [
+        {
+          "score_difference": -320,
+          "win": 0.0,
+          "rounds": 12,
+          "calls": 1,
+          "successful_calls": 0,
+          "first_out": 5,
+          "double_victories": 3,
+          "decision_seconds": 1.1220681160157255,
+          "decisions": 392
+        },
+        {
+          "score_difference": 760,
+          "win": 1.0,
+          "rounds": 11,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 7,
+          "double_victories": 2,
+          "decision_seconds": 0.6573559670068789,
+          "decisions": 379
+        }
+      ]
+    },
+    {
+      "seed": 19100149,
+      "games": [
+        {
+          "score_difference": 360,
+          "win": 1.0,
+          "rounds": 12,
+          "calls": 0,
+          "successful_calls": 0,
+          "first_out": 8,
+          "double_victories": 3,
+          "decision_seconds": 1.0982354140141979,
+          "decisions": 429
+        },
+        {
+          "score_difference": 250,
+          "win": 1.0,
+          "rounds": 14,
+          "calls": 1,
+          "successful_calls": 1,
+          "first_out": 8,
+          "double_victories": 0,
+          "decision_seconds": 0.48448941796959843,
+          "decisions": 436
+        }
+      ]
+    }
+  ]
+}

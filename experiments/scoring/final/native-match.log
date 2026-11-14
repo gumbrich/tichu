@@ -1,0 +1,23 @@
+{
+  "deal_pairs": 150,
+  "games": 300,
+  "mean_score_difference": 243,
+  "score_difference_95ci": [
+    204.10858822799452,
+    281.8914117720055
+  ],
+  "win_rate": 0.71,
+  "win_rate_95ci": [
+    0.6643293494446636,
+    0.7556706505553363
+  ],
+  "call_success_rate": 0.6564885496183206,
+  "mean_decision_ms": 2.246834133469646,
+  "rounds": 3796,
+  "calls": 393,
+  "successful_calls": 258,
+  "first_out": 1965,
+  "double_victories": 628,
+  "decision_seconds": 279.3309131412134,
+  "decisions": 124322
+}
