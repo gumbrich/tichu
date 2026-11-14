@@ -1,0 +1,82 @@
+{
+  "selected": "blend-50",
+  "model_sha256": "b7883435e25b66f84baaf84383465848bcdbb7157e4b0d1b522acd82df73f5dd",
+  "method": "highest external validation mean among positive native and external validation improvements",
+  "final_test_started": false,
+  "candidates": [
+    {
+      "candidate": "finish-only",
+      "native_mean": -0.234375,
+      "native_ci95": [
+        -3.1730471646710443,
+        2.7042971646710443
+      ],
+      "external_gain": {
+        "mean": 0.01953125,
+        "ci95": [
+          -4.3897674707722185,
+          4.4288299707722185
+        ]
+      },
+      "eligible": false
+    },
+    {
+      "candidate": "search-00",
+      "native_mean": -6.953125,
+      "native_ci95": [
+        -20.81294409358717,
+        6.906694093587172
+      ],
+      "external_gain": {
+        "mean": 1.25,
+        "ci95": [
+          -14.131473091377961,
+          16.631473091377963
+        ]
+      },
+      "eligible": false
+    },
+    {
+      "candidate": "search-03",
+      "native_mean": -16.1328125,
+      "native_ci95": [
+        -30.351995720421765,
+        -1.9136292795782346
+      ],
+      "eligible": false,
+      "external_status": "still completing; negative native validation already excludes it"
+    },
+    {
+      "candidate": "small-and-grand",
+      "native_mean": 1.6015625,
+      "native_ci95": [
+        -3.8061799985004,
+        7.0093049985004
+      ],
+      "external_gain": {
+        "mean": -0.01953125,
+        "ci95": [
+          -6.78209561040437,
+          6.74303311040437
+        ]
+      },
+      "eligible": false
+    },
+    {
+      "candidate": "blend-50",
+      "native_mean": 21.171875,
+      "native_ci95": [
+        9.654430813358736,
+        32.689319186641264
+      ],
+      "external_gain": {
+        "mean": 17.0703125,
+        "ci95": [
+          3.1537037042699296,
+          30.98692129573007
+        ]
+      },
+      "eligible": true
+    }
+  ]
+}

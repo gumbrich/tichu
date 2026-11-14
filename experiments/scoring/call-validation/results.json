@@ -1,0 +1,63 @@
+[
+  {
+    "candidate": "small-and-grand",
+    "native": {
+      "deal_pairs": 128,
+      "games": 256,
+      "mean_score_difference": 1.6015625,
+      "score_difference_95ci": [
+        -3.8061799985004,
+        7.0093049985004
+      ],
+      "win_rate": 0.498046875,
+      "win_rate_95ci": [
+        0.4728478343969366,
+        0.5232459156030634
+      ],
+      "call_success_rate": 0.5897435897435898,
+      "mean_decision_ms": 1.5923710167780165,
+      "rounds": 256,
+      "calls": 39,
+      "successful_calls": 23,
+      "first_out": 127,
+      "double_victories": 28,
+      "decision_seconds": 13.554262094814476,
+      "decisions": 8512
+    },
+    "external": {
+      "pairs": 256,
+      "games_or_rounds": 512,
+      "rounds": 512,
+      "paired_margin": {
+        "mean": -13.33984375,
+        "ci95": [
+          -27.59674834664743,
+          0.9170608466474324
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 21181,
+      "max_python_request_ms": 323.505208,
+      "round_wins": 221,
+      "round_ties": 8,
+      "ours": {
+        "small_calls": 95,
+        "small_made": 61,
+        "grand_calls": 14,
+        "grand_made": 9,
+        "double_victories": 62,
+        "first_out": 294
+      },
+      "opponent": {
+        "small_calls": 104,
+        "small_made": 69,
+        "grand_calls": 81,
+        "grand_made": 44,
+        "double_victories": 49,
+        "first_out": 218
+      },
+      "elapsed_seconds": 291.10388316699755
+    }
+  }
+]
