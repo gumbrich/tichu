@@ -1,5 +1,7 @@
 {
   "name": "scoring",
+  "schema_version": 2,
+  "policy": "scoring",
   "weights": {
     "groups": 6.16312264418097,
     "loose": 1.604891668643716,
@@ -18,8 +20,6 @@
     "threat": 9.81262431475611,
     "points": 0.03531422887444835
   },
-  "schema_version": 2,
-  "policy": "scoring",
   "scoring": {
     "points": 0.45,
     "initiative": 4,
@@ -29,6 +29,7 @@
     "small_adjustment": 0.0,
     "king_control": 0.15,
     "partner_finish": true,
-    "strong_finish": true
+    "strong_finish": true,
+    "dragon_gifts": true
   }
 }

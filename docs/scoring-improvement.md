@@ -23,8 +23,16 @@ Sixteen initial parameter configurations are screened against the unchanged
 features; eight randomly vary play/call parameters with PRNG seed 16381. Keep all
 results, including losing candidates. Pilot seed 16000000 is excluded.
 
+The first screen was interrupted during development to fix Dragon point valuation,
+Dragon gifting and partner-call protection during native bomb windows. Its
+completed and partial runs remain under `screen`; unfinished manifests are marked
+interrupted. The corrected complete screen uses base seed **16002000** and folder
+`screen-corrected`. No final evaluation seeds were used or inspected.
+
 Validate the top three on 256 paired deals, base seed 17000000, alongside frozen
-v2. Select by validation mean score, never by a final-test outcome. If this family
+v2. Also check the three finalists against v2 in our native referee on 128 paired
+validation deals starting at 17100000. Select by external validation mean among
+candidates with a positive native validation margin, never by a final-test outcome. If this family
 fails, record it and develop another candidate before spending the final seeds.
 
 Once selected, freeze code and model, then run 1,000 paired external deals (base

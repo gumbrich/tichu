@@ -1,6 +1,6 @@
 """Experimental point-aware policy, with public-information control estimates.
 
-The estimates bound the chance that a random unseen hand can answer; they are
+The estimates approximate how often a random unseen hand can answer; they are
 not calibrated win probabilities or a claim that an opponent will always answer.
 No actual opponent hand, external policy implementation or private log is used.
 """
@@ -27,10 +27,11 @@ class ScoringWeights:
     king_control: float = .15
     partner_finish: bool = True
     strong_finish: bool = True
+    dragon_gifts: bool = True
 
     def __post_init__(self):
         for key, value in asdict(self).items():
-            if key in ('partner_finish', 'strong_finish'):
+            if key in ('partner_finish', 'strong_finish', 'dragon_gifts'):
                 if type(value) is not bool:
                     raise ValueError(f'{key} must be boolean')
             elif type(value) not in (int, float) or not math.isfinite(value):
@@ -45,6 +46,8 @@ def initial_spec():
 
 
 def read_spec(path=None):
+    if path is None and Path(__file__).with_name('scoring_weights.json').exists():
+        path = Path(__file__).with_name('scoring_weights.json')
     value = json.loads(Path(path).read_text()) if path else initial_spec()
     if value.get('schema_version') != 2 or value.get('policy') != 'scoring':
         raise ValueError('Unsupported scoring policy')
@@ -181,11 +184,13 @@ class ScoringAgent(TacticalAgent):
         if play is None:
             return 0.0
         ours = winner % 2 == obs.seat % 2
+        if play.kind == 'single' and play.cards[0].rank == DRAGON:
+            # Our Dragon gives points away if it holds; if an enemy bombs it,
+            # they capture those points anyway. Low security is not a reward.
+            return -1.0 if ours else 1.0
         probability = self.control.secure(play) if ours else 0.0
         # Passing behind our partner can still bank the trick's points.
         signed = 2*probability-1
-        if play.kind == 'single' and play.cards[0].rank == DRAGON:
-            signed = -signed
         return signed
 
     def _call_danger(self, obs, play):
@@ -219,6 +224,12 @@ class ScoringAgent(TacticalAgent):
         return score
 
     def choose(self, obs):
+        if obs.phase == 'dragon' and self.scoring.dragon_gifts:
+            enemies = [(obs.seat+1)%4, (obs.seat+3)%4]
+            # Both recipients are opponents. A positive gift to the eventual
+            # last player may transfer back to our team's first finisher.
+            selector = max if obs.pile_points >= 0 else min
+            return Decision('dragon', recipient=selector(enemies, key=lambda s: obs.counts[s]))
         if obs.phase == 'grand':
             return Decision('grand', call=grand_strength(obs.hand) >= self.scoring.grand_threshold
                             and not obs.calls[(obs.seat+2) % 4])
@@ -231,7 +242,7 @@ class ScoringAgent(TacticalAgent):
             # threatening an immediate finish; otherwise yield the opportunity.
             danger = any(obs.counts[s] <= len(finishers[0].cards)
                          for s in range(4) if s % 2 != obs.seat % 2 and obs.counts[s])
-            if obs.can_pass and not danger:
+            if (obs.can_pass or obs.phase == 'bomb_window') and not danger:
                 return Decision('decline' if obs.phase == 'bomb_window' else 'pass')
         if finishers and self.scoring.strong_finish:
             choice = max(finishers, key=lambda p: (p.is_bomb, p.rank))

@@ -54,6 +54,26 @@ class ScoringTests(unittest.TestCase):
                       can_pass=True, calls=(0, 0, 100, 0))
         self.assertEqual(ScoringAgent().choose(obs).kind, 'play')
 
+    def test_native_bomb_decline_can_protect_partner(self):
+        obs = observe(scenario((3, 3, 3, 3), (2, 4, 5, 6, 7), (8, 9), (10, 11, 12, 13, 14)), 0)
+        obs = replace(obs, phase='bomb_window', top=combo(14), trick_winner=2,
+                      plays=tuple(p for p in obs.plays if p.is_bomb),
+                      can_pass=False, calls=(0, 0, 100, 0))
+        self.assertEqual(ScoringAgent().choose(obs).kind, 'decline')
+
+    def test_dragon_is_not_rewarded_for_getting_bombed(self):
+        obs = observe(scenario((16, 2), (3, 4, 5, 6), (7, 8), (9, 10, 11, 12)), 0)
+        bot = ScoringAgent()
+        bot.control = ControlEstimate(obs)
+        self.assertEqual(bot._point_value(obs, combo(16), 0), -1)
+        self.assertEqual(bot._point_value(obs, combo(16), 1), 1)
+
+    def test_dragon_gift_sign_and_possible_last_player(self):
+        obs = replace(observe(scenario((2,), (3,), (4, 5), (6, 7, 8)), 0),
+                      phase='dragon', pile_points=30)
+        self.assertEqual(ScoringAgent().choose(obs).recipient, 3)
+        self.assertEqual(ScoringAgent().choose(replace(obs, pile_points=-5)).recipient, 1)
+
     def test_known_gift_and_empty_hand_control(self):
         obs = observe(scenario((2, 3), (4,), (5,), (6,)), 0)
         obs = replace(obs, sent=((1, Card(4, 16)),))
