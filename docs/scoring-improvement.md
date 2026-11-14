@@ -117,3 +117,28 @@ nontrivial decisions and 109,208 distinct feature options. The grouped split has
 17,475 training decisions and 2,430 validation decisions. Its compressed raw logs,
 feature dataset, checksums, training history and selected weights are retained
 under `experiments/scoring`. Teacher action prediction is not a strength benchmark.
+
+## Frozen selection
+
+The selected model is `experiments/scoring/selected.json`, SHA-256
+`b7883435e25b66f84baaf84383465848bcdbb7157e4b0d1b522acd82df73f5dd`.
+It blends standardized learned scores and frozen tactical scores equally.
+Selection was committed before any final test began. Its external validation
+gain over v2 was +17.07 points/round (paired 95% interval +3.15 to +30.99);
+its direct native validation margin was +21.17 (+9.65 to +32.69).
+These are selection statistics, not the final reported performance estimate.
+The teacher and external benchmark use the same fixed search configuration:
+the evaluation deals are unseen, but the opponent is familiar. This is not a
+claim of generalization to an unseen opponent family, AlphaTichu or human play.
+
+The structural-only and call-only finalists were essentially tied with v2 in
+external validation. Both random-weight finalists had negative native validation
+margins. The last random candidate's external run was allowed to finish for the
+record, but its already negative native result excluded it from selection.
+
+The separate diagnostic set compares the frozen full model with four removals:
+zero learned-policy influence; zero learned `signed_pot` and `played_points`
+coefficients; zero learned `enemy_call_danger`; and disabled Grand calls.
+The original planner still has its existing point and blocking preferences in
+the feature-removal cases. These diagnostics measure incremental contributions
+within this blend; they are not universal prescriptions or another tuning round.
