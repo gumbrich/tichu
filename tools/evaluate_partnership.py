@@ -115,6 +115,15 @@ def main():
                   for mode in ('rounds', 'games')}
         report['native'] = {mode: json.loads((args.output/f'native-{mode}.json').read_text())['summary']
                             for mode, _, _ in SCHEDULES[args.stage][2:]}
+        if args.stage == 'final':
+            rounds = json.loads((args.output/'candidate-rounds/summary.json').read_text())
+            matches = json.loads((args.output/'candidate-games/summary.json').read_text())
+            report['reference_target_passed'] = (rounds['paired_margin']['ci95'][0] > 0
+                                                and matches['match_win_rate']['ci95'][0] > .5)
+            report['default_promotion_passed'] = (report['reference_target_passed']
+                and report['rounds_paired_gain']['ci95'][0] > 0
+                and report['native']['round']['score_difference_95ci'][0] > 0
+                and report['native']['match']['win_rate_95ci'][0] > .5)
         (args.output/'comparison.json').write_text(json.dumps(report, indent=2)+'\n')
         manifest['status'] = 'complete'
     except BaseException:

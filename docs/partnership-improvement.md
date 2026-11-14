@@ -228,3 +228,14 @@ finishes; A's validation results will not change that screen or its selection ru
 Reuse the same frozen-v3 validation baseline after verifying its seed/count/mode,
 model hash and reference revision. Copies are shared control evidence, not additional
 independent games. The final comparison will use its separate reserved seeds.
+
+### Final claims and default-promotion gates
+
+Before any final seeds are used, distinguish the two claims explicitly. Beating
+the pinned reference requires the final external round-margin interval above
+zero and the external match-win interval above 50%. Replacing the default also
+requires the paired external improvement over v3 above zero, the direct native
+round-margin interval above zero, and the native match-win interval above 50%.
+All are the predeclared paired 95% intervals. A reference-specialist candidate can
+therefore meet the first target without earning default promotion. Do not retune
+a model or relax these gates after seeing the final results.

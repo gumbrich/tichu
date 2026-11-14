@@ -35,6 +35,11 @@ and [Aaron Fuegi's strategy discussion](https://scv.bu.edu/~aarondf/Games/Tichu/
   concentration and Greek-style conventions make different assumptions.
 - An ordinary voluntary pass is not proof that a higher card is absent. A partner
   may be preserving a combination or deliberately letting you keep the trick.
+- Watch an opposing caller's remaining cards: changing combination type can deny
+  an immediate finish. Include possible bombs when judging whether a lead is safe.
+- First place alone is not the scoring objective. Bank valuable tricks and aim
+  for the partnership's double victory. Winning with the Dragon keeps the lead
+  but gives its trick away, so card points and initiative have different values.
 
 The [BGA discussion](https://forum.boardgamearena.com/viewtopic.php?p=245590) and
 [BGG convention debate](https://boardgamegeek.com/thread/2184755/greek-partner-passing-convention)
