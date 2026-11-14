@@ -1,0 +1,158 @@
+[
+  {
+    "name": "parity-delay-ties",
+    "model": "experiments/partnership/development/combinations/parity-delay-ties.json",
+    "summary": {
+      "pairs": 128,
+      "games_or_rounds": 256,
+      "rounds": 256,
+      "paired_margin": {
+        "mean": 10.9375,
+        "ci95": [
+          -9.848526233144241,
+          31.72352623314424
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 10816,
+      "max_python_request_ms": 187.370791,
+      "round_wins": 129,
+      "round_ties": 6,
+      "ours": {
+        "small_calls": 22,
+        "small_made": 17,
+        "grand_calls": 1,
+        "grand_made": 1,
+        "double_victories": 49,
+        "first_out": 151
+      },
+      "opponent": {
+        "small_calls": 44,
+        "small_made": 25,
+        "grand_calls": 44,
+        "grand_made": 30,
+        "double_victories": 20,
+        "first_out": 105
+      },
+      "elapsed_seconds": 81.93489004100047
+    }
+  },
+  {
+    "name": "parity-delay-temperature",
+    "model": "experiments/partnership/development/combinations/parity-delay-temperature.json",
+    "summary": {
+      "pairs": 128,
+      "games_or_rounds": 256,
+      "rounds": 256,
+      "paired_margin": {
+        "mean": 9.0625,
+        "ci95": [
+          -11.951365378358254,
+          30.076365378358254
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 10845,
+      "max_python_request_ms": 151.87741599999998,
+      "round_wins": 127,
+      "round_ties": 8,
+      "ours": {
+        "small_calls": 22,
+        "small_made": 16,
+        "grand_calls": 1,
+        "grand_made": 1,
+        "double_victories": 44,
+        "first_out": 154
+      },
+      "opponent": {
+        "small_calls": 44,
+        "small_made": 25,
+        "grand_calls": 44,
+        "grand_made": 29,
+        "double_victories": 20,
+        "first_out": 102
+      },
+      "elapsed_seconds": 86.80599774999791
+    }
+  },
+  {
+    "name": "parity-delay",
+    "model": "experiments/partnership/development/combinations/parity-delay.json",
+    "summary": {
+      "pairs": 128,
+      "games_or_rounds": 256,
+      "rounds": 256,
+      "paired_margin": {
+        "mean": 7.8515625,
+        "ci95": [
+          -11.630733535173434,
+          27.333858535173434
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 10891,
+      "max_python_request_ms": 120.438959,
+      "round_wins": 126,
+      "round_ties": 6,
+      "ours": {
+        "small_calls": 22,
+        "small_made": 17,
+        "grand_calls": 1,
+        "grand_made": 0,
+        "double_victories": 45,
+        "first_out": 145
+      },
+      "opponent": {
+        "small_calls": 44,
+        "small_made": 24,
+        "grand_calls": 44,
+        "grand_made": 27,
+        "double_victories": 23,
+        "first_out": 111
+      },
+      "elapsed_seconds": 58.33339191599953
+    }
+  },
+  {
+    "name": "control",
+    "model": "experiments/partnership/development/combinations/control.json",
+    "summary": {
+      "pairs": 128,
+      "games_or_rounds": 256,
+      "rounds": 256,
+      "paired_margin": {
+        "mean": 5.78125,
+        "ci95": [
+          -14.322424992797792,
+          25.884924992797792
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 10766,
+      "max_python_request_ms": 220.018958,
+      "round_wins": 128,
+      "round_ties": 6,
+      "ours": {
+        "small_calls": 24,
+        "small_made": 17,
+        "grand_calls": 1,
+        "grand_made": 1,
+        "double_victories": 42,
+        "first_out": 148
+      },
+      "opponent": {
+        "small_calls": 49,
+        "small_made": 27,
+        "grand_calls": 44,
+        "grand_made": 25,
+        "double_victories": 27,
+        "first_out": 108
+      },
+      "elapsed_seconds": 54.60851337499844
+    }
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "parity-delay": {
+    "pairs": 128,
+    "seed": 21310000,
+    "model_sha256": "58c2b73fecae45f50f4df58f63b6110a5551deeabc1cf4d52eb7362d25b0d51f",
+    "small_calls": 22,
+    "followed_by_pass": 0,
+    "no_next_action": 0
+  },
+  "parity-delay-temperature": {
+    "pairs": 128,
+    "seed": 21310000,
+    "model_sha256": "96b6978a710541a3f5d8ec85cddb6e218dc3919634b901971caa51134ae883a4",
+    "small_calls": 22,
+    "followed_by_pass": 0,
+    "no_next_action": 0
+  },
+  "parity-delay-ties": {
+    "pairs": 128,
+    "seed": 21310000,
+    "model_sha256": "40416d428d54941faf2f5bdcb36c5e3afed756d80405779c6a2c6c23704441b1",
+    "small_calls": 22,
+    "followed_by_pass": 0,
+    "no_next_action": 0
+  }
+}

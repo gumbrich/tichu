@@ -1,0 +1,205 @@
+{
+  "purpose": "development selection only; validation and final seeds remain unused",
+  "candidate": {
+    "name": "risk0.4",
+    "model": "experiments/partnership/development/risk/risk0.4.json",
+    "summary": {
+      "pairs": 32,
+      "games_or_rounds": 64,
+      "rounds": 738,
+      "paired_margin": {
+        "mean": 79.6875,
+        "ci95": [
+          -40.46240802404088,
+          199.83740802404088
+        ]
+      },
+      "errors": 0,
+      "fallbacks": 0,
+      "decision_requests": 31038,
+      "max_python_request_ms": 184.57524999999998,
+      "match_win_rate": {
+        "mean": 0.53125,
+        "ci95": [
+          0.4153491194472483,
+          0.6471508805527517
+        ]
+      },
+      "match_wins": 34,
+      "ours": {
+        "small_calls": 94,
+        "small_made": 63,
+        "grand_calls": 12,
+        "grand_made": 10,
+        "double_victories": 119,
+        "first_out": 415
+      },
+      "opponent": {
+        "small_calls": 143,
+        "small_made": 91,
+        "grand_calls": 113,
+        "grand_made": 64,
+        "double_victories": 74,
+        "first_out": 323
+      },
+      "elapsed_seconds": 218.22141245799867
+    }
+  },
+  "model": {
+    "name": "partnership",
+    "weights": {
+      "groups": 6.16312264418097,
+      "loose": 1.604891668643716,
+      "control": 1.1464812701499478,
+      "shed": 0.9000494238189236,
+      "rank": 0.004388498162690602,
+      "partner": 20.250394357407252,
+      "bomb": 6.047966846348529,
+      "urgency": 2.205474808853247,
+      "lead": 5.080433270410164,
+      "gift": 0.4667632719773091,
+      "call_threshold": 0.42120497714779304
+    },
+    "tactics": {
+      "secure": 4.132504017561105,
+      "threat": 9.81262431475611,
+      "points": 0.03531422887444835
+    },
+    "schema_version": 3,
+    "policy": "partnership",
+    "scoring": {
+      "points": 0.0,
+      "initiative": 0.0,
+      "call_defense": 0.0,
+      "partner_call": 1.0,
+      "grand_threshold": 4.2,
+      "small_adjustment": 0.0,
+      "king_control": 0.0,
+      "partner_finish": true,
+      "strong_finish": true,
+      "dragon_gifts": true
+    },
+    "move_features": [
+      "pass",
+      "remaining_groups",
+      "remaining_loose",
+      "remaining_control",
+      "remaining_cards",
+      "shed",
+      "rank",
+      "bomb",
+      "dog",
+      "dragon",
+      "phoenix_single",
+      "enemy_secure",
+      "signed_pot",
+      "played_points",
+      "pass_partner",
+      "overtake_partner",
+      "play_partner_call",
+      "own_call_groups",
+      "enemy_call_danger",
+      "matching_enemy_size",
+      "lead_rank",
+      "lead_shed",
+      "enemy_size_remaining",
+      "pass_partner_size",
+      "finish",
+      "break_bomb",
+      "partner_first_remaining",
+      "enemy_first_control",
+      "unresolved_groups",
+      "single_present",
+      "single_rank",
+      "pair_present",
+      "pair_rank",
+      "triple_present",
+      "triple_rank",
+      "full_house_present",
+      "full_house_rank",
+      "straight_present",
+      "straight_rank",
+      "pairs_present",
+      "pairs_rank"
+    ],
+    "move_weights": [
+      -0.8049399187002078,
+      -0.30978753723298913,
+      -2.858290904858194,
+      2.604268827887447,
+      -1.1692966446633482,
+      1.1692954556758548,
+      -0.8910201825984951,
+      -0.7573005352739378,
+      0.4704264329243181,
+      0.4648306445688348,
+      0.20655128573776949,
+      -0.1760187984244955,
+      0.7715776457002276,
+      -0.14924846526599264,
+      0.7525876880920743,
+      -0.7525876880920747,
+      -0.4219835680699802,
+      -1.1986965587122056,
+      -1.024002837609448,
+      0.16970013974050757,
+      -0.05366105487272663,
+      2.8306599412953246,
+      2.911468521119245,
+      -0.5134915359407023,
+      1.0519758461060809,
+      -0.2328575925494142,
+      -1.8432379442320856,
+      -0.4146224151183236,
+      -0.731343145396937,
+      -0.6063878557091972,
+      0.8155651838698624,
+      0.16245199223399645,
+      -0.10447996084208451,
+      0.5800073988331512,
+      -0.6961652227679381,
+      0.16305137862312327,
+      -0.3866466030245341,
+      0.7897698923588101,
+      -0.6517389936818182,
+      0.7360991038720562,
+      -0.9300436113771366
+    ],
+    "move_blend": 0.75,
+    "partnership": {
+      "exchange": "planner",
+      "convention": "none",
+      "parity": true,
+      "wait_small": true,
+      "gentle_wish": false,
+      "temperature": 0.0,
+      "max_gap": 0.25,
+      "random_ties": true,
+      "risk": 0.4,
+      "seed": 82171
+    }
+  },
+  "risk_comparisons": {
+    "risk0.4": {
+      "mean": -3.59375,
+      "ci95": [
+        -15.002697869188236,
+        7.815197869188236
+      ]
+    },
+    "risk0.8": {
+      "mean": -9.21875,
+      "ci95": [
+        -24.251589346595985,
+        5.814089346595987
+      ]
+    },
+    "risk0.0": {
+      "mean": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

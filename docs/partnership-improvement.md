@@ -239,3 +239,13 @@ round-margin interval above zero, and the native match-win interval above 50%.
 All are the predeclared paired 95% intervals. A reference-specialist candidate can
 therefore meet the first target without earning default promotion. Do not retune
 a model or relax these gates after seeing the final results.
+
+## Second finalist frozen
+
+The development runner selected the 0.75 larger-corpus blend with coordinated
+opponent gifts, corrected delayed Small, random exact ties, and risk weight 0.4.
+That model is candidate B; its complete model is frozen in
+`experiments/partnership/development/risk/risk0.4.json`. Candidate A is the pure
+0.75 blend. Both now enter the previously specified validation comparison. The
+small risk screen does not establish that score-aware risk is better: the winning
+setting won 34/64 matches, versus 33/64 with no adjustment.

@@ -195,7 +195,7 @@ and `--max-score-gap 1` control the move distribution; `--bot-seed` controls
 sampling separately from the deal seed. Sampling options without an explicit
 `--bot` select v2 for compatibility; v3 is deterministic. Temperature zero is the default, and
 guaranteed finishes remain protected even at high temperatures.
-The policy does not yet perform hidden-hand game-tree search, infer opponents'
+The default policy does not yet perform hidden-hand game-tree search, infer opponents'
 strategies, or adapt to the overall match score. V3 makes conservative Grand
 calls; their optimal calibration remains open. Improvement over
 our baseline is not proof of human ladder strength. Online integration remains

@@ -198,8 +198,10 @@ This does not add hidden-hand rollout search to our bot. Its counterplay bounds,
 finish proofs and learned ranking remain separate from authoritative rules.
 Preserve that boundary while developing these next pieces:
 
-1. **Stateless move evaluation.** Expose versioned `score(observation, legal_actions)`
-   alongside `choose`, with immutable model parameters and per-decision caches.
+1. **Stateless move evaluation.** The ordinary-play ranker now exposes
+   `score_choices(observation, coefficients, baseline, blend)` alongside `choose`.
+   Extend this into a versioned policy interface with immutable model parameters
+   and per-decision caches.
    Keep exchange, declarations, ordinary play, interrupts, wishes and Dragon gifts
    explicit, rather than forcing them into one undifferentiated move category.
 2. **Belief and simulator interfaces.** Sample only states consistent with the
@@ -212,9 +214,20 @@ Preserve that boundary while developing these next pieces:
    selection. Benchmark by complete matches as well as round score.
 4. **Declaration calibration.** Collect substantially more eight-card decisions,
    including counterfactual call exploration, and validate success probabilities
-   separately from play strength. Add simultaneous partner-call coordination and
-   match-score-aware risk; a threshold search alone does not establish calibration.
+   separately from play strength. Improve simultaneous partner-call coordination
+   and replace the experimental match-score risk heuristic with validated estimates;
+   a threshold search alone does not establish calibration.
 
 The fixed search teacher is also a benchmark opponent, so fresh-deal results
 against it must not be described as performance against an unseen policy family.
 See [the scoring experiment](scoring-improvement.md) for the protocol and evidence.
+
+The [partnership experiment](partnership-improvement.md) adds public cumulative
+match scores and target score to `Observation`, populated by both referees. The
+experimental `PartnershipAgent` uses these for bounded declaration adjustments;
+frozen v3 ignores them. Its optional randomness derives reproducibly from the
+acting seat's observation and a policy seed, so repeated call/play callbacks agree
+and neither another seat's private state nor the deal shuffler is consumed.
+When delaying Small, it projects its own public declaration before choosing the
+following action. Rule validation still belongs to the referee. These are policy
+extensions, not a learned equilibrium strategy or hidden-hand search.
