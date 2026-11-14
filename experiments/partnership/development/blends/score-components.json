@@ -1,0 +1,101 @@
+{
+  "unit": "points per round; paired deal is the uncertainty unit",
+  "interpretation": "Score accounting, not causal feature effects; policy changes alter trajectories.",
+  "total_improvement": {
+    "mean": 24.453125,
+    "ci95": [
+      3.922631698842981,
+      44.98361830115702
+    ]
+  },
+  "candidate": {
+    "ordinary_card_points": {
+      "mean": 0.5078125,
+      "ci95": [
+        -5.9695733830679565,
+        6.9851983830679565
+      ]
+    },
+    "double_victory_points": {
+      "mean": 24.21875,
+      "ci95": [
+        13.187622683647124,
+        35.24987731635288
+      ]
+    },
+    "small_calls": {
+      "mean": -2.34375,
+      "ci95": [
+        -8.66894176575095,
+        3.98144176575095
+      ]
+    },
+    "grand_calls": {
+      "mean": 3.90625,
+      "ci95": [
+        -4.898503027400803,
+        12.711003027400803
+      ]
+    }
+  },
+  "baseline": {
+    "ordinary_card_points": {
+      "mean": -9.4921875,
+      "ci95": [
+        -15.139252475613258,
+        -3.845122524386741
+      ]
+    },
+    "double_victory_points": {
+      "mean": 17.1875,
+      "ci95": [
+        5.661202664526305,
+        28.713797335473693
+      ]
+    },
+    "small_calls": {
+      "mean": 1.171875,
+      "ci95": [
+        -5.021692666128814,
+        7.365442666128814
+      ]
+    },
+    "grand_calls": {
+      "mean": -7.03125,
+      "ci95": [
+        -15.77709362405127,
+        1.71459362405127
+      ]
+    }
+  },
+  "change": {
+    "ordinary_card_points": {
+      "mean": 10.0,
+      "ci95": [
+        3.989896547983803,
+        16.010103452016196
+      ]
+    },
+    "double_victory_points": {
+      "mean": 7.03125,
+      "ci95": [
+        -5.492256134194555,
+        19.554756134194555
+      ]
+    },
+    "small_calls": {
+      "mean": -3.515625,
+      "ci95": [
+        -9.286377033518447,
+        2.2551270335184466
+      ]
+    },
+    "grand_calls": {
+      "mean": 10.9375,
+      "ci95": [
+        0.016547951228117697,
+        21.85845204877188
+      ]
+    }
+  }
+}

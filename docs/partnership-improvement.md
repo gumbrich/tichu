@@ -215,3 +215,16 @@ strength comparison. External games select the planner/learned-score blend next.
 As a compatibility check, the frozen-v3 bidding baseline and unchanged-threshold
 screen reproduced every action, deck and score in all 128 corresponding rounds
 across the refactoring. All 103 unit tests pass after the declaration correction.
+
+## Validation candidates fixed before validation
+
+Candidate A is the unmodified larger-corpus 0.75 blend selected at 21300000.
+Candidate B will be the combination/risk winner produced by the already-committed
+development runner, using only its 21310000 and 21400000 results. No third candidate
+is planned. Run the reserved validation suite for both, then select the highest
+external match win rate among positive native-round means; break an exact win-rate
+tie by external match score margin. Candidate A can start while the fixed B screen
+finishes; A's validation results will not change that screen or its selection rule.
+Reuse the same frozen-v3 validation baseline after verifying its seed/count/mode,
+model hash and reference revision. Copies are shared control evidence, not additional
+independent games. The final comparison will use its separate reserved seeds.
