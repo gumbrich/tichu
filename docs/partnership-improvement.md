@@ -202,3 +202,16 @@ pass there, it defers the call. This applies to both the native atomic action an
 the external separate call/play callbacks. The earlier screen remains recorded
 as the earlier, planned-pass variant; the fresh combination screen tests this
 corrected behavior.
+
+## Larger-corpus fit
+
+The 2,048 audited teacher games produced 81,698 nontrivial decisions and 441,274
+distinct feature-vector options. Whole-game grouping assigned 71,489 decisions
+to training and 10,209 to validation. Of 30 epochs, epoch 5 had the lowest
+validation imitation loss (1.23093), with 47.85% top-choice accuracy. The old and
+new fits use different held-out games, so these loss numbers are not a controlled
+strength comparison. External games select the planner/learned-score blend next.
+
+As a compatibility check, the frozen-v3 bidding baseline and unchanged-threshold
+screen reproduced every action, deck and score in all 128 corresponding rounds
+across the refactoring. All 103 unit tests pass after the declaration correction.
